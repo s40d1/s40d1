@@ -308,214 +308,6 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</id>
-    <published>2020-06-25T17:34:40.817Z</published>
-    <updated>2020-06-18T13:53:52.901Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="常见病毒类型和特点"><a href="#常见病毒类型和特点" class="headerlink" title="常见病毒类型和特点"></a>常见病毒类型和特点</h1><h2 id="常见分类"><a href="#常见分类" class="headerlink" title="常见分类"></a>常见分类</h2><h3 id="蠕虫"><a href="#蠕虫" class="headerlink" title="蠕虫"></a>蠕虫</h3><p>文件夹</p><h4 id="飞客蠕虫（conficker）"><a href="#飞客蠕虫（conficker）" class="headerlink" title="飞客蠕虫（conficker）"></a>飞客蠕虫（conficker）</h4><p>445端口传播，利用MS08-076漏洞发起攻击。中毒症状包括请求解析随机域名（DGA）、不能正常访问安全厂商的网站或服务器、下载木马。<a href="https://www.0daybank.org/?p=15879" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="EABB6AE6FDBA40348058F59A8C7767D1" alt="image"></p><h4 id="文件夹蠕虫（FakeFolder）"><a href="#文件夹蠕虫（FakeFolder）" class="headerlink" title="文件夹蠕虫（FakeFolder）"></a>文件夹蠕虫（FakeFolder）</h4><p>设置源文件夹隐藏属性，并且自己伪装成文件夹，通过修改注册表系统属性，通常通过共享、U盘传播。</p><h4 id="Morto蠕虫"><a href="#Morto蠕虫" class="headerlink" title="Morto蠕虫"></a>Morto蠕虫</h4><p>通过RDP爆破传播，通过注册表、服务等进行驻留。</p><h4 id="NetSky蠕虫"><a href="#NetSky蠕虫" class="headerlink" title="NetSky蠕虫"></a>NetSky蠕虫</h4><p>获取本地邮箱地址，通过邮件服务器传播包含病毒体的邮件</p><h3 id="挖矿病毒"><a href="#挖矿病毒" class="headerlink" title="挖矿病毒"></a>挖矿病毒</h3><h4 id="Wannamine系列"><a href="#Wannamine系列" class="headerlink" title="Wannamine系列"></a>Wannamine系列</h4><h3 id="木马"><a href="#木马" class="headerlink" title="木马"></a>木马</h3><h3 id="感染型病毒（不能做清除，而是做修复）"><a href="#感染型病毒（不能做清除，而是做修复）" class="headerlink" title="感染型病毒（不能做清除，而是做修复）"></a>感染型病毒（不能做清除，而是做修复）</h3><h4 id="Ramnit"><a href="#Ramnit" class="headerlink" title="Ramnit"></a>Ramnit</h4><p>感染html文件，插入vbs脚本，会进行客户端vbs脚本传播。<a href="https://www.52pojie.cn/thread-757290-1-1.html" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="2208C49CC44D499E82542EF0ABCFB791" alt="image"></p><h3 id="宏病毒"><a href="#宏病毒" class="headerlink" title="宏病毒"></a>宏病毒</h3><p>文档类，</p><h3 id="勒索病毒"><a href="#勒索病毒" class="headerlink" title="勒索病毒"></a>勒索病毒</h3><p>感染文件，勒索赎金，没办法破解</p><h1 id="应急工具"><a href="#应急工具" class="headerlink" title="应急工具"></a>应急工具</h1><h2 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h2><p>Process Hacker procexp &gt; 进程操作，服务操作<br>Autoruns &gt; 计划任务，启动项，服务，WMI<br>Everything &gt; 文件搜索<br>PChunter &gt; 文件，驱动（驱动型工具，可以绕过应用层的防护）</p><h2 id="进阶工具"><a href="#进阶工具" class="headerlink" title="进阶工具"></a>进阶工具</h2><h3 id="Sysmon"><a href="#Sysmon" class="headerlink" title="Sysmon"></a>Sysmon</h3><p>安装：Sysmon.exe -acceptula -i -n<br>日志路径：%system%\system32\winevt\logs\microsoft-windows=sysmon%4Operational.evtx<br>卸载：sysmon.exe -u</p><h1 id="流行病毒查杀思路"><a href="#流行病毒查杀思路" class="headerlink" title="流行病毒查杀思路"></a>流行病毒查杀思路</h1><h2 id="勒索时间信息收集"><a href="#勒索时间信息收集" class="headerlink" title="勒索时间信息收集"></a>勒索时间信息收集</h2><h3 id="是否正在进行加密"><a href="#是否正在进行加密" class="headerlink" title="是否正在进行加密"></a>是否正在进行加密</h3><h1 id="“徒手杀毒”招式分解"><a href="#“徒手杀毒”招式分解" class="headerlink" title="“徒手杀毒”招式分解"></a>“徒手杀毒”招式分解</h1><h2 id="观察对象"><a href="#观察对象" class="headerlink" title="观察对象"></a>观察对象</h2><h2 id="恶意软件商最爱的目录排行"><a href="#恶意软件商最爱的目录排行" class="headerlink" title="恶意软件商最爱的目录排行"></a>恶意软件商最爱的目录排行</h2><h1 id="快速判断文件“黑白”"><a href="#快速判断文件“黑白”" class="headerlink" title="快速判断文件“黑白”"></a>快速判断文件“黑白”</h1><h2 id="安全软件报出的文件判断"><a href="#安全软件报出的文件判断" class="headerlink" title="安全软件报出的文件判断"></a>安全软件报出的文件判断</h2><h3 id="木马类-Trojan-Backdoop"><a href="#木马类-Trojan-Backdoop" class="headerlink" title="木马类 - Trojan Backdoop"></a>木马类 - Trojan Backdoop</h3><p>如果不是业务程序软件，建议隔离<br>四段式：Trojan.Win32.Wannamine.ufajg<br>其他：TR/Lokibot.gen</p><h2 id="借助威胁情报判断文件威胁"><a href="#借助威胁情报判断文件威胁" class="headerlink" title="借助威胁情报判断文件威胁"></a>借助威胁情报判断文件威胁</h2><h2 id="通过沙箱判断行为"><a href="#通过沙箱判断行为" class="headerlink" title="通过沙箱判断行为"></a>通过沙箱判断行为</h2><h2 id="其他补充技巧"><a href="#其他补充技巧" class="headerlink" title="其他补充技巧"></a>其他补充技巧</h2><ul><li>图标和文件类型是否对应</li><li>看似正常系统文件，看MD5</li><li>是否具有签名</li><li>强壳、混淆</li></ul><h1 id="常见应急工具"><a href="#常见应急工具" class="headerlink" title="常见应急工具"></a>常见应急工具</h1><h2 id><a href="#" class="headerlink" title></a></h2><p>##</p><h2 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h2><h3 id="Process-Hacker"><a href="#Process-Hacker" class="headerlink" title="Process Hacker"></a>Process Hacker</h3><h1 id="常见病毒处置"><a href="#常见病毒处置" class="headerlink" title="常见病毒处置"></a>常见病毒处置</h1><h2 id="常见挖矿病毒处置"><a href="#常见挖矿病毒处置" class="headerlink" title="常见挖矿病毒处置"></a>常见挖矿病毒处置</h2><p>中挖矿木马的计算机，资源会被大量占用，用于数字加密币的挖掘。</p><h2 id="挖矿病毒的原理"><a href="#挖矿病毒的原理" class="headerlink" title="挖矿病毒的原理"></a>挖矿病毒的原理</h2><p>stratum协议是目前最常用的矿机和矿池之间的TCP协议。以下是挖矿的网络结构：  </p><h2 id="挖矿病毒分析"><a href="#挖矿病毒分析" class="headerlink" title="挖矿病毒分析"></a>挖矿病毒分析</h2><p>一般挖矿病毒的最明显特征：进程资源占用高50%/25%/100%，可通过判断通信地址为矿池来判断终端可能再进行挖矿。<br>验证挖矿主机常用以下工具：</p><ol><li>微步在线</li><li>搜索引擎</li><li>wireshark、tcpdump等抓包工具   </li></ol><p>发现挖矿程序，一般会伴随着自启动操作。<br>服务：tasklist /svc、process hacker</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\Microsoft\WindowsNT\CurrentControlSet\Services</span><br></pre></td></tr></table></figure><p>任务计划：taskschd.msc</p><p>启动项：<br>VMI：autoruns/wbemtest<br>IPSec：deny445<br>Rookit隐藏：驱动隐藏、attrib -r -s -h、cacls、<br>“file” /g administrator:f</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;常见病毒类型和特点&quot;&gt;&lt;a href=&quot;#常见病毒类型和特点&quot; class=&quot;headerlink&quot; title=&quot;常见病毒类型和特点&quot;&gt;&lt;/a&gt;常见病毒类型和特点&lt;/h1&gt;&lt;h2 id=&quot;常见分类&quot;&gt;&lt;a href=&quot;#常见分类&quot; cl
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/</id>
-    <published>2020-06-25T17:34:40.815Z</published>
-    <updated>2020-06-18T13:53:53.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="一、进程排查"><a href="#一、进程排查" class="headerlink" title="一、进程排查"></a>一、进程排查</h1><h2 id="独立进程块"><a href="#独立进程块" class="headerlink" title="独立进程块"></a>独立进程块</h2><p>病毒是独立的可执行文件，以独立进程运行。进程名要么随机，要么相似于系统进程</p><h2 id="动态库模块"><a href="#动态库模块" class="headerlink" title="动态库模块"></a>动态库模块</h2><p>以动态库的方式注入到系统进程和应用程序。</p><h2 id="隐藏模块"><a href="#隐藏模块" class="headerlink" title="隐藏模块"></a>隐藏模块</h2><h1 id="二、网络行为排查"><a href="#二、网络行为排查" class="headerlink" title="二、网络行为排查"></a>二、网络行为排查</h1><h2 id="重要辅助站点"><a href="#重要辅助站点" class="headerlink" title="重要辅助站点"></a>重要辅助站点</h2><ol><li><a href="https://www.virustotal.com/国外知名站点" target="_blank" rel="external nofollow noopener noreferrer">https://www.virustotal.com/国外知名站点</a><h2 id="网络连接排查"><a href="#网络连接排查" class="headerlink" title="网络连接排查"></a>网络连接排查</h2><h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><h2 id="漏洞与补丁信息"><a href="#漏洞与补丁信息" class="headerlink" title="漏洞与补丁信息"></a>漏洞与补丁信息</h2><img src="D9E9900A2C3A41EC8D3FCE4519473BF0" alt="image"><h1 id="三、文件排查"><a href="#三、文件排查" class="headerlink" title="三、文件排查"></a>三、文件排查</h1><h2 id="临时目录排查"><a href="#临时目录排查" class="headerlink" title="临时目录排查"></a>临时目录排查</h2></li></ol><h2 id="浏览器相关文件排查"><a href="#浏览器相关文件排查" class="headerlink" title="浏览器相关文件排查"></a>浏览器相关文件排查</h2><h2 id="最近打开文件排查"><a href="#最近打开文件排查" class="headerlink" title="最近打开文件排查"></a>最近打开文件排查</h2><h2 id="文件时间排查"><a href="#文件时间排查" class="headerlink" title="文件时间排查"></a>文件时间排查</h2><h2 id="其他重要目录查询"><a href="#其他重要目录查询" class="headerlink" title="其他重要目录查询"></a>其他重要目录查询</h2><p>system32也是常见的病毒释放目录，需检查hosts文件有没有被篡改。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32</span><br><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure><p><img src="F0E7FE1ED20D490DB97A8B4DEECC9DAB" alt="image"></p><h1 id="四、远程登录排查"><a href="#四、远程登录排查" class="headerlink" title="四、远程登录排查"></a>四、远程登录排查</h1><h2 id="Windows日志"><a href="#Windows日志" class="headerlink" title="Windows日志"></a>Windows日志</h2><h2 id="RDP远程登录排查"><a href="#RDP远程登录排查" class="headerlink" title="RDP远程登录排查"></a>RDP远程登录排查</h2><h2 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h2><h1 id="五、启动方式排查"><a href="#五、启动方式排查" class="headerlink" title="五、启动方式排查"></a>五、启动方式排查</h1><h2 id="启动项排查"><a href="#启动项排查" class="headerlink" title="启动项排查"></a>启动项排查</h2><h2 id="任务计划排查"><a href="#任务计划排查" class="headerlink" title="任务计划排查"></a>任务计划排查</h2><h2 id="服务排查"><a href="#服务排查" class="headerlink" title="服务排查"></a>服务排查</h2><h1 id="六、账号安全排查"><a href="#六、账号安全排查" class="headerlink" title="六、账号安全排查"></a>六、账号安全排查</h1><p>compmgmt.msc命令查看计算机上所有用户信息<br>net user 用户名 命令查看指定用户信息</p><p><img src="6A58E9BB35014641B331B965402A6A53" alt="image"><br>通过PCHunter等工具可以查看隐藏用户，如添加$的隐藏账号，以及克隆账号。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;一、进程排查&quot;&gt;&lt;a href=&quot;#一、进程排查&quot; class=&quot;headerlink&quot; title=&quot;一、进程排查&quot;&gt;&lt;/a&gt;一、进程排查&lt;/h1&gt;&lt;h2 id=&quot;独立进程块&quot;&gt;&lt;a href=&quot;#独立进程块&quot; class=&quot;heade
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/</id>
-    <published>2020-06-25T17:34:40.814Z</published>
-    <updated>2020-06-21T00:54:20.219Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="sysmon简介"><a href="#sysmon简介" class="headerlink" title="sysmon简介"></a>sysmon简介</h1><p>用于监视和记录系统活动，并记录到Windows时间日志，可提供有关进程的创建、网络连接和文件创建时间更改的详细信息。<br>通过集成Windows事件集合或SIEM代理生成的事件，然后分析他们，可识别恶意或异常活动，并了解在网络上是如何的恶意操作。</p><h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><p>安装命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sysmon64.exe -acceptula -i z-AlphaVersion.xml</span><br></pre></td></tr></table></figure><h1 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;sysmon简介&quot;&gt;&lt;a href=&quot;#sysmon简介&quot; class=&quot;headerlink&quot; title=&quot;sysmon简介&quot;&gt;&lt;/a&gt;sysmon简介&lt;/h1&gt;&lt;p&gt;用于监视和记录系统活动，并记录到Windows时间日志，可提供有关
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</id>
-    <published>2020-06-25T17:34:40.812Z</published>
-    <updated>2020-06-18T16:04:06.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="web入侵简介"><a href="#web入侵简介" class="headerlink" title="web入侵简介"></a>web入侵简介</h1><h2 id="web入侵流程"><a href="#web入侵流程" class="headerlink" title="web入侵流程"></a>web入侵流程</h2><p>信息收集 &gt; 漏洞扫描 &gt; 渗透攻击 &gt; 提权/挂黑链 &gt; 后渗透攻击 &gt; 持续控制</p><h2 id="web入侵方法"><a href="#web入侵方法" class="headerlink" title="web入侵方法"></a>web入侵方法</h2><ol><li>通过web脚本或框架的漏洞获取webshell</li><li>通过获取cms的后台账号密码并登录</li><li>通过数据库开放的端口作为入口，爆破或猜解进入</li><li>通过web脚本或框架漏洞获取敏感权限或数据<h2 id="web恶意代码事件"><a href="#web恶意代码事件" class="headerlink" title="web恶意代码事件"></a>web恶意代码事件</h2></li></ol><ul><li>WEBSHELL</li><li>黑链广告文件</li><li>恶意挂马页面<h2 id="web应用应急响应流程"><a href="#web应用应急响应流程" class="headerlink" title="web应用应急响应流程"></a>web应用应急响应流程</h2>确认攻击类型 &gt; 异常信息收集 &gt; 排查黑链 &gt; 排查webshell &gt; 分析web日志 &gt; 时间总结<h2 id="web应急响应需要处理的问题"><a href="#web应急响应需要处理的问题" class="headerlink" title="web应急响应需要处理的问题"></a>web应急响应需要处理的问题</h2></li></ul><ol><li>发现黑链/暗链跳转等被篡改现象</li><li>发现webshell等<h1 id="黑帽SEO-黑链"><a href="#黑帽SEO-黑链" class="headerlink" title="黑帽SEO-黑链"></a>黑帽SEO-黑链</h1><h3 id="SEO-搜索引擎优化"><a href="#SEO-搜索引擎优化" class="headerlink" title="SEO-搜索引擎优化"></a>SEO-搜索引擎优化</h3>利用搜索引擎的规则提高有关搜索引擎内的自然排名<h3 id="SEO目的"><a href="#SEO目的" class="headerlink" title="SEO目的"></a>SEO目的</h3>搜索结果排名靠前<h3 id="SEO帽子"><a href="#SEO帽子" class="headerlink" title="SEO帽子"></a>SEO帽子</h3>白：遵循规则进行网络推广<br>黑：不遵循规则<h2 id="黑帽SEO-黑链-1"><a href="#黑帽SEO-黑链-1" class="headerlink" title="黑帽SEO-黑链"></a>黑帽SEO-黑链</h2></li></ol><h2 id="黑链的排查思路"><a href="#黑链的排查思路" class="headerlink" title="黑链的排查思路"></a>黑链的排查思路</h2><p>复现黑链存在的现象（搜索引擎复现、多地域访问、终端及服务器端抓包）</p><h2 id="Webshell查杀"><a href="#Webshell查杀" class="headerlink" title="Webshell查杀"></a>Webshell查杀</h2><h3 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h3><p>webshell是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称做为一种网页后门。黑客在入侵了一个网站后门，通常会将asp或php后门文件与网站服务器WEB目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。</p><h3 id="常见工具"><a href="#常见工具" class="headerlink" title="常见工具"></a>常见工具</h3><table><thead><tr><th>名称</th><th>平台</th><th>下载</th></tr></thead><tbody><tr><td>D盾</td><td>Windows</td><td><a href="http://www.d99net.net/" target="_blank" rel="external nofollow noopener noreferrer">http://www.d99net.net/</a></td></tr><tr><td>悬镜（慎用）</td><td>Linux</td><td><a href="http://www.xmirror.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.xmirror.cn/</a></td></tr><tr><td>360主机卫士</td><td>Windows/Linux</td><td><a href="http://zhuji.360.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://zhuji.360.cn/</a></td></tr><tr><td>webshell.pub</td><td>Windows/Linux</td><td><a href="http://www.webshell.pub/" target="_blank" rel="external nofollow noopener noreferrer">http://www.webshell.pub/</a></td></tr><tr><td>安全狗</td><td>Windows/Linux</td><td><a href="http://www.safedog.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.safedog.cn/</a></td></tr><tr><td>Sangfor WebshellKiller 3.2</td><td>Windows/Linux</td><td></td></tr><tr><td>### 查杀方法</td><td></td><td></td></tr><tr><td>#### 工具扫描</td><td></td><td></td></tr><tr><td>#### 文件属性（创建时间、修改时间）</td><td></td><td></td></tr><tr><td>#### 文件特征（静态特征、动态特征）</td><td></td><td></td></tr><tr><td>#### 文件对比</td><td></td><td></td></tr><tr><td>#### 搜索引擎</td><td></td><td></td></tr><tr><td>将代码拖去搜索引擎搜索是否为webshell。</td><td></td><td></td></tr><tr><td>确认webshell之后删除即可</td><td></td><td></td></tr><tr><td>## Web应急案例讲解</td><td></td><td></td></tr><tr><td>###</td><td></td><td></td></tr><tr><td>## 日志分析</td><td></td><td></td></tr><tr><td>### 1.Windows日志分析</td><td></td><td></td></tr></tbody></table><h3 id="2-Web日志分析"><a href="#2-Web日志分析" class="headerlink" title="2.Web日志分析"></a>2.Web日志分析</h3><h4 id="web日志分类"><a href="#web日志分类" class="headerlink" title="web日志分类"></a>web日志分类</h4><h4 id="常规日志分析"><a href="#常规日志分析" class="headerlink" title="常规日志分析"></a>常规日志分析</h4><p>主要关注</p><ul><li>1102 &gt; 清理审计日志</li><li>4624 &gt; 账号登录成功</li><li>4625 &gt; 账号登录失败</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;web入侵简介&quot;&gt;&lt;a href=&quot;#web入侵简介&quot; class=&quot;headerlink&quot; title=&quot;web入侵简介&quot;&gt;&lt;/a&gt;web入侵简介&lt;/h1&gt;&lt;h2 id=&quot;web入侵流程&quot;&gt;&lt;a href=&quot;#web入侵流程&quot; clas
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/</id>
-    <published>2020-06-24T02:43:54.287Z</published>
-    <updated>2020-06-21T00:54:20.219Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="sysmon简介"><a href="#sysmon简介" class="headerlink" title="sysmon简介"></a>sysmon简介</h1><p>用于监视和记录系统活动，并记录到Windows时间日志，可提供有关进程的创建、网络连接和文件创建时间更改的详细信息。<br>通过集成Windows事件集合或SIEM代理生成的事件，然后分析他们，可识别恶意或异常活动，并了解在网络上是如何的恶意操作。</p><h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><p>安装命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sysmon64.exe -acceptula -i z-AlphaVersion.xml</span><br></pre></td></tr></table></figure><h1 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;sysmon简介&quot;&gt;&lt;a href=&quot;#sysmon简介&quot; class=&quot;headerlink&quot; title=&quot;sysmon简介&quot;&gt;&lt;/a&gt;sysmon简介&lt;/h1&gt;&lt;p&gt;用于监视和记录系统活动，并记录到Windows时间日志，可提供有关
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-      <category term="Windows应急" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/</id>
-    <published>2020-06-24T02:43:49.568Z</published>
-    <updated>2020-06-18T13:53:53.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="一、进程排查"><a href="#一、进程排查" class="headerlink" title="一、进程排查"></a>一、进程排查</h1><h2 id="独立进程块"><a href="#独立进程块" class="headerlink" title="独立进程块"></a>独立进程块</h2><p>病毒是独立的可执行文件，以独立进程运行。进程名要么随机，要么相似于系统进程</p><h2 id="动态库模块"><a href="#动态库模块" class="headerlink" title="动态库模块"></a>动态库模块</h2><p>以动态库的方式注入到系统进程和应用程序。</p><h2 id="隐藏模块"><a href="#隐藏模块" class="headerlink" title="隐藏模块"></a>隐藏模块</h2><h1 id="二、网络行为排查"><a href="#二、网络行为排查" class="headerlink" title="二、网络行为排查"></a>二、网络行为排查</h1><h2 id="重要辅助站点"><a href="#重要辅助站点" class="headerlink" title="重要辅助站点"></a>重要辅助站点</h2><ol><li><a href="https://www.virustotal.com/国外知名站点" target="_blank" rel="external nofollow noopener noreferrer">https://www.virustotal.com/国外知名站点</a><h2 id="网络连接排查"><a href="#网络连接排查" class="headerlink" title="网络连接排查"></a>网络连接排查</h2><h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><h2 id="漏洞与补丁信息"><a href="#漏洞与补丁信息" class="headerlink" title="漏洞与补丁信息"></a>漏洞与补丁信息</h2><img src="D9E9900A2C3A41EC8D3FCE4519473BF0" alt="image"><h1 id="三、文件排查"><a href="#三、文件排查" class="headerlink" title="三、文件排查"></a>三、文件排查</h1><h2 id="临时目录排查"><a href="#临时目录排查" class="headerlink" title="临时目录排查"></a>临时目录排查</h2></li></ol><h2 id="浏览器相关文件排查"><a href="#浏览器相关文件排查" class="headerlink" title="浏览器相关文件排查"></a>浏览器相关文件排查</h2><h2 id="最近打开文件排查"><a href="#最近打开文件排查" class="headerlink" title="最近打开文件排查"></a>最近打开文件排查</h2><h2 id="文件时间排查"><a href="#文件时间排查" class="headerlink" title="文件时间排查"></a>文件时间排查</h2><h2 id="其他重要目录查询"><a href="#其他重要目录查询" class="headerlink" title="其他重要目录查询"></a>其他重要目录查询</h2><p>system32也是常见的病毒释放目录，需检查hosts文件有没有被篡改。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32</span><br><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure><p><img src="F0E7FE1ED20D490DB97A8B4DEECC9DAB" alt="image"></p><h1 id="四、远程登录排查"><a href="#四、远程登录排查" class="headerlink" title="四、远程登录排查"></a>四、远程登录排查</h1><h2 id="Windows日志"><a href="#Windows日志" class="headerlink" title="Windows日志"></a>Windows日志</h2><h2 id="RDP远程登录排查"><a href="#RDP远程登录排查" class="headerlink" title="RDP远程登录排查"></a>RDP远程登录排查</h2><h2 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h2><h1 id="五、启动方式排查"><a href="#五、启动方式排查" class="headerlink" title="五、启动方式排查"></a>五、启动方式排查</h1><h2 id="启动项排查"><a href="#启动项排查" class="headerlink" title="启动项排查"></a>启动项排查</h2><h2 id="任务计划排查"><a href="#任务计划排查" class="headerlink" title="任务计划排查"></a>任务计划排查</h2><h2 id="服务排查"><a href="#服务排查" class="headerlink" title="服务排查"></a>服务排查</h2><h1 id="六、账号安全排查"><a href="#六、账号安全排查" class="headerlink" title="六、账号安全排查"></a>六、账号安全排查</h1><p>compmgmt.msc命令查看计算机上所有用户信息<br>net user 用户名 命令查看指定用户信息</p><p><img src="6A58E9BB35014641B331B965402A6A53" alt="image"><br>通过PCHunter等工具可以查看隐藏用户，如添加$的隐藏账号，以及克隆账号。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;一、进程排查&quot;&gt;&lt;a href=&quot;#一、进程排查&quot; class=&quot;headerlink&quot; title=&quot;一、进程排查&quot;&gt;&lt;/a&gt;一、进程排查&lt;/h1&gt;&lt;h2 id=&quot;独立进程块&quot;&gt;&lt;a href=&quot;#独立进程块&quot; class=&quot;heade
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-      <category term="Windows应急" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</id>
-    <published>2020-06-24T02:43:45.138Z</published>
-    <updated>2020-06-18T13:53:52.901Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="常见病毒类型和特点"><a href="#常见病毒类型和特点" class="headerlink" title="常见病毒类型和特点"></a>常见病毒类型和特点</h1><h2 id="常见分类"><a href="#常见分类" class="headerlink" title="常见分类"></a>常见分类</h2><h3 id="蠕虫"><a href="#蠕虫" class="headerlink" title="蠕虫"></a>蠕虫</h3><p>文件夹</p><h4 id="飞客蠕虫（conficker）"><a href="#飞客蠕虫（conficker）" class="headerlink" title="飞客蠕虫（conficker）"></a>飞客蠕虫（conficker）</h4><p>445端口传播，利用MS08-076漏洞发起攻击。中毒症状包括请求解析随机域名（DGA）、不能正常访问安全厂商的网站或服务器、下载木马。<a href="https://www.0daybank.org/?p=15879" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="EABB6AE6FDBA40348058F59A8C7767D1" alt="image"></p><h4 id="文件夹蠕虫（FakeFolder）"><a href="#文件夹蠕虫（FakeFolder）" class="headerlink" title="文件夹蠕虫（FakeFolder）"></a>文件夹蠕虫（FakeFolder）</h4><p>设置源文件夹隐藏属性，并且自己伪装成文件夹，通过修改注册表系统属性，通常通过共享、U盘传播。</p><h4 id="Morto蠕虫"><a href="#Morto蠕虫" class="headerlink" title="Morto蠕虫"></a>Morto蠕虫</h4><p>通过RDP爆破传播，通过注册表、服务等进行驻留。</p><h4 id="NetSky蠕虫"><a href="#NetSky蠕虫" class="headerlink" title="NetSky蠕虫"></a>NetSky蠕虫</h4><p>获取本地邮箱地址，通过邮件服务器传播包含病毒体的邮件</p><h3 id="挖矿病毒"><a href="#挖矿病毒" class="headerlink" title="挖矿病毒"></a>挖矿病毒</h3><h4 id="Wannamine系列"><a href="#Wannamine系列" class="headerlink" title="Wannamine系列"></a>Wannamine系列</h4><h3 id="木马"><a href="#木马" class="headerlink" title="木马"></a>木马</h3><h3 id="感染型病毒（不能做清除，而是做修复）"><a href="#感染型病毒（不能做清除，而是做修复）" class="headerlink" title="感染型病毒（不能做清除，而是做修复）"></a>感染型病毒（不能做清除，而是做修复）</h3><h4 id="Ramnit"><a href="#Ramnit" class="headerlink" title="Ramnit"></a>Ramnit</h4><p>感染html文件，插入vbs脚本，会进行客户端vbs脚本传播。<a href="https://www.52pojie.cn/thread-757290-1-1.html" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="2208C49CC44D499E82542EF0ABCFB791" alt="image"></p><h3 id="宏病毒"><a href="#宏病毒" class="headerlink" title="宏病毒"></a>宏病毒</h3><p>文档类，</p><h3 id="勒索病毒"><a href="#勒索病毒" class="headerlink" title="勒索病毒"></a>勒索病毒</h3><p>感染文件，勒索赎金，没办法破解</p><h1 id="应急工具"><a href="#应急工具" class="headerlink" title="应急工具"></a>应急工具</h1><h2 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h2><p>Process Hacker procexp &gt; 进程操作，服务操作<br>Autoruns &gt; 计划任务，启动项，服务，WMI<br>Everything &gt; 文件搜索<br>PChunter &gt; 文件，驱动（驱动型工具，可以绕过应用层的防护）</p><h2 id="进阶工具"><a href="#进阶工具" class="headerlink" title="进阶工具"></a>进阶工具</h2><h3 id="Sysmon"><a href="#Sysmon" class="headerlink" title="Sysmon"></a>Sysmon</h3><p>安装：Sysmon.exe -acceptula -i -n<br>日志路径：%system%\system32\winevt\logs\microsoft-windows=sysmon%4Operational.evtx<br>卸载：sysmon.exe -u</p><h1 id="流行病毒查杀思路"><a href="#流行病毒查杀思路" class="headerlink" title="流行病毒查杀思路"></a>流行病毒查杀思路</h1><h2 id="勒索时间信息收集"><a href="#勒索时间信息收集" class="headerlink" title="勒索时间信息收集"></a>勒索时间信息收集</h2><h3 id="是否正在进行加密"><a href="#是否正在进行加密" class="headerlink" title="是否正在进行加密"></a>是否正在进行加密</h3><h1 id="“徒手杀毒”招式分解"><a href="#“徒手杀毒”招式分解" class="headerlink" title="“徒手杀毒”招式分解"></a>“徒手杀毒”招式分解</h1><h2 id="观察对象"><a href="#观察对象" class="headerlink" title="观察对象"></a>观察对象</h2><h2 id="恶意软件商最爱的目录排行"><a href="#恶意软件商最爱的目录排行" class="headerlink" title="恶意软件商最爱的目录排行"></a>恶意软件商最爱的目录排行</h2><h1 id="快速判断文件“黑白”"><a href="#快速判断文件“黑白”" class="headerlink" title="快速判断文件“黑白”"></a>快速判断文件“黑白”</h1><h2 id="安全软件报出的文件判断"><a href="#安全软件报出的文件判断" class="headerlink" title="安全软件报出的文件判断"></a>安全软件报出的文件判断</h2><h3 id="木马类-Trojan-Backdoop"><a href="#木马类-Trojan-Backdoop" class="headerlink" title="木马类 - Trojan Backdoop"></a>木马类 - Trojan Backdoop</h3><p>如果不是业务程序软件，建议隔离<br>四段式：Trojan.Win32.Wannamine.ufajg<br>其他：TR/Lokibot.gen</p><h2 id="借助威胁情报判断文件威胁"><a href="#借助威胁情报判断文件威胁" class="headerlink" title="借助威胁情报判断文件威胁"></a>借助威胁情报判断文件威胁</h2><h2 id="通过沙箱判断行为"><a href="#通过沙箱判断行为" class="headerlink" title="通过沙箱判断行为"></a>通过沙箱判断行为</h2><h2 id="其他补充技巧"><a href="#其他补充技巧" class="headerlink" title="其他补充技巧"></a>其他补充技巧</h2><ul><li>图标和文件类型是否对应</li><li>看似正常系统文件，看MD5</li><li>是否具有签名</li><li>强壳、混淆</li></ul><h1 id="常见应急工具"><a href="#常见应急工具" class="headerlink" title="常见应急工具"></a>常见应急工具</h1><h2 id><a href="#" class="headerlink" title></a></h2><p>##</p><h2 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h2><h3 id="Process-Hacker"><a href="#Process-Hacker" class="headerlink" title="Process Hacker"></a>Process Hacker</h3><h1 id="常见病毒处置"><a href="#常见病毒处置" class="headerlink" title="常见病毒处置"></a>常见病毒处置</h1><h2 id="常见挖矿病毒处置"><a href="#常见挖矿病毒处置" class="headerlink" title="常见挖矿病毒处置"></a>常见挖矿病毒处置</h2><p>中挖矿木马的计算机，资源会被大量占用，用于数字加密币的挖掘。</p><h2 id="挖矿病毒的原理"><a href="#挖矿病毒的原理" class="headerlink" title="挖矿病毒的原理"></a>挖矿病毒的原理</h2><p>stratum协议是目前最常用的矿机和矿池之间的TCP协议。以下是挖矿的网络结构：  </p><h2 id="挖矿病毒分析"><a href="#挖矿病毒分析" class="headerlink" title="挖矿病毒分析"></a>挖矿病毒分析</h2><p>一般挖矿病毒的最明显特征：进程资源占用高50%/25%/100%，可通过判断通信地址为矿池来判断终端可能再进行挖矿。<br>验证挖矿主机常用以下工具：</p><ol><li>微步在线</li><li>搜索引擎</li><li>wireshark、tcpdump等抓包工具   </li></ol><p>发现挖矿程序，一般会伴随着自启动操作。<br>服务：tasklist /svc、process hacker</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\Microsoft\WindowsNT\CurrentControlSet\Services</span><br></pre></td></tr></table></figure><p>任务计划：taskschd.msc</p><p>启动项：<br>VMI：autoruns/wbemtest<br>IPSec：deny445<br>Rookit隐藏：驱动隐藏、attrib -r -s -h、cacls、<br>“file” /g administrator:f</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;常见病毒类型和特点&quot;&gt;&lt;a href=&quot;#常见病毒类型和特点&quot; class=&quot;headerlink&quot; title=&quot;常见病毒类型和特点&quot;&gt;&lt;/a&gt;常见病毒类型和特点&lt;/h1&gt;&lt;h2 id=&quot;常见分类&quot;&gt;&lt;a href=&quot;#常见分类&quot; cl
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-      <category term="Windows应急" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</id>
-    <published>2020-06-24T02:43:38.200Z</published>
-    <updated>2020-06-18T16:04:06.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>[toc]</p><h1 id="web入侵简介"><a href="#web入侵简介" class="headerlink" title="web入侵简介"></a>web入侵简介</h1><h2 id="web入侵流程"><a href="#web入侵流程" class="headerlink" title="web入侵流程"></a>web入侵流程</h2><p>信息收集 &gt; 漏洞扫描 &gt; 渗透攻击 &gt; 提权/挂黑链 &gt; 后渗透攻击 &gt; 持续控制</p><h2 id="web入侵方法"><a href="#web入侵方法" class="headerlink" title="web入侵方法"></a>web入侵方法</h2><ol><li>通过web脚本或框架的漏洞获取webshell</li><li>通过获取cms的后台账号密码并登录</li><li>通过数据库开放的端口作为入口，爆破或猜解进入</li><li>通过web脚本或框架漏洞获取敏感权限或数据<h2 id="web恶意代码事件"><a href="#web恶意代码事件" class="headerlink" title="web恶意代码事件"></a>web恶意代码事件</h2></li></ol><ul><li>WEBSHELL</li><li>黑链广告文件</li><li>恶意挂马页面<h2 id="web应用应急响应流程"><a href="#web应用应急响应流程" class="headerlink" title="web应用应急响应流程"></a>web应用应急响应流程</h2>确认攻击类型 &gt; 异常信息收集 &gt; 排查黑链 &gt; 排查webshell &gt; 分析web日志 &gt; 时间总结<h2 id="web应急响应需要处理的问题"><a href="#web应急响应需要处理的问题" class="headerlink" title="web应急响应需要处理的问题"></a>web应急响应需要处理的问题</h2></li></ul><ol><li>发现黑链/暗链跳转等被篡改现象</li><li>发现webshell等<h1 id="黑帽SEO-黑链"><a href="#黑帽SEO-黑链" class="headerlink" title="黑帽SEO-黑链"></a>黑帽SEO-黑链</h1><h3 id="SEO-搜索引擎优化"><a href="#SEO-搜索引擎优化" class="headerlink" title="SEO-搜索引擎优化"></a>SEO-搜索引擎优化</h3>利用搜索引擎的规则提高有关搜索引擎内的自然排名<h3 id="SEO目的"><a href="#SEO目的" class="headerlink" title="SEO目的"></a>SEO目的</h3>搜索结果排名靠前<h3 id="SEO帽子"><a href="#SEO帽子" class="headerlink" title="SEO帽子"></a>SEO帽子</h3>白：遵循规则进行网络推广<br>黑：不遵循规则<h2 id="黑帽SEO-黑链-1"><a href="#黑帽SEO-黑链-1" class="headerlink" title="黑帽SEO-黑链"></a>黑帽SEO-黑链</h2></li></ol><h2 id="黑链的排查思路"><a href="#黑链的排查思路" class="headerlink" title="黑链的排查思路"></a>黑链的排查思路</h2><p>复现黑链存在的现象（搜索引擎复现、多地域访问、终端及服务器端抓包）</p><h2 id="Webshell查杀"><a href="#Webshell查杀" class="headerlink" title="Webshell查杀"></a>Webshell查杀</h2><h3 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h3><p>webshell是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称做为一种网页后门。黑客在入侵了一个网站后门，通常会将asp或php后门文件与网站服务器WEB目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。</p><h3 id="常见工具"><a href="#常见工具" class="headerlink" title="常见工具"></a>常见工具</h3><table><thead><tr><th>名称</th><th>平台</th><th>下载</th></tr></thead><tbody><tr><td>D盾</td><td>Windows</td><td><a href="http://www.d99net.net/" target="_blank" rel="external nofollow noopener noreferrer">http://www.d99net.net/</a></td></tr><tr><td>悬镜（慎用）</td><td>Linux</td><td><a href="http://www.xmirror.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.xmirror.cn/</a></td></tr><tr><td>360主机卫士</td><td>Windows/Linux</td><td><a href="http://zhuji.360.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://zhuji.360.cn/</a></td></tr><tr><td>webshell.pub</td><td>Windows/Linux</td><td><a href="http://www.webshell.pub/" target="_blank" rel="external nofollow noopener noreferrer">http://www.webshell.pub/</a></td></tr><tr><td>安全狗</td><td>Windows/Linux</td><td><a href="http://www.safedog.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.safedog.cn/</a></td></tr><tr><td>Sangfor WebshellKiller 3.2</td><td>Windows/Linux</td><td></td></tr><tr><td>### 查杀方法</td><td></td><td></td></tr><tr><td>#### 工具扫描</td><td></td><td></td></tr><tr><td>#### 文件属性（创建时间、修改时间）</td><td></td><td></td></tr><tr><td>#### 文件特征（静态特征、动态特征）</td><td></td><td></td></tr><tr><td>#### 文件对比</td><td></td><td></td></tr><tr><td>#### 搜索引擎</td><td></td><td></td></tr><tr><td>将代码拖去搜索引擎搜索是否为webshell。</td><td></td><td></td></tr><tr><td>确认webshell之后删除即可</td><td></td><td></td></tr><tr><td>## Web应急案例讲解</td><td></td><td></td></tr><tr><td>###</td><td></td><td></td></tr><tr><td>## 日志分析</td><td></td><td></td></tr><tr><td>### 1.Windows日志分析</td><td></td><td></td></tr></tbody></table><h3 id="2-Web日志分析"><a href="#2-Web日志分析" class="headerlink" title="2.Web日志分析"></a>2.Web日志分析</h3><h4 id="web日志分类"><a href="#web日志分类" class="headerlink" title="web日志分类"></a>web日志分类</h4><h4 id="常规日志分析"><a href="#常规日志分析" class="headerlink" title="常规日志分析"></a>常规日志分析</h4><p>主要关注</p><ul><li>1102 &gt; 清理审计日志</li><li>4624 &gt; 账号登录成功</li><li>4625 &gt; 账号登录失败</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;web入侵简介&quot;&gt;&lt;a href=&quot;#web入侵简介&quot; class=&quot;headerlink&quot; title=&quot;web入侵简介&quot;&gt;&lt;/a&gt;web入侵简介&lt;/h1&gt;&lt;h2 id=&quot;web入侵流程&quot;&gt;&lt;a href=&quot;#web入侵流程&quot; clas
-      
-    
-    </summary>
-    
-    
-      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-      <category term="Windows应急" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/Windows%E5%BA%94%E6%80%A5/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
     <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
     <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</id>
@@ -537,6 +329,203 @@
       <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="IOT渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="安全服务" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="风险评估" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>病毒初级应急响应</title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-26T00:26:53.418Z</updated>
+    
+    <content type="html"><![CDATA[<p>[toc]</p><h1 id="常见病毒类型和特点"><a href="#常见病毒类型和特点" class="headerlink" title="常见病毒类型和特点"></a>常见病毒类型和特点</h1><h2 id="常见分类"><a href="#常见分类" class="headerlink" title="常见分类"></a>常见分类</h2><h3 id="蠕虫"><a href="#蠕虫" class="headerlink" title="蠕虫"></a>蠕虫</h3><p>文件夹</p><h4 id="飞客蠕虫（conficker）"><a href="#飞客蠕虫（conficker）" class="headerlink" title="飞客蠕虫（conficker）"></a>飞客蠕虫（conficker）</h4><p>445端口传播，利用MS08-076漏洞发起攻击。中毒症状包括请求解析随机域名（DGA）、不能正常访问安全厂商的网站或服务器、下载木马。<a href="https://www.0daybank.org/?p=15879" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="EABB6AE6FDBA40348058F59A8C7767D1" alt="image"></p><h4 id="文件夹蠕虫（FakeFolder）"><a href="#文件夹蠕虫（FakeFolder）" class="headerlink" title="文件夹蠕虫（FakeFolder）"></a>文件夹蠕虫（FakeFolder）</h4><p>设置源文件夹隐藏属性，并且自己伪装成文件夹，通过修改注册表系统属性，通常通过共享、U盘传播。</p><h4 id="Morto蠕虫"><a href="#Morto蠕虫" class="headerlink" title="Morto蠕虫"></a>Morto蠕虫</h4><p>通过RDP爆破传播，通过注册表、服务等进行驻留。</p><h4 id="NetSky蠕虫"><a href="#NetSky蠕虫" class="headerlink" title="NetSky蠕虫"></a>NetSky蠕虫</h4><p>获取本地邮箱地址，通过邮件服务器传播包含病毒体的邮件</p><h3 id="挖矿病毒"><a href="#挖矿病毒" class="headerlink" title="挖矿病毒"></a>挖矿病毒</h3><h4 id="Wannamine系列"><a href="#Wannamine系列" class="headerlink" title="Wannamine系列"></a>Wannamine系列</h4><h3 id="木马"><a href="#木马" class="headerlink" title="木马"></a>木马</h3><h3 id="感染型病毒（不能做清除，而是做修复）"><a href="#感染型病毒（不能做清除，而是做修复）" class="headerlink" title="感染型病毒（不能做清除，而是做修复）"></a>感染型病毒（不能做清除，而是做修复）</h3><h4 id="Ramnit"><a href="#Ramnit" class="headerlink" title="Ramnit"></a>Ramnit</h4><p>感染html文件，插入vbs脚本，会进行客户端vbs脚本传播。<a href="https://www.52pojie.cn/thread-757290-1-1.html" target="_blank" rel="external nofollow noopener noreferrer">详情</a><br><img src="2208C49CC44D499E82542EF0ABCFB791" alt="image"></p><h3 id="宏病毒"><a href="#宏病毒" class="headerlink" title="宏病毒"></a>宏病毒</h3><p>文档类，</p><h3 id="勒索病毒"><a href="#勒索病毒" class="headerlink" title="勒索病毒"></a>勒索病毒</h3><p>感染文件，勒索赎金，没办法破解</p><h1 id="应急工具"><a href="#应急工具" class="headerlink" title="应急工具"></a>应急工具</h1><h2 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h2><p>Process Hacker procexp &gt; 进程操作，服务操作<br>Autoruns &gt; 计划任务，启动项，服务，WMI<br>Everything &gt; 文件搜索<br>PChunter &gt; 文件，驱动（驱动型工具，可以绕过应用层的防护）</p><h2 id="进阶工具"><a href="#进阶工具" class="headerlink" title="进阶工具"></a>进阶工具</h2><h3 id="Sysmon"><a href="#Sysmon" class="headerlink" title="Sysmon"></a>Sysmon</h3><p>安装：Sysmon.exe -acceptula -i -n<br>日志路径：%system%\system32\winevt\logs\microsoft-windows=sysmon%4Operational.evtx<br>卸载：sysmon.exe -u</p><h1 id="流行病毒查杀思路"><a href="#流行病毒查杀思路" class="headerlink" title="流行病毒查杀思路"></a>流行病毒查杀思路</h1><h2 id="勒索时间信息收集"><a href="#勒索时间信息收集" class="headerlink" title="勒索时间信息收集"></a>勒索时间信息收集</h2><h3 id="是否正在进行加密"><a href="#是否正在进行加密" class="headerlink" title="是否正在进行加密"></a>是否正在进行加密</h3><h1 id="“徒手杀毒”招式分解"><a href="#“徒手杀毒”招式分解" class="headerlink" title="“徒手杀毒”招式分解"></a>“徒手杀毒”招式分解</h1><h2 id="观察对象"><a href="#观察对象" class="headerlink" title="观察对象"></a>观察对象</h2><h2 id="恶意软件商最爱的目录排行"><a href="#恶意软件商最爱的目录排行" class="headerlink" title="恶意软件商最爱的目录排行"></a>恶意软件商最爱的目录排行</h2><h1 id="快速判断文件“黑白”"><a href="#快速判断文件“黑白”" class="headerlink" title="快速判断文件“黑白”"></a>快速判断文件“黑白”</h1><h2 id="安全软件报出的文件判断"><a href="#安全软件报出的文件判断" class="headerlink" title="安全软件报出的文件判断"></a>安全软件报出的文件判断</h2><h3 id="木马类-Trojan-Backdoop"><a href="#木马类-Trojan-Backdoop" class="headerlink" title="木马类 - Trojan Backdoop"></a>木马类 - Trojan Backdoop</h3><p>如果不是业务程序软件，建议隔离<br>四段式：Trojan.Win32.Wannamine.ufajg<br>其他：TR/Lokibot.gen</p><h2 id="借助威胁情报判断文件威胁"><a href="#借助威胁情报判断文件威胁" class="headerlink" title="借助威胁情报判断文件威胁"></a>借助威胁情报判断文件威胁</h2><h2 id="通过沙箱判断行为"><a href="#通过沙箱判断行为" class="headerlink" title="通过沙箱判断行为"></a>通过沙箱判断行为</h2><h2 id="其他补充技巧"><a href="#其他补充技巧" class="headerlink" title="其他补充技巧"></a>其他补充技巧</h2><ul><li>图标和文件类型是否对应</li><li>看似正常系统文件，看MD5</li><li>是否具有签名</li><li>强壳、混淆</li></ul><h1 id="常见应急工具"><a href="#常见应急工具" class="headerlink" title="常见应急工具"></a>常见应急工具</h1><h2 id><a href="#" class="headerlink" title></a></h2><p>##</p><h2 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h2><h3 id="Process-Hacker"><a href="#Process-Hacker" class="headerlink" title="Process Hacker"></a>Process Hacker</h3><h1 id="常见病毒处置"><a href="#常见病毒处置" class="headerlink" title="常见病毒处置"></a>常见病毒处置</h1><h2 id="常见挖矿病毒处置"><a href="#常见挖矿病毒处置" class="headerlink" title="常见挖矿病毒处置"></a>常见挖矿病毒处置</h2><p>中挖矿木马的计算机，资源会被大量占用，用于数字加密币的挖掘。</p><h2 id="挖矿病毒的原理"><a href="#挖矿病毒的原理" class="headerlink" title="挖矿病毒的原理"></a>挖矿病毒的原理</h2><p>stratum协议是目前最常用的矿机和矿池之间的TCP协议。以下是挖矿的网络结构：  </p><h2 id="挖矿病毒分析"><a href="#挖矿病毒分析" class="headerlink" title="挖矿病毒分析"></a>挖矿病毒分析</h2><p>一般挖矿病毒的最明显特征：进程资源占用高50%/25%/100%，可通过判断通信地址为矿池来判断终端可能再进行挖矿。<br>验证挖矿主机常用以下工具：</p><ol><li>微步在线</li><li>搜索引擎</li><li>wireshark、tcpdump等抓包工具   </li></ol><p>发现挖矿程序，一般会伴随着自启动操作。<br>服务：tasklist /svc、process hacker</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\Microsoft\WindowsNT\CurrentControlSet\Services</span><br></pre></td></tr></table></figure><p>任务计划：taskschd.msc</p><p>启动项：<br>VMI：autoruns/wbemtest<br>IPSec：deny445<br>Rookit隐藏：驱动隐藏、attrib -r -s -h、cacls、<br>“file” /g administrator:f</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[toc]&lt;/p&gt;
+&lt;h1 id=&quot;常见病毒类型和特点&quot;&gt;&lt;a href=&quot;#常见病毒类型和特点&quot; class=&quot;headerlink&quot; title=&quot;常见病毒类型和特点&quot;&gt;&lt;/a&gt;常见病毒类型和特点&lt;/h1&gt;&lt;h2 id=&quot;常见分类&quot;&gt;&lt;a href=&quot;#常见分类&quot; cl
+      
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="IOT渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="红蓝对抗" scheme="https://s40d1.github.io/categories/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="风险评估" scheme="https://s40d1.github.io/categories/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
     
     
   </entry>
