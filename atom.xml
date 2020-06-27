@@ -308,6 +308,34 @@
   </entry>
   
   <entry>
+    <title>风险评估相关概念</title>
+    <link href="https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"/>
+    <id>https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/</id>
+    <published>2020-06-25T16:13:37.000Z</published>
+    <updated>2020-06-27T07:15:25.445Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0x00-风险的起源"><a href="#0x00-风险的起源" class="headerlink" title="0x00 风险的起源"></a>0x00 风险的起源</h1><p>“风险”一次来源已久。最普通的说法是：以打鱼为生的渔民们，每次出行前都要祈祷，祈求神灵保佑自己平安归来。其中祈祷的主要内容就是让神灵保佑自己在出海时候能够风平浪静、满载而归；域名们在长期的捕捞实践中，深深的体会到“风”给他们带来的无法预测和无法确定的危险，在出海打渔的过程中的，“风”即意味着显“险”，“风险”一词因此而得来。</p><h1 id="0x01-风险的定义"><a href="#0x01-风险的定义" class="headerlink" title="0x01 风险的定义"></a>0x01 风险的定义</h1><p>在信息安全，<strong>风险（risk）</strong>就是指各种<strong>威胁</strong>导致<strong>安全事件</strong>发生的<strong>可能性</strong>及其对组织所造成的负面<strong>影响</strong>。</p><h1 id="0x02-风险的特性"><a href="#0x02-风险的特性" class="headerlink" title="0x02 风险的特性"></a>0x02 风险的特性</h1><ol><li><strong>客观性</strong>：不以人的意志为转移的客观存在。</li><li><strong>必然性</strong>：伴随着事物发展不可避免。</li><li><strong>社会性</strong>：后果对社会的影响很大。（如：天灾人祸）</li><li><strong>普遍性</strong>：存在于事物之中，贯穿于整个生命的周期。</li><li><strong>相对性</strong>：因时空等元素变化而变化。</li><li><strong>时效性</strong>：风险随着时间的推移而产生变化。</li><li><strong>不确定性</strong>：发生时间、损失、是否发生都不确定。</li><li><strong>损失性</strong>：风险事件存在，就有造成损失的可能性。</li><li><strong>可识别性</strong>：通过分析事物的内外因素，可识别风险。</li><li><strong>可控性</strong>：采取一定的控制措施，可以把风险损失控制在一定的范围内。<br>其中8、9、10可以解释为什么要研究风险。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-风险的起源&quot;&gt;&lt;a href=&quot;#0x00-风险的起源&quot; class=&quot;headerlink&quot; title=&quot;0x00 风险的起源&quot;&gt;&lt;/a&gt;0x00 风险的起源&lt;/h1&gt;&lt;p&gt;“风险”一次来源已久。最普通的说法是：以打鱼为生的渔民们，每次出行前都要祈祷
+      
+    
+    </summary>
+    
+    
+      <category term="安全服务" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="风险评估" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/"/>
+    
+    
+      <category term="风险评估 概念" scheme="https://s40d1.github.io/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
     <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</id>
@@ -353,56 +381,6 @@
     
     
       <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="安全服务" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/"/>
-    
-      <category term="风险评估" scheme="https://s40d1.github.io/categories/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
     
     
   </entry>
@@ -460,30 +438,6 @@
   
   <entry>
     <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="红蓝对抗" scheme="https://s40d1.github.io/categories/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
     <link href="https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <id>https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2020-06-23T16:13:37.000Z</published>
@@ -502,6 +456,54 @@
     
     
       <category term="风险评估" scheme="https://s40d1.github.io/categories/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="红蓝对抗" scheme="https://s40d1.github.io/categories/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/"/>
     
     
   </entry>
