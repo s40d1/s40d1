@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="utf-8">
+    
+    <title>s40d1&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="s40d1&#39;s Wiki">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="title: 第二节 信息收集date: 2020-07-07 19:17:37tags: 渗透测试;信息收集  0x00信息收集的概念黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。 0x01信息收集的作用 了解安全架构：信息收集使攻击者能够了解组织完整的安全架构 缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围 建立信息数据库：攻击者能够建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="s40d1&#39;s Wiki">
+<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:site_name" content="s40d1&#39;s Wiki">
+<meta property="og:description" content="title: 第二节 信息收集date: 2020-07-07 19:17:37tags: 渗透测试;信息收集  0x00信息收集的概念黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。 0x01信息收集的作用 了解安全架构：信息收集使攻击者能够了解组织完整的安全架构 缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围 建立信息数据库：攻击者能够建">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707201518888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707202152691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202007072032379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707203715668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707210911347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707212322858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020070721330186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707213327706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214029837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214459287.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214550451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-07T13:55:06.106Z">
+<meta property="article:modified_time" content="2020-07-07T13:54:10.978Z">
+<meta property="article:author" content="s40d1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="s40d1&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">s40d1&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CTF
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            代码审计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全开发
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            正则表达式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/">正则表达式30分钟入门40分钟进阶</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全服务
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            风险评估
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">风险评估相关概念</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            攻防演练
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            渗透测试
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            IOT渗透
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Web渗透
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            学习笔记
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            红蓝对抗
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            风险评估
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第二节 信息收集" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <hr>
+<p>title: 第二节 信息收集<br>date: 2020-07-07 19:17:37<br>tags: 渗透测试;信息收集</p>
+<hr>
+<h1 id="0x00信息收集的概念"><a href="#0x00信息收集的概念" class="headerlink" title="0x00信息收集的概念"></a>0x00信息收集的概念</h1><p>黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。</p>
+<h1 id="0x01信息收集的作用"><a href="#0x01信息收集的作用" class="headerlink" title="0x01信息收集的作用"></a>0x01信息收集的作用</h1><ol>
+<li>了解安全架构：信息收集使攻击者能够了解组织完整的安全架构</li>
+<li>缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围</li>
+<li>建立信息数据库：攻击者能够建立他们自己的相关目标组织安全性弱点的信息数据库来采取下一步的入侵行动</li>
+<li>描绘网络拓扑：攻击者可以描绘出目标组织的网络拓扑图，分析最容易进入的攻击路径</li>
+</ol>
+<p>*<em>信息收集对于渗透来说是非常重要的一步，收集的信息越详细对以后渗透测试的影响越大，毫不夸张的说，信息的收集决定着渗透的成功与否<br>*</em></p>
+<h1 id="0x02信息收集的分类"><a href="#0x02信息收集的分类" class="headerlink" title="0x02信息收集的分类"></a>0x02信息收集的分类</h1><ul>
+<li><strong>被动信息收集</strong>：被动信息收集也就是说不会与目标服务器做直接的交互、在不被目标系统察觉的情况下，通过搜索引擎、社交媒体等方式对目标外围的信息进行收集，例如：网站的whois信息、DNS信息、管理员以及工作人员的个人信息等等。</li>
+<li><strong>主动信息收集</strong>：主动收集会与目标系统有直接的交互，从而得到目标系统相关的一些情报信息。例如：主机开发的端口、站点的目录结构等等。</li>
+</ul>
+<h1 id="0x03信息收集的内容"><a href="#0x03信息收集的内容" class="headerlink" title="0x03信息收集的内容"></a>0x03信息收集的内容</h1><table>
+<thead>
+<tr>
+<th>网络信息</th>
+<th>系统信息</th>
+<th>组织信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>域名</td>
+<td>用户和用户组名</td>
+<td>员工信息</td>
+</tr>
+<tr>
+<td>内网域名</td>
+<td>系统标示banner</td>
+<td>组织网站</td>
+</tr>
+<tr>
+<td>网段</td>
+<td>路由表</td>
+<td>公司地址</td>
+</tr>
+<tr>
+<td>授权可访问的IP地址</td>
+<td>SNMP信息</td>
+<td>信息详情</td>
+</tr>
+<tr>
+<td>内部网站</td>
+<td>系统架构</td>
+<td>地址和电话号码</td>
+</tr>
+<tr>
+<td>开放的TCP/UDP端口</td>
+<td>远程系统类型</td>
+<td>邮箱地址</td>
+</tr>
+<tr>
+<td>访问控制机制和ACL</td>
+<td>系统用户名</td>
+<td>HTML代码中的注释</td>
+</tr>
+<tr>
+<td>运行的网络协议</td>
+<td>密码</td>
+<td>实行的安全策略</td>
+</tr>
+<tr>
+<td>VPN接入点</td>
+<td>站点目录</td>
+<td>与组织相关的WEB服务</td>
+</tr>
+<tr>
+<td>访问控制策略</td>
+<td>测试/临时文件</td>
+<td>组织的背景</td>
+</tr>
+<tr>
+<td>运行的IDS监听策略</td>
+<td></td>
+<td>发布的新闻</td>
+</tr>
+<tr>
+<td>模拟、数字电话号码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>认证机制</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>系统评估措施</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>防火墙等安全设施</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="0x04信息收集的方法"><a href="#0x04信息收集的方法" class="headerlink" title="0x04信息收集的方法"></a>0x04信息收集的方法</h1><p>方法概览：搜索引擎，网站，邮件，竞争情报，Google，whois，DNS，网络信息收集，社会工程学，社交网站。</p>
+<h2 id="地理位置"><a href="#地理位置" class="headerlink" title="地理位置"></a>地理位置</h2><p>使用在线地图寻找<br><img src="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="查询个人信息"><a href="#查询个人信息" class="headerlink" title="查询个人信息"></a>查询个人信息</h2><h3 id="网站查询"><a href="#网站查询" class="headerlink" title="网站查询"></a>网站查询</h3><ul>
+<li>公积金：<a href="http://www.bjgjj.gov.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.bjgjj.gov.cn/</a></li>
+<li>社保四险：<a href="http://www.bjld.gov.cn/csibiz/home/index.html" target="_blank" rel="external nofollow noopener noreferrer">http://www.bjld.gov.cn/csibiz/home/index.html</a></li>
+<li>驾驶证信息：<a href="http://www.bjjtgl.gov.cn/publish/portal0/" target="_blank" rel="external nofollow noopener noreferrer">http://www.bjjtgl.gov.cn/publish/portal0/</a></li>
+<li>工作居住证：<a href="http://210.73.77.4/uamsso/" target="_blank" rel="external nofollow noopener noreferrer">http://210.73.77.4/uamsso/</a></li>
+<li>电子学历：<a href="http://www.chsi.com.cn/xlcx/" target="_blank" rel="external nofollow noopener noreferrer">http://www.chsi.com.cn/xlcx/</a></li>
+<li>信用卡记录：各银行信用卡网站申请进度查询</li>
+<li>公交一卡通查询：<a href="http://www.bmac.com.cn/" target="_blank" rel="external nofollow noopener noreferrer">http://www.bmac.com.cn/</a><h3 id="Google语法"><a href="#Google语法" class="headerlink" title="Google语法"></a>Google语法</h3><img src="https://img-blog.csdnimg.cn/20200707201518888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="社工库查询"><a href="#社工库查询" class="headerlink" title="社工库查询"></a>社工库查询</h3><img src="https://img-blog.csdnimg.cn/20200707202152691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="网站信息收集"><a href="#网站信息收集" class="headerlink" title="网站信息收集"></a>网站信息收集</h2><h3 id="目标网站可能提供"><a href="#目标网站可能提供" class="headerlink" title="目标网站可能提供"></a>目标网站可能提供</h3></li>
+<li>使用的软件及版本</li>
+<li>使用的操作系统</li>
+<li>子目录及参数</li>
+<li>文件名、路径、数据库字段名及查询语句</li>
+<li>脚本平台</li>
+<li>通讯信息和内容管理系统详情<h3 id="使用Burp-Suite-Firebug等工具来浏览头部能够提供的信息："><a href="#使用Burp-Suite-Firebug等工具来浏览头部能够提供的信息：" class="headerlink" title="使用Burp Suite , Firebug等工具来浏览头部能够提供的信息："></a>使用Burp Suite , Firebug等工具来浏览头部能够提供的信息：</h3></li>
+<li>连接状态和内容种类</li>
+<li>接收范围</li>
+<li>最后编辑信息</li>
+<li>X-Powered-By信息</li>
+<li>使用的Web服务及版本信息</li>
+</ul>
+<h3 id="核查HTML源码可获得："><a href="#核查HTML源码可获得：" class="headerlink" title="核查HTML源码可获得："></a>核查HTML源码可获得：</h3><ul>
+<li>代码中的注释</li>
+<li>web开发或管理员的联系详情</li>
+<li>文件系统架构</li>
+<li>脚本类型</li>
+</ul>
+<h3 id="核查Cookies可获得："><a href="#核查Cookies可获得：" class="headerlink" title="核查Cookies可获得："></a>核查Cookies可获得：</h3><p>使用的软件和它的使用习惯信息<br>使用的脚本平台</p>
+<h3 id="邮件信息"><a href="#邮件信息" class="headerlink" title="邮件信息"></a>邮件信息</h3><p><img src="https://img-blog.csdnimg.cn/202007072032379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="Google-hacking"><a href="#Google-hacking" class="headerlink" title="Google hacking"></a>Google hacking</h3><ul>
+<li>Site 指定域名</li>
+<li>Intext 正文中存在关键字的网页</li>
+<li>Intitle 标题中存在关键字的网页</li>
+<li>Info 一些基本信息</li>
+<li>Inurl url存在关键字的网页</li>
+<li>Filetype 搜索指定文件类型</li>
+</ul>
+<p>例如：“intitle:管理登录 filetype:php” 查询页面标题含有“管理登录”，并且为php类型的网站。<br><img src="https://img-blog.csdnimg.cn/20200707203715668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="查找利用php-webshell"><a href="#查找利用php-webshell" class="headerlink" title="查找利用php webshell"></a>查找利用php webshell</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:&quot;php shell*&quot; &quot;Enable stderr&quot; filetype:php</span><br></pre></td></tr></table></figure>
+<p>intitle—网页标题<br>Enable stderr—UNIX标准输出和标准错误的缩写<br>filetype—文件类型 </p>
+<h4 id="访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息"><a href="#访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息" class="headerlink" title="访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息"></a>访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:intranet inurl:intranet+intext:”human resources”</span><br></pre></td></tr></table></figure>
+
+<h3 id="shodan搜索引擎"><a href="#shodan搜索引擎" class="headerlink" title="shodan搜索引擎"></a>shodan搜索引擎</h3><p>Shoudan是一个用于帮助发现主要的互联网系统漏洞（包括路由器，交换机，工控系统等）的搜索引擎。它在圈子里就像google一样出名。它主要拦截从服务器到客户端的元数据来工作，目前提供超过50个端口的相关搜索。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200707210911347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="shodan能找到的设备"><a href="#shodan能找到的设备" class="headerlink" title="shodan能找到的设备"></a>shodan能找到的设备</h4><p>服务器<br>路由器<br>交换机<br>公共ip打印机<br>网络摄像头<br>加油站的泵<br>Voip电话和所有数据采集监控系统</p>
+<h4 id="shodan能做的"><a href="#shodan能做的" class="headerlink" title="shodan能做的"></a>shodan能做的</h4><p>用户搜索定制项目<br>寻找端口并拦截数据<br>拦截的数据设置索引<br>显示结果</p>
+<h4 id="shodan网站信息收集"><a href="#shodan网站信息收集" class="headerlink" title="shodan网站信息收集"></a>shodan网站信息收集</h4><p><img src="https://img-blog.csdnimg.cn/20200707212322858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="Google和Shodan的区别"><a href="#Google和Shodan的区别" class="headerlink" title="Google和Shodan的区别"></a>Google和Shodan的区别</h4><p>Google的爬虫/蜘蛛 抓取网页数据并为网页内容创建索引。Shoudan主要寻找端口并抓取拦截到的信息，然后为它们建立索引，最后显示结果。<br>Shoudan并不像google那样为网页内容建立索引，因此它是一个基于拦截器的搜索引擎。</p>
+<h2 id="whois信息收集"><a href="#whois信息收集" class="headerlink" title="whois信息收集"></a>whois信息收集</h2><h3 id="Whois可以获取的信息"><a href="#Whois可以获取的信息" class="headerlink" title="Whois可以获取的信息"></a>Whois可以获取的信息</h3><p><img src="https://img-blog.csdnimg.cn/2020070721330186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="通过Whois信息可以？"><a href="#通过Whois信息可以？" class="headerlink" title="通过Whois信息可以？"></a>通过Whois信息可以？</h3><p><img src="https://img-blog.csdnimg.cn/20200707213327706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200707214029837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2><p><img src="https://img-blog.csdnimg.cn/20200707214459287.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200707214550451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">第一节 HTTP请求流程</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            s40d1 &copy; 2020 
+            <a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" target="_blank" rel="external nofollow noopener noreferrer">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
