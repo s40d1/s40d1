@@ -3,22 +3,33 @@
 <head>
     <meta charset="utf-8">
     
-    <title>article title | s40d1&#39;s Wiki</title>
+    <title>第四节 跨站请求伪造（CSRF）漏洞 | s40d1&#39;s Wiki</title>
     
     
-        <meta name="keywords" content="article title">
+        <meta name="keywords" content="CSRF">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="第一篇文章">
+    <meta name="description" content="0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害者必须依次完">
 <meta property="og:type" content="article">
-<meta property="og:title" content="article title">
-<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="第四节 跨站请求伪造（CSRF）漏洞">
+<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
-<meta property="og:description" content="第一篇文章">
-<meta property="article:published_time" content="2020-06-23T16:13:37.000Z">
-<meta property="article:modified_time" content="2020-06-23T16:15:55.811Z">
+<meta property="og:description" content="0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害者必须依次完">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708221632461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708222954428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708223212183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708223441937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708224131961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708223842688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708224436770.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200708224552996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-08T11:17:37.000Z">
+<meta property="article:modified_time" content="2020-07-08T14:46:36.268Z">
 <meta property="article:author" content="s40d1">
+<meta property="article:tag" content="CSRF">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
     
 
     
@@ -247,29 +258,29 @@
                             渗透测试
                         </a>
                          <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            IOT渗透
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
+                    </li> 
+                    
                     <li class="directory open">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder-open"></i>
                             &nbsp;
-                            IOT渗透
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
                             Web渗透
                         </a>
                          <ul class="unstyled" id="tree"> 
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             学习笔记
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -364,7 +375,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-渗透测试/IOT渗透/第一篇文章" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第四节 跨站请求伪造（CSRF）漏洞" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -374,15 +385,20 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/">IOT渗透</a>
+        <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
     </div>
 
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSRF/" rel="tag">CSRF</a>
+    </div>
+
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-            <time datetime="2020-06-23T16:13:37.000Z" itemprop="datePublished">2020-06-24</time>
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">
+            <time datetime="2020-07-08T11:17:37.000Z" itemprop="datePublished">2020-07-08</time>
         </a>
     </div>
 
@@ -393,13 +409,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/Web渗透/学习笔记/第四节 跨站请求伪造（CSRF）漏洞.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/Web渗透/学习笔记/第四节 跨站请求伪造（CSRF）漏洞.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/Web渗透/学习笔记/第四节 跨站请求伪造（CSRF）漏洞.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
                             </div>
                         
                     </div>
@@ -407,7 +423,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            article title
+            第四节 跨站请求伪造（CSRF）漏洞
         </h1>
     
 
@@ -420,7 +436,29 @@
             
         
         
-            <h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>
+            <h1 id="0x00-CSRF原理概要"><a href="#0x00-CSRF原理概要" class="headerlink" title="0x00 CSRF原理概要"></a>0x00 CSRF原理概要</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ol>
+<li>CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。</li>
+<li>也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。<h2 id="2-必要条件"><a href="#2-必要条件" class="headerlink" title="2. 必要条件"></a>2. 必要条件</h2>要完成一次CSRF攻击，受害者必须依次完成两个步骤：<blockquote>
+<p>登录受信任网站A，并在本地生成Cookie<br>在不登出A的情况下，访问恶意网站B<br>必须是同一浏览器，因为不同浏览器不能相互利用COOKIE</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="3-攻击过程原理"><a href="#3-攻击过程原理" class="headerlink" title="3. 攻击过程原理"></a>3. 攻击过程原理</h2><p><strong>Web A 为存在CSRF漏洞<br>Web B 为攻击者的恶意网站<br>User C 为Web A的用户</strong><img src="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4. 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；<br>5. 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功；<br>6. 用户未退出网站A的情况下，在同一浏览器中访问网站B；<br>7. 网站B接收到用户请求后，返回攻击代码，并发出一个请求要求访问第三方站点A；<br>8. 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。</p>
+<p><strong>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，<br>导致网站B的恶意代码被执行。</strong></p>
+<h2 id="4-CSRF与XSS的区别"><a href="#4-CSRF与XSS的区别" class="headerlink" title="4. CSRF与XSS的区别"></a>4. CSRF与XSS的区别</h2><p>XSS：<br>攻击者发现XSS漏洞——构造代码——发送给受害人——受害人打开——攻击者获取受害人的cookie——完成攻击<br><strong>攻击者需要登录后台完成攻击</strong></p>
+<p>CSRF：<br>攻击者发现CSRF漏洞——构造代码——发送给受害人——受害人打开——受害人执行代码——完成攻击<br><strong>攻击是管理员自己实现的，攻击者只负责了构造代码</strong></p>
+<p>CSRF少了获取cookie的步骤，为什么会少了呢。因为受害人在执行恶意代码的时候就已经完成了攻击，而攻击者并没有参与进来。</p>
+<h1 id="0x01-漏洞分类"><a href="#0x01-漏洞分类" class="headerlink" title="0x01 漏洞分类"></a>0x01 漏洞分类</h1><h2 id="1-GET型CSRF"><a href="#1-GET型CSRF" class="headerlink" title="1. GET型CSRF"></a>1. GET型CSRF</h2><p>这种类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求，所以，一般会这样利用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;http:&#x2F;&#x2F;漏洞地址&gt;</span><br></pre></td></tr></table></figure>
+<p>在访问含有这个img的页面后，成功向http://漏洞地址，发出了一次HTTP请求。所以，如果将该网址替换为存在GET型CSRF的地址，就能完成攻击了。<br><img src="https://img-blog.csdnimg.cn/20200708221632461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-POST型CSRF"><a href="#2-POST型CSRF" class="headerlink" title="2. POST型CSRF"></a>2. POST型CSRF</h2><p>这种类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的表单，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;http:&#x2F;&#x2F;漏洞地址 method&#x3D;POST&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;xx&quot; value&#x3D;&quot;11&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;script&gt; document.forms[0].submit(); &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次POST操作。</p>
+<h2 id="3-常用的CSRF方式"><a href="#3-常用的CSRF方式" class="headerlink" title="3. 常用的CSRF方式"></a>3. 常用的CSRF方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;img&gt;标签属性</span><br><span class="line">&lt;img src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;标签属性</span><br><span class="line">&lt;script src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;iframe&gt;标签属性</span><br><span class="line">&lt;iframe src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">JavaScript方法</span><br><span class="line">Image对象</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var foo &#x3D; new Image();</span><br><span class="line">foo.src &#x3D; “http:&#x2F;&#x2F;漏洞地址”</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="0x02-攻击演示"><a href="#0x02-攻击演示" class="headerlink" title="0x02 攻击演示"></a>0x02 攻击演示</h1><h2 id="以bWAPP的CSRF-Transfer-Amount-为例"><a href="#以bWAPP的CSRF-Transfer-Amount-为例" class="headerlink" title="以bWAPP的CSRF (Transfer Amount)为例"></a>以bWAPP的CSRF (Transfer Amount)为例</h2><p>入图，原始账户金额为1000EUR<br><img src="https://img-blog.csdnimg.cn/20200708222954428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用burpsuite抓包构造POC<br><img src="https://img-blog.csdnimg.cn/20200708223212183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对生成的POC内转账金额参数值修改<br><img src="https://img-blog.csdnimg.cn/20200708223441937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>将此poc页面放入本地服务器（恶意服务器）<br><img src="https://img-blog.csdnimg.cn/20200708224131961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在原浏览器访问本地该页面，<br><img src="https://img-blog.csdnimg.cn/20200708223842688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Submit request<br><img src="https://img-blog.csdnimg.cn/20200708224436770.png" alt="在这里插入图片描述"><br>结果发现账户金额变为800EUR，表示攻击成功<br><img src="https://img-blog.csdnimg.cn/20200708224552996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="0x03-漏洞检测"><a href="#0x03-漏洞检测" class="headerlink" title="0x03 漏洞检测"></a>0x03 漏洞检测</h1><p>自动检测：AWVS扫描器<br>半自动检测：CSRFTester</p>
+<h1 id="0x04-漏洞防御"><a href="#0x04-漏洞防御" class="headerlink" title="0x04 漏洞防御"></a>0x04 漏洞防御</h1><p>1、验证HTTP Referer字段<br>2、Token验证<br>3、添加验证码</p>
+
             </div>
         
         <footer class="article-footer">
@@ -432,19 +470,10 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Más nuevo</strong>
-            <div class="article-nav-title">
-                
-                    article title
-                
-            </div>
-        </a>
     
-    
-        <a href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Más viejo</strong>
-            <div class="article-nav-title">article title</div>
+            <div class="article-nav-title">第二节 信息收集</div>
         </a>
     
 </nav>
