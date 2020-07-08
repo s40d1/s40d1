@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://s40d1.github.io/"/>
-  <updated>2020-07-08T14:46:36.268Z</updated>
+  <updated>2020-07-08T14:53:28.657Z</updated>
   <id>https://s40d1.github.io/</id>
   
   <author>
@@ -21,15 +21,16 @@
     <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/"/>
     <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/</id>
     <published>2020-07-08T11:17:37.000Z</published>
-    <updated>2020-07-08T14:46:36.268Z</updated>
+    <updated>2020-07-08T14:53:28.657Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="0x00-CSRF原理概要"><a href="#0x00-CSRF原理概要" class="headerlink" title="0x00 CSRF原理概要"></a>0x00 CSRF原理概要</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ol><li>CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。</li><li>也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。<h2 id="2-必要条件"><a href="#2-必要条件" class="headerlink" title="2. 必要条件"></a>2. 必要条件</h2>要完成一次CSRF攻击，受害者必须依次完成两个步骤：<blockquote><p>登录受信任网站A，并在本地生成Cookie<br>在不登出A的情况下，访问恶意网站B<br>必须是同一浏览器，因为不同浏览器不能相互利用COOKIE</p></blockquote></li></ol><h2 id="3-攻击过程原理"><a href="#3-攻击过程原理" class="headerlink" title="3. 攻击过程原理"></a>3. 攻击过程原理</h2><p><strong>Web A 为存在CSRF漏洞<br>Web B 为攻击者的恶意网站<br>User C 为Web A的用户</strong><img src="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4. 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；<br>5. 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功；<br>6. 用户未退出网站A的情况下，在同一浏览器中访问网站B；<br>7. 网站B接收到用户请求后，返回攻击代码，并发出一个请求要求访问第三方站点A；<br>8. 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。</p><p><strong>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，<br>导致网站B的恶意代码被执行。</strong></p><h2 id="4-CSRF与XSS的区别"><a href="#4-CSRF与XSS的区别" class="headerlink" title="4. CSRF与XSS的区别"></a>4. CSRF与XSS的区别</h2><p>XSS：<br>攻击者发现XSS漏洞——构造代码——发送给受害人——受害人打开——攻击者获取受害人的cookie——完成攻击<br><strong>攻击者需要登录后台完成攻击</strong></p><p>CSRF：<br>攻击者发现CSRF漏洞——构造代码——发送给受害人——受害人打开——受害人执行代码——完成攻击<br><strong>攻击是管理员自己实现的，攻击者只负责了构造代码</strong></p><p>CSRF少了获取cookie的步骤，为什么会少了呢。因为受害人在执行恶意代码的时候就已经完成了攻击，而攻击者并没有参与进来。</p><h1 id="0x01-漏洞分类"><a href="#0x01-漏洞分类" class="headerlink" title="0x01 漏洞分类"></a>0x01 漏洞分类</h1><h2 id="1-GET型CSRF"><a href="#1-GET型CSRF" class="headerlink" title="1. GET型CSRF"></a>1. GET型CSRF</h2><p>这种类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求，所以，一般会这样利用：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;http:&#x2F;&#x2F;漏洞地址&gt;</span><br></pre></td></tr></table></figure><p>在访问含有这个img的页面后，成功向http://漏洞地址，发出了一次HTTP请求。所以，如果将该网址替换为存在GET型CSRF的地址，就能完成攻击了。<br><img src="https://img-blog.csdnimg.cn/20200708221632461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="2-POST型CSRF"><a href="#2-POST型CSRF" class="headerlink" title="2. POST型CSRF"></a>2. POST型CSRF</h2><p>这种类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的表单，如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;http:&#x2F;&#x2F;漏洞地址 method&#x3D;POST&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;xx&quot; value&#x3D;&quot;11&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;script&gt; document.forms[0].submit(); &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure><p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次POST操作。</p><h2 id="3-常用的CSRF方式"><a href="#3-常用的CSRF方式" class="headerlink" title="3. 常用的CSRF方式"></a>3. 常用的CSRF方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;img&gt;标签属性</span><br><span class="line">&lt;img src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;标签属性</span><br><span class="line">&lt;script src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;iframe&gt;标签属性</span><br><span class="line">&lt;iframe src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">JavaScript方法</span><br><span class="line">Image对象</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var foo &#x3D; new Image();</span><br><span class="line">foo.src &#x3D; “http:&#x2F;&#x2F;漏洞地址”</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure><h1 id="0x02-攻击演示"><a href="#0x02-攻击演示" class="headerlink" title="0x02 攻击演示"></a>0x02 攻击演示</h1><h2 id="以bWAPP的CSRF-Transfer-Amount-为例"><a href="#以bWAPP的CSRF-Transfer-Amount-为例" class="headerlink" title="以bWAPP的CSRF (Transfer Amount)为例"></a>以bWAPP的CSRF (Transfer Amount)为例</h2><p>入图，原始账户金额为1000EUR<br><img src="https://img-blog.csdnimg.cn/20200708222954428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用burpsuite抓包构造POC<br><img src="https://img-blog.csdnimg.cn/20200708223212183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对生成的POC内转账金额参数值修改<br><img src="https://img-blog.csdnimg.cn/20200708223441937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>将此poc页面放入本地服务器（恶意服务器）<br><img src="https://img-blog.csdnimg.cn/20200708224131961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在原浏览器访问本地该页面，<br><img src="https://img-blog.csdnimg.cn/20200708223842688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Submit request<br><img src="https://img-blog.csdnimg.cn/20200708224436770.png" alt="在这里插入图片描述"><br>结果发现账户金额变为800EUR，表示攻击成功<br><img src="https://img-blog.csdnimg.cn/20200708224552996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="0x03-漏洞检测"><a href="#0x03-漏洞检测" class="headerlink" title="0x03 漏洞检测"></a>0x03 漏洞检测</h1><p>自动检测：AWVS扫描器<br>半自动检测：CSRFTester</p><h1 id="0x04-漏洞防御"><a href="#0x04-漏洞防御" class="headerlink" title="0x04 漏洞防御"></a>0x04 漏洞防御</h1><p>1、验证HTTP Referer字段<br>2、Token验证<br>3、添加验证码</p>]]></content>
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="0x00-CSRF原理概要"><a href="#0x00-CSRF原理概要" class="headerlink" title="0x00 CSRF原理概要"></a>0x00 CSRF原理概要</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ol><li>CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。</li><li>也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。<h2 id="2-必要条件"><a href="#2-必要条件" class="headerlink" title="2. 必要条件"></a>2. 必要条件</h2>要完成一次CSRF攻击，受害者必须依次完成三个要素：<blockquote><p>登录受信任网站A，并在本地生成Cookie<br>在不登出A的情况下，访问恶意网站B<br>必须是同一浏览器，因为不同浏览器不能相互利用COOKIE</p></blockquote></li></ol><h2 id="3-攻击过程原理"><a href="#3-攻击过程原理" class="headerlink" title="3. 攻击过程原理"></a>3. 攻击过程原理</h2><p><strong>Web A 为存在CSRF漏洞<br>Web B 为攻击者的恶意网站<br>User C 为Web A的用户</strong></p><p><img src="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ul><li><p>用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p></li><li><p>在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功；</p></li><li><p>用户未退出网站A的情况下，在同一浏览器中访问网站B；</p></li><li><p>网站B接收到用户请求后，返回攻击代码，并发出一个请求要求访问第三方站点A；</p></li><li><p>浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。</p></li></ul><p><strong>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，<br>导致网站B的恶意代码被执行。</strong></p><h2 id="4-CSRF与XSS的区别"><a href="#4-CSRF与XSS的区别" class="headerlink" title="4. CSRF与XSS的区别"></a>4. CSRF与XSS的区别</h2><p>XSS：<br>攻击者发现XSS漏洞——构造代码——发送给受害人——受害人打开——攻击者获取受害人的cookie——完成攻击<br><strong>攻击者需要登录后台完成攻击</strong></p><p>CSRF：<br>攻击者发现CSRF漏洞——构造代码——发送给受害人——受害人打开——受害人执行代码——完成攻击<br><strong>攻击是管理员自己实现的，攻击者只负责了构造代码</strong></p><p>CSRF少了获取cookie的步骤，为什么会少了呢。因为受害人在执行恶意代码的时候就已经完成了攻击，而攻击者并没有参与进来。</p><h1 id="0x01-漏洞分类"><a href="#0x01-漏洞分类" class="headerlink" title="0x01 漏洞分类"></a>0x01 漏洞分类</h1><h2 id="1-GET型CSRF"><a href="#1-GET型CSRF" class="headerlink" title="1. GET型CSRF"></a>1. GET型CSRF</h2><p>这种类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求，所以，一般会这样利用：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;http:&#x2F;&#x2F;漏洞地址&gt;</span><br></pre></td></tr></table></figure><p>在访问含有这个img的页面后，成功向http://漏洞地址，发出了一次HTTP请求。所以，如果将该网址替换为存在GET型CSRF的地址，就能完成攻击了。<br><img src="https://img-blog.csdnimg.cn/20200708221632461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="2-POST型CSRF"><a href="#2-POST型CSRF" class="headerlink" title="2. POST型CSRF"></a>2. POST型CSRF</h2><p>这种类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的表单，如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;http:&#x2F;&#x2F;漏洞地址 method&#x3D;POST&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;xx&quot; value&#x3D;&quot;11&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;script&gt; document.forms[0].submit(); &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure><p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次POST操作。</p><h2 id="3-常用的CSRF方式"><a href="#3-常用的CSRF方式" class="headerlink" title="3. 常用的CSRF方式"></a>3. 常用的CSRF方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;img&gt;标签属性</span><br><span class="line">&lt;img src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;标签属性</span><br><span class="line">&lt;script src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">&lt;iframe&gt;标签属性</span><br><span class="line">&lt;iframe src&#x3D;“http:&#x2F;&#x2F;漏洞地址”&gt;</span><br><span class="line"></span><br><span class="line">JavaScript方法</span><br><span class="line">Image对象</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var foo &#x3D; new Image();</span><br><span class="line">foo.src &#x3D; “http:&#x2F;&#x2F;漏洞地址”</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure><h1 id="0x02-攻击演示"><a href="#0x02-攻击演示" class="headerlink" title="0x02 攻击演示"></a>0x02 攻击演示</h1><h2 id="以bWAPP的CSRF-Transfer-Amount-为例"><a href="#以bWAPP的CSRF-Transfer-Amount-为例" class="headerlink" title="以bWAPP的CSRF (Transfer Amount)为例"></a>以bWAPP的CSRF (Transfer Amount)为例</h2><p>入图，原始账户金额为1000EUR<br><img src="https://img-blog.csdnimg.cn/20200708222954428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用burpsuite抓包构造POC<br><img src="https://img-blog.csdnimg.cn/20200708223212183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对生成的POC内转账金额参数值修改<br><img src="https://img-blog.csdnimg.cn/20200708223441937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>将此poc页面放入本地服务器（恶意服务器）<br><img src="https://img-blog.csdnimg.cn/20200708224131961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在原浏览器访问本地该页面，<br><img src="https://img-blog.csdnimg.cn/20200708223842688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Submit request<br><img src="https://img-blog.csdnimg.cn/20200708224436770.png" alt="在这里插入图片描述"><br>结果发现账户金额变为800EUR，表示攻击成功<br><img src="https://img-blog.csdnimg.cn/20200708224552996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="0x03-漏洞检测"><a href="#0x03-漏洞检测" class="headerlink" title="0x03 漏洞检测"></a>0x03 漏洞检测</h1><p>自动检测：AWVS扫描器<br>半自动检测：CSRFTester</p><h1 id="0x04-漏洞防御"><a href="#0x04-漏洞防御" class="headerlink" title="0x04 漏洞防御"></a>0x04 漏洞防御</h1><p>1、验证HTTP Referer字段<br>2、Token验证<br>3、添加验证码</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;0x00-CSRF原理概要&quot;&gt;&lt;a href=&quot;#0x00-CSRF原理概要&quot; class=&quot;headerlink&quot; title=&quot;0x00 CSRF原理概要&quot;&gt;&lt;/a&gt;0x00 CSRF原理概要&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot;
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;0x00-CSRF原理概要&quot;&gt;&lt;a href=&quot;#0x00-CSRF原理概要&quot; class=&quot;headerlink&quot; title=&quot;0x00 CSRF原理概要&quot;&gt;&lt;/a&gt;0x00 CSRF原理概要&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a
       
     
     </summary>
@@ -269,6 +270,30 @@
   </entry>
   
   <entry>
+    <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="红蓝对抗" scheme="https://s40d1.github.io/categories/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>正则表达式30分钟入门40分钟进阶</title>
     <link href="https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/"/>
     <id>https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/</id>
@@ -293,30 +318,6 @@
     
     
       <category term="正则 表达式" scheme="https://s40d1.github.io/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="攻防演练" scheme="https://s40d1.github.io/categories/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/"/>
-    
     
   </entry>
   
@@ -348,6 +349,30 @@
   
   <entry>
     <title>article title</title>
+    <link href="https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2020-06-23T16:13:37.000Z</published>
+    <updated>2020-06-23T16:15:55.811Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="攻防演练" scheme="https://s40d1.github.io/categories/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article title</title>
     <link href="https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <id>https://s40d1.github.io/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2020-06-23T16:13:37.000Z</published>
@@ -372,8 +397,8 @@
   
   <entry>
     <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <link href="https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2020-06-23T16:13:37.000Z</published>
     <updated>2020-06-23T16:15:55.811Z</updated>
     
@@ -389,7 +414,7 @@
     </summary>
     
     
-      <category term="红蓝对抗" scheme="https://s40d1.github.io/categories/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/"/>
+      <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
     
     
   </entry>
@@ -414,30 +439,6 @@
     
     
       <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
     
     
   </entry>

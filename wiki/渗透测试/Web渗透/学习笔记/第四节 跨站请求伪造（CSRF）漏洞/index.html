@@ -9,12 +9,12 @@
         <meta name="keywords" content="CSRF">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害者必须依次完">
+    <meta name="description" content="[TOC] 0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第四节 跨站请求伪造（CSRF）漏洞">
 <meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
-<meta property="og:description" content="0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害者必须依次完">
+<meta property="og:description" content="[TOC] 0x00 CSRF原理概要1. 概念 CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。 也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。2. 必要条件要完成一次CSRF攻击，受害">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708221632461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708222954428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708224436770.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708224552996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-07-08T11:17:37.000Z">
-<meta property="article:modified_time" content="2020-07-08T14:46:36.268Z">
+<meta property="article:modified_time" content="2020-07-08T14:53:28.657Z">
 <meta property="article:author" content="s40d1">
 <meta property="article:tag" content="CSRF">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -125,10 +125,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Entradas',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categorias',
-            TAGS: 'Etiquetas',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -161,7 +161,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
     </div>
 
                 </td>
@@ -178,7 +178,7 @@
         
     <div class="widget-wrap" id="categories">
         <h3 class="widget-title">
-            <span>Categorias</span>
+            <span>categories</span>
             &nbsp;
             <a id="allExpand" href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -436,14 +436,28 @@
             
         
         
-            <h1 id="0x00-CSRF原理概要"><a href="#0x00-CSRF原理概要" class="headerlink" title="0x00 CSRF原理概要"></a>0x00 CSRF原理概要</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ol>
+            <p>[TOC]</p>
+<h1 id="0x00-CSRF原理概要"><a href="#0x00-CSRF原理概要" class="headerlink" title="0x00 CSRF原理概要"></a>0x00 CSRF原理概要</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ol>
 <li>CSRF（Cross-Site Request Forgery）是指跨站请求伪造，通常缩写为CSRF或者是XSRF。</li>
-<li>也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。<h2 id="2-必要条件"><a href="#2-必要条件" class="headerlink" title="2. 必要条件"></a>2. 必要条件</h2>要完成一次CSRF攻击，受害者必须依次完成两个步骤：<blockquote>
+<li>也可以这么理解CSRF攻击：攻击者盗用了你的身份（即用了你的COOKIE），以你的名义进行某些非法操作。CSRF能够修改你的密码，使用你的账户发送邮件，获取你的敏感信息，甚至盗走你的财产等。<h2 id="2-必要条件"><a href="#2-必要条件" class="headerlink" title="2. 必要条件"></a>2. 必要条件</h2>要完成一次CSRF攻击，受害者必须依次完成三个要素：<blockquote>
 <p>登录受信任网站A，并在本地生成Cookie<br>在不登出A的情况下，访问恶意网站B<br>必须是同一浏览器，因为不同浏览器不能相互利用COOKIE</p>
 </blockquote>
 </li>
 </ol>
-<h2 id="3-攻击过程原理"><a href="#3-攻击过程原理" class="headerlink" title="3. 攻击过程原理"></a>3. 攻击过程原理</h2><p><strong>Web A 为存在CSRF漏洞<br>Web B 为攻击者的恶意网站<br>User C 为Web A的用户</strong><img src="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4. 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；<br>5. 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功；<br>6. 用户未退出网站A的情况下，在同一浏览器中访问网站B；<br>7. 网站B接收到用户请求后，返回攻击代码，并发出一个请求要求访问第三方站点A；<br>8. 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。</p>
+<h2 id="3-攻击过程原理"><a href="#3-攻击过程原理" class="headerlink" title="3. 攻击过程原理"></a>3. 攻击过程原理</h2><p><strong>Web A 为存在CSRF漏洞<br>Web B 为攻击者的恶意网站<br>User C 为Web A的用户</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200708220835653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p>
+</li>
+<li><p>在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功；</p>
+</li>
+<li><p>用户未退出网站A的情况下，在同一浏览器中访问网站B；</p>
+</li>
+<li><p>网站B接收到用户请求后，返回攻击代码，并发出一个请求要求访问第三方站点A；</p>
+</li>
+<li><p>浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。</p>
+</li>
+</ul>
 <p><strong>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，<br>导致网站B的恶意代码被执行。</strong></p>
 <h2 id="4-CSRF与XSS的区别"><a href="#4-CSRF与XSS的区别" class="headerlink" title="4. CSRF与XSS的区别"></a>4. CSRF与XSS的区别</h2><p>XSS：<br>攻击者发现XSS漏洞——构造代码——发送给受害人——受害人打开——攻击者获取受害人的cookie——完成攻击<br><strong>攻击者需要登录后台完成攻击</strong></p>
 <p>CSRF：<br>攻击者发现CSRF漏洞——构造代码——发送给受害人——受害人打开——受害人执行代码——完成攻击<br><strong>攻击是管理员自己实现的，攻击者只负责了构造代码</strong></p>
@@ -472,7 +486,7 @@
     
     
         <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Más viejo</strong>
+            <strong class="article-nav-caption">Older</strong>
             <div class="article-nav-title">第二节 信息收集</div>
         </a>
     
