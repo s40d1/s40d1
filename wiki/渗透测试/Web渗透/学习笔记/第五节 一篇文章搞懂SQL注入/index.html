@@ -12,7 +12,7 @@
     <meta name="description" content="0X00 数据库相关概念数据（DATA）：图像、语音、文字在计算机系统中，各种字母、数字符号的组合、语音、图形、图像等统称为数据。 数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库是按照数据结构来组织、存储和管理数据的“仓库”。 数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库管理系统(data">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第五节 一篇文章搞懂SQL注入">
-<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
 <meta property="og:description" content="0X00 数据库相关概念数据（DATA）：图像、语音、文字在计算机系统中，各种字母、数字符号的组合、语音、图形、图像等统称为数据。 数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库是按照数据结构来组织、存储和管理数据的“仓库”。 数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库管理系统(data">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/202007241148071.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
@@ -118,7 +118,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -137,10 +137,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Articles',
+            POSTS: 'Entradas',
             PAGES: 'Pages',
-            CATEGORIES: 'Catégories',
-            TAGS: 'Tags',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -173,7 +173,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
     </div>
 
                 </td>
@@ -190,7 +190,7 @@
         
     <div class="widget-wrap" id="categories">
         <h3 class="widget-title">
-            <span>Catégories</span>
+            <span>Categorias</span>
             &nbsp;
             <a id="allExpand" href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -292,7 +292,7 @@
                             &nbsp;
                             学习笔记
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/">第五节 一篇文章搞懂SQL注入</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/">第五节 一篇文章搞懂SQL注入</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -387,7 +387,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第五节 SQL注入" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第五节 一篇文章搞懂SQL注入" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -409,7 +409,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/">
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/">
             <time datetime="2020-07-24T03:35:37.000Z" itemprop="datePublished">2020-07-24</time>
         </a>
     </div>
@@ -421,13 +421,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 一篇文章搞懂SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 一篇文章搞懂SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 一篇文章搞懂SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
                             </div>
                         
                     </div>
@@ -626,7 +626,7 @@
     
     
         <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Plus ancien</strong>
+            <strong class="article-nav-caption">Más viejo</strong>
             <div class="article-nav-title">第四节 跨站请求伪造（CSRF）漏洞</div>
         </a>
     
