@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第二节 信息收集 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0x00信息收集的概念黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。 0x01信息收集的作用 了解安全架构：信息收集使攻击者能够了解组织完整的安全架构 缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围 建立信息数据库：攻击者能够建立他们自己的相关目标组织安全性弱点的信息数据库来采取下一步的入侵行动 描绘网络拓扑：攻击者可以描绘出目标组织的网络拓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二节 信息收集">
+<meta property="og:url" content="http://example.com/2020/07/07/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="0x00信息收集的概念黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。 0x01信息收集的作用 了解安全架构：信息收集使攻击者能够了解组织完整的安全架构 缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围 建立信息数据库：攻击者能够建立他们自己的相关目标组织安全性弱点的信息数据库来采取下一步的入侵行动 描绘网络拓扑：攻击者可以描绘出目标组织的网络拓">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707201518888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707202152691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202007072032379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707203715668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707210911347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707212322858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020070721330186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707213327706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214029837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214459287.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200707214550451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-07T14:10:37.000Z">
+<meta property="article:modified_time" content="2020-07-07T14:03:24.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透测试;信息收集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-渗透测试/Web渗透/学习笔记/第二节 信息收集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/07/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time datetime="2020-07-07T14:10:37.000Z" itemprop="datePublished">2020-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第二节 信息收集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0x00信息收集的概念"><a href="#0x00信息收集的概念" class="headerlink" title="0x00信息收集的概念"></a>0x00信息收集的概念</h1><p>黑客为了更加有效地实施攻击而在攻击前或攻击过程中对目标的所有探测活动。</p>
+<h1 id="0x01信息收集的作用"><a href="#0x01信息收集的作用" class="headerlink" title="0x01信息收集的作用"></a>0x01信息收集的作用</h1><ol>
+<li>了解安全架构：信息收集使攻击者能够了解组织完整的安全架构</li>
+<li>缩小攻击范围：通过IP地址范围、网络、域名、远程访问点等信息，可以缩小攻击范围</li>
+<li>建立信息数据库：攻击者能够建立他们自己的相关目标组织安全性弱点的信息数据库来采取下一步的入侵行动</li>
+<li>描绘网络拓扑：攻击者可以描绘出目标组织的网络拓扑图，分析最容易进入的攻击路径</li>
+</ol>
+<p>**信息收集对于渗透来说是非常重要的一步，收集的信息越详细对以后渗透测试的影响越大，毫不夸张的说，信息的收集决定着渗透的成功与否<br>**</p>
+<h1 id="0x02信息收集的分类"><a href="#0x02信息收集的分类" class="headerlink" title="0x02信息收集的分类"></a>0x02信息收集的分类</h1><ul>
+<li><strong>被动信息收集</strong>：被动信息收集也就是说不会与目标服务器做直接的交互、在不被目标系统察觉的情况下，通过搜索引擎、社交媒体等方式对目标外围的信息进行收集，例如：网站的whois信息、DNS信息、管理员以及工作人员的个人信息等等。</li>
+<li><strong>主动信息收集</strong>：主动收集会与目标系统有直接的交互，从而得到目标系统相关的一些情报信息。例如：主机开发的端口、站点的目录结构等等。</li>
+</ul>
+<h1 id="0x03信息收集的内容"><a href="#0x03信息收集的内容" class="headerlink" title="0x03信息收集的内容"></a>0x03信息收集的内容</h1><table>
+<thead>
+<tr>
+<th>网络信息</th>
+<th>系统信息</th>
+<th>组织信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>域名</td>
+<td>用户和用户组名</td>
+<td>员工信息</td>
+</tr>
+<tr>
+<td>内网域名</td>
+<td>系统标示banner</td>
+<td>组织网站</td>
+</tr>
+<tr>
+<td>网段</td>
+<td>路由表</td>
+<td>公司地址</td>
+</tr>
+<tr>
+<td>授权可访问的IP地址</td>
+<td>SNMP信息</td>
+<td>信息详情</td>
+</tr>
+<tr>
+<td>内部网站</td>
+<td>系统架构</td>
+<td>地址和电话号码</td>
+</tr>
+<tr>
+<td>开放的TCP/UDP端口</td>
+<td>远程系统类型</td>
+<td>邮箱地址</td>
+</tr>
+<tr>
+<td>访问控制机制和ACL</td>
+<td>系统用户名</td>
+<td>HTML代码中的注释</td>
+</tr>
+<tr>
+<td>运行的网络协议</td>
+<td>密码</td>
+<td>实行的安全策略</td>
+</tr>
+<tr>
+<td>VPN接入点</td>
+<td>站点目录</td>
+<td>与组织相关的WEB服务</td>
+</tr>
+<tr>
+<td>访问控制策略</td>
+<td>测试/临时文件</td>
+<td>组织的背景</td>
+</tr>
+<tr>
+<td>运行的IDS监听策略</td>
+<td></td>
+<td>发布的新闻</td>
+</tr>
+<tr>
+<td>模拟、数字电话号码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>认证机制</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>系统评估措施</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>防火墙等安全设施</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="0x04信息收集的方法"><a href="#0x04信息收集的方法" class="headerlink" title="0x04信息收集的方法"></a>0x04信息收集的方法</h1><p>方法概览：搜索引擎，网站，邮件，竞争情报，Google，whois，DNS，网络信息收集，社会工程学，社交网站。</p>
+<h2 id="地理位置"><a href="#地理位置" class="headerlink" title="地理位置"></a>地理位置</h2><p>使用在线地图寻找<br><img src="https://img-blog.csdnimg.cn/20200707201126493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="查询个人信息"><a href="#查询个人信息" class="headerlink" title="查询个人信息"></a>查询个人信息</h2><h3 id="网站查询"><a href="#网站查询" class="headerlink" title="网站查询"></a>网站查询</h3><ul>
+<li>公积金：<a target="_blank" rel="noopener" href="http://www.bjgjj.gov.cn/">http://www.bjgjj.gov.cn/</a></li>
+<li>社保四险：<a target="_blank" rel="noopener" href="http://www.bjld.gov.cn/csibiz/home/index.html">http://www.bjld.gov.cn/csibiz/home/index.html</a></li>
+<li>驾驶证信息：<a target="_blank" rel="noopener" href="http://www.bjjtgl.gov.cn/publish/portal0/">http://www.bjjtgl.gov.cn/publish/portal0/</a></li>
+<li>工作居住证：<a target="_blank" rel="noopener" href="http://210.73.77.4/uamsso/">http://210.73.77.4/uamsso/</a></li>
+<li>电子学历：<a target="_blank" rel="noopener" href="http://www.chsi.com.cn/xlcx/">http://www.chsi.com.cn/xlcx/</a></li>
+<li>信用卡记录：各银行信用卡网站申请进度查询</li>
+<li>公交一卡通查询：<a target="_blank" rel="noopener" href="http://www.bmac.com.cn/">http://www.bmac.com.cn/</a><h3 id="Google语法"><a href="#Google语法" class="headerlink" title="Google语法"></a>Google语法</h3><img src="https://img-blog.csdnimg.cn/20200707201518888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="社工库查询"><a href="#社工库查询" class="headerlink" title="社工库查询"></a>社工库查询</h3><img src="https://img-blog.csdnimg.cn/20200707202152691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="网站信息收集"><a href="#网站信息收集" class="headerlink" title="网站信息收集"></a>网站信息收集</h2><h3 id="目标网站可能提供"><a href="#目标网站可能提供" class="headerlink" title="目标网站可能提供"></a>目标网站可能提供</h3></li>
+<li>使用的软件及版本</li>
+<li>使用的操作系统</li>
+<li>子目录及参数</li>
+<li>文件名、路径、数据库字段名及查询语句</li>
+<li>脚本平台</li>
+<li>通讯信息和内容管理系统详情<h3 id="使用Burp-Suite-Firebug等工具来浏览头部能够提供的信息："><a href="#使用Burp-Suite-Firebug等工具来浏览头部能够提供的信息：" class="headerlink" title="使用Burp Suite , Firebug等工具来浏览头部能够提供的信息："></a>使用Burp Suite , Firebug等工具来浏览头部能够提供的信息：</h3></li>
+<li>连接状态和内容种类</li>
+<li>接收范围</li>
+<li>最后编辑信息</li>
+<li>X-Powered-By信息</li>
+<li>使用的Web服务及版本信息</li>
+</ul>
+<h3 id="核查HTML源码可获得："><a href="#核查HTML源码可获得：" class="headerlink" title="核查HTML源码可获得："></a>核查HTML源码可获得：</h3><ul>
+<li>代码中的注释</li>
+<li>web开发或管理员的联系详情</li>
+<li>文件系统架构</li>
+<li>脚本类型</li>
+</ul>
+<h3 id="核查Cookies可获得："><a href="#核查Cookies可获得：" class="headerlink" title="核查Cookies可获得："></a>核查Cookies可获得：</h3><p>使用的软件和它的使用习惯信息<br>使用的脚本平台</p>
+<h3 id="邮件信息"><a href="#邮件信息" class="headerlink" title="邮件信息"></a>邮件信息</h3><p><img src="https://img-blog.csdnimg.cn/202007072032379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="Google-hacking"><a href="#Google-hacking" class="headerlink" title="Google hacking"></a>Google hacking</h3><ul>
+<li>Site 指定域名</li>
+<li>Intext 正文中存在关键字的网页</li>
+<li>Intitle 标题中存在关键字的网页</li>
+<li>Info 一些基本信息</li>
+<li>Inurl url存在关键字的网页</li>
+<li>Filetype 搜索指定文件类型</li>
+</ul>
+<p>例如：“intitle:管理登录 filetype:php” 查询页面标题含有“管理登录”，并且为php类型的网站。<br><img src="https://img-blog.csdnimg.cn/20200707203715668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="查找利用php-webshell"><a href="#查找利用php-webshell" class="headerlink" title="查找利用php webshell"></a>查找利用php webshell</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:&quot;php shell*&quot; &quot;Enable stderr&quot; filetype:php</span><br></pre></td></tr></table></figure>
+<p>intitle—网页标题<br>Enable stderr—UNIX标准输出和标准错误的缩写<br>filetype—文件类型 </p>
+<h4 id="访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息"><a href="#访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息" class="headerlink" title="访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息"></a>访问目标公司的私有网络和收集诸如员工列表、联系方式等敏感信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intitle:intranet inurl:intranet+intext:”human resources”</span><br></pre></td></tr></table></figure>
+
+<h3 id="shodan搜索引擎"><a href="#shodan搜索引擎" class="headerlink" title="shodan搜索引擎"></a>shodan搜索引擎</h3><p>Shoudan是一个用于帮助发现主要的互联网系统漏洞（包括路由器，交换机，工控系统等）的搜索引擎。它在圈子里就像google一样出名。它主要拦截从服务器到客户端的元数据来工作，目前提供超过50个端口的相关搜索。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200707210911347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="shodan能找到的设备"><a href="#shodan能找到的设备" class="headerlink" title="shodan能找到的设备"></a>shodan能找到的设备</h4><p>服务器<br>路由器<br>交换机<br>公共ip打印机<br>网络摄像头<br>加油站的泵<br>Voip电话和所有数据采集监控系统</p>
+<h4 id="shodan能做的"><a href="#shodan能做的" class="headerlink" title="shodan能做的"></a>shodan能做的</h4><p>用户搜索定制项目<br>寻找端口并拦截数据<br>拦截的数据设置索引<br>显示结果</p>
+<h4 id="shodan网站信息收集"><a href="#shodan网站信息收集" class="headerlink" title="shodan网站信息收集"></a>shodan网站信息收集</h4><p><img src="https://img-blog.csdnimg.cn/20200707212322858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="Google和Shodan的区别"><a href="#Google和Shodan的区别" class="headerlink" title="Google和Shodan的区别"></a>Google和Shodan的区别</h4><p>Google的爬虫/蜘蛛 抓取网页数据并为网页内容创建索引。Shoudan主要寻找端口并抓取拦截到的信息，然后为它们建立索引，最后显示结果。<br>Shoudan并不像google那样为网页内容建立索引，因此它是一个基于拦截器的搜索引擎。</p>
+<h2 id="whois信息收集"><a href="#whois信息收集" class="headerlink" title="whois信息收集"></a>whois信息收集</h2><h3 id="Whois可以获取的信息"><a href="#Whois可以获取的信息" class="headerlink" title="Whois可以获取的信息"></a>Whois可以获取的信息</h3><p><img src="https://img-blog.csdnimg.cn/2020070721330186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="通过Whois信息可以？"><a href="#通过Whois信息可以？" class="headerlink" title="通过Whois信息可以？"></a>通过Whois信息可以？</h3><p><img src="https://img-blog.csdnimg.cn/20200707213327706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20200707214029837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2><p><img src="https://img-blog.csdnimg.cn/20200707214459287.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200707214550451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/07/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="ckeywlxez000l0ktg8rny2bh4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">渗透测试;信息收集</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/08/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第四节 跨站请求伪造（CSRF）漏洞
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/07/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第一节 HTTP请求流程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/" rel="tag">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/" rel="tag">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则 表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">渗透测试 HTTP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">渗透测试;信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" rel="tag">风险评估 概念</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则 表达式</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">渗透测试 HTTP协议</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">渗透测试;信息收集</a> <a href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">风险评估 概念</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

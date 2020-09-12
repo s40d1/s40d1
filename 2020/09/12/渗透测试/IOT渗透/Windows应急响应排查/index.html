@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 一、进程排查独立进程块病毒是独立的可执行文件，以独立进程运行。进程名要么随机，要么相似于系统进程 动态库模块以动态库的方式注入到系统进程和应用程序。 隐藏模块二、网络行为排查重要辅助站点 https:&#x2F;&#x2F;www.virustotal.com&#x2F;国外知名站点网络连接排查流量分析漏洞与补丁信息三、文件排查临时目录排查  浏览器相关文件排查最近打开文件排查文件时间排查其他重要目录查询syste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[toc] 一、进程排查独立进程块病毒是独立的可执行文件，以独立进程运行。进程名要么随机，要么相似于系统进程 动态库模块以动态库的方式注入到系统进程和应用程序。 隐藏模块二、网络行为排查重要辅助站点 https:&#x2F;&#x2F;www.virustotal.com&#x2F;国外知名站点网络连接排查流量分析漏洞与补丁信息三、文件排查临时目录排查  浏览器相关文件排查最近打开文件排查文件时间排查其他重要目录查询syste">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/D9E9900A2C3A41EC8D3FCE4519473BF0">
+<meta property="og:image" content="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/F0E7FE1ED20D490DB97A8B4DEECC9DAB">
+<meta property="og:image" content="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/6A58E9BB35014641B331B965402A6A53">
+<meta property="article:published_time" content="2020-09-12T00:00:21.180Z">
+<meta property="article:modified_time" content="2020-06-18T13:53:54.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/D9E9900A2C3A41EC8D3FCE4519473BF0">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-渗透测试/IOT渗透/Windows应急响应排查" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/" class="article-date">
+  <time datetime="2020-09-12T00:00:21.180Z" itemprop="datePublished">2020-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[toc]</p>
+<h1 id="一、进程排查"><a href="#一、进程排查" class="headerlink" title="一、进程排查"></a>一、进程排查</h1><h2 id="独立进程块"><a href="#独立进程块" class="headerlink" title="独立进程块"></a>独立进程块</h2><p>病毒是独立的可执行文件，以独立进程运行。进程名要么随机，要么相似于系统进程</p>
+<h2 id="动态库模块"><a href="#动态库模块" class="headerlink" title="动态库模块"></a>动态库模块</h2><p>以动态库的方式注入到系统进程和应用程序。</p>
+<h2 id="隐藏模块"><a href="#隐藏模块" class="headerlink" title="隐藏模块"></a>隐藏模块</h2><h1 id="二、网络行为排查"><a href="#二、网络行为排查" class="headerlink" title="二、网络行为排查"></a>二、网络行为排查</h1><h2 id="重要辅助站点"><a href="#重要辅助站点" class="headerlink" title="重要辅助站点"></a>重要辅助站点</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.virustotal.com/%E5%9B%BD%E5%A4%96%E7%9F%A5%E5%90%8D%E7%AB%99%E7%82%B9">https://www.virustotal.com/国外知名站点</a><h2 id="网络连接排查"><a href="#网络连接排查" class="headerlink" title="网络连接排查"></a>网络连接排查</h2><h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><h2 id="漏洞与补丁信息"><a href="#漏洞与补丁信息" class="headerlink" title="漏洞与补丁信息"></a>漏洞与补丁信息</h2><img src="D9E9900A2C3A41EC8D3FCE4519473BF0" alt="image"><h1 id="三、文件排查"><a href="#三、文件排查" class="headerlink" title="三、文件排查"></a>三、文件排查</h1><h2 id="临时目录排查"><a href="#临时目录排查" class="headerlink" title="临时目录排查"></a>临时目录排查</h2></li>
+</ol>
+<h2 id="浏览器相关文件排查"><a href="#浏览器相关文件排查" class="headerlink" title="浏览器相关文件排查"></a>浏览器相关文件排查</h2><h2 id="最近打开文件排查"><a href="#最近打开文件排查" class="headerlink" title="最近打开文件排查"></a>最近打开文件排查</h2><h2 id="文件时间排查"><a href="#文件时间排查" class="headerlink" title="文件时间排查"></a>文件时间排查</h2><h2 id="其他重要目录查询"><a href="#其他重要目录查询" class="headerlink" title="其他重要目录查询"></a>其他重要目录查询</h2><p>system32也是常见的病毒释放目录，需检查hosts文件有没有被篡改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32</span><br><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure>
+<p><img src="F0E7FE1ED20D490DB97A8B4DEECC9DAB" alt="image"></p>
+<h1 id="四、远程登录排查"><a href="#四、远程登录排查" class="headerlink" title="四、远程登录排查"></a>四、远程登录排查</h1><h2 id="Windows日志"><a href="#Windows日志" class="headerlink" title="Windows日志"></a>Windows日志</h2><h2 id="RDP远程登录排查"><a href="#RDP远程登录排查" class="headerlink" title="RDP远程登录排查"></a>RDP远程登录排查</h2><h2 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h2><h1 id="五、启动方式排查"><a href="#五、启动方式排查" class="headerlink" title="五、启动方式排查"></a>五、启动方式排查</h1><h2 id="启动项排查"><a href="#启动项排查" class="headerlink" title="启动项排查"></a>启动项排查</h2><h2 id="任务计划排查"><a href="#任务计划排查" class="headerlink" title="任务计划排查"></a>任务计划排查</h2><h2 id="服务排查"><a href="#服务排查" class="headerlink" title="服务排查"></a>服务排查</h2><h1 id="六、账号安全排查"><a href="#六、账号安全排查" class="headerlink" title="六、账号安全排查"></a>六、账号安全排查</h1><p>compmgmt.msc命令查看计算机上所有用户信息<br>net user 用户名 命令查看指定用户信息</p>
+<p><img src="6A58E9BB35014641B331B965402A6A53" alt="image"><br>通过PCHunter等工具可以查看隐藏用户，如添加$的隐藏账号，以及克隆账号。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/" data-id="ckeywlxeu000c0ktgb7i4gm6w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/" rel="tag">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/" rel="tag">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则 表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">渗透测试 HTTP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">渗透测试;信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" rel="tag">风险评估 概念</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则 表达式</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">渗透测试 HTTP协议</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">渗透测试;信息收集</a> <a href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">风险评估 概念</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
