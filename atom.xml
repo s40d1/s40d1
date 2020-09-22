@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://s40d1.github.io/"/>
-  <updated>2020-09-11T23:56:29.986Z</updated>
+  <updated>2020-09-22T13:09:09.387Z</updated>
   <id>https://s40d1.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重置mysql密码的一种方法</title>
+    <link href="https://s40d1.github.io/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
+    <id>https://s40d1.github.io/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/</id>
+    <published>2020-09-22T13:12:31.469Z</published>
+    <updated>2020-09-22T13:09:09.387Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果遇到mysql忘记密码的时候，可以尝试以下这种方式：<br>以下是需要修改root密码的过程步骤：<br>1、修改 /etc/my.cnf，在 [mysqld] 小节下添加一行：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip-grant-tables&#x3D;1</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20200922202056391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这一行配置让 mysqld 启动时不对密码进行验证<br>2、重启 mysqld 服务：<code>systemctl restart mysqld</code><br><img src="https://img-blog.csdnimg.cn/20200922203038804.png#pic_center" alt="在这里插入图片描述"><br>3、使用 root 用户登录到 mysql：<code>mysql -u root</code><br><img src="https://img-blog.csdnimg.cn/2020092220370635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>4、切换到mysql数据库，更新 user 表：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set authentication_string &#x3D; password(&#39;root&#39;), password_expired &#x3D; &#39;N&#39;, password_last_changed &#x3D; now() where user &#x3D; &#39;root&#39;;</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20200922203918476.png#pic_center" alt="在这里插入图片描述"><br>在之前的版本中，密码字段的字段名是 password，5.7版本改为了 <code>authentication_string</code>。<br>5、刷新权限使得修改密码生效</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20200922205712552.png#pic_center" alt="在这里插入图片描述"><br>6、退出 mysql，编辑 <code>/etc/my.cnf 文件</code>，删除 <code>skip-grant-tables=1</code> 的内容。<br><img src="https://img-blog.csdnimg.cn/20200922205921995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>6、重启 mysqld 服务<br><img src="https://img-blog.csdnimg.cn/20200922205942487.png#pic_center" alt="在这里插入图片描述"><br>7、再用新密码登录即可。<br><img src="https://img-blog.csdnimg.cn/20200922205959874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>注意：<code>skip-grant-tables</code>参数是会让mysql在登录的时候跳过验证表直接登录到数据库，没特殊情况建议不要将该参数留在数据库配置文件中</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;如果遇到mysql忘记密码的时候，可以尝试以下这种方式：&lt;br&gt;以下是需要修改root密码的过程步骤：&lt;br&gt;1、修改 /etc/my.cnf，在 [mysqld] 小节下添加一行：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="https://s40d1.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
+    <id>https://s40d1.github.io/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</id>
+    <published>2020-09-16T05:52:48.905Z</published>
+    <updated>2020-09-16T05:53:07.142Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external nofollow noopener noreferrer">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external nofollow noopener noreferrer">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external nofollow noopener noreferrer">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external nofollow noopener noreferrer">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external nofollow noopener noreferrer">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="external nofollow noopener noreferrer">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first post.
+      
+    
+    </summary>
+    
+    
+      <category term="应急响应" scheme="https://s40d1.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -496,32 +545,6 @@
     
     
       <category term="正则 表达式" scheme="https://s40d1.github.io/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="渗透测试" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="IOT渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/"/>
-    
     
   </entry>
   

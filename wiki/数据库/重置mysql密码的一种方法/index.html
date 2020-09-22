@@ -3,22 +3,31 @@
 <head>
     <meta charset="utf-8">
     
-    <title>article title | s40d1&#39;s Wiki</title>
+    <title>重置mysql密码的一种方法 | s40d1&#39;s Wiki</title>
     
     
-        <meta name="keywords" content="article title">
+        <meta name="keywords" content="重置mysql密码的一种方法">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="第一篇文章">
+    <meta name="description" content="如果遇到mysql忘记密码的时候，可以尝试以下这种方式：以下是需要修改root密码的过程步骤：1、修改 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 小节下添加一行： 1skip-grant-tables&#x3D;1 这一行配置让 mysqld 启动时不对密码进行验证2、重启 mysqld 服务：systemctl restart mysqld3、使用 root 用户登录到 mysql：mysq">
 <meta property="og:type" content="article">
-<meta property="og:title" content="article title">
-<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="重置mysql密码的一种方法">
+<meta property="og:url" content="https://s40d1.github.io/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
-<meta property="og:description" content="第一篇文章">
-<meta property="article:published_time" content="2020-06-23T16:13:37.000Z">
-<meta property="article:modified_time" content="2020-06-23T16:15:55.811Z">
+<meta property="og:description" content="如果遇到mysql忘记密码的时候，可以尝试以下这种方式：以下是需要修改root密码的过程步骤：1、修改 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 小节下添加一行： 1skip-grant-tables&#x3D;1 这一行配置让 mysqld 启动时不对密码进行验证2、重启 mysqld 服务：systemctl restart mysqld3、使用 root 用户登录到 mysql：mysq">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922202056391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922203038804.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020092220370635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922203918476.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922205712552.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922205921995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922205942487.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200922205959874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-09-22T13:12:31.469Z">
+<meta property="article:modified_time" content="2020-09-22T13:09:09.387Z">
 <meta property="article:author" content="s40d1">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200922202056391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center">
     
 
     
@@ -249,29 +258,29 @@
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
                     </li> 
                     
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/">重置mysql密码的一种方法</a></li>  </ul> 
+                    </li> 
+                    
                     <li class="directory">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
-                            数据库
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/">重置mysql密码的一种方法</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory open">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder-open"></i>
-                            &nbsp;
                             渗透测试
                         </a>
                          <ul class="unstyled" id="tree"> 
-                    <li class="directory open">
+                    <li class="directory">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder-open"></i>
+                            <i class="fa fa-folder"></i>
                             &nbsp;
                             IOT渗透
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -527,7 +536,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-渗透测试/IOT渗透/第一篇文章" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-数据库/重置mysql密码的一种方法" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -537,15 +546,15 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/">IOT渗透</a>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
     </div>
 
                         
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-            <time datetime="2020-06-23T16:13:37.000Z" itemprop="datePublished">2020-06-24</time>
+        <a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/">
+            <time datetime="2020-09-22T13:12:31.469Z" itemprop="datePublished">2020-09-22</time>
         </a>
     </div>
 
@@ -556,13 +565,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/数据库/重置mysql密码的一种方法.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/数据库/重置mysql密码的一种方法.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/渗透测试/IOT渗透/第一篇文章.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/数据库/重置mysql密码的一种方法.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
                             </div>
                         
                     </div>
@@ -570,7 +579,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            article title
+            重置mysql密码的一种方法
         </h1>
     
 
@@ -583,7 +592,16 @@
             
         
         
-            <h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>
+            <p>如果遇到mysql忘记密码的时候，可以尝试以下这种方式：<br>以下是需要修改root密码的过程步骤：<br>1、修改 /etc/my.cnf，在 [mysqld] 小节下添加一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip-grant-tables&#x3D;1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200922202056391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这一行配置让 mysqld 启动时不对密码进行验证<br>2、重启 mysqld 服务：<code>systemctl restart mysqld</code><br><img src="https://img-blog.csdnimg.cn/20200922203038804.png#pic_center" alt="在这里插入图片描述"><br>3、使用 root 用户登录到 mysql：<code>mysql -u root</code><br><img src="https://img-blog.csdnimg.cn/2020092220370635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>4、切换到mysql数据库，更新 user 表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set authentication_string &#x3D; password(&#39;root&#39;), password_expired &#x3D; &#39;N&#39;, password_last_changed &#x3D; now() where user &#x3D; &#39;root&#39;;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200922203918476.png#pic_center" alt="在这里插入图片描述"><br>在之前的版本中，密码字段的字段名是 password，5.7版本改为了 <code>authentication_string</code>。<br>5、刷新权限使得修改密码生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200922205712552.png#pic_center" alt="在这里插入图片描述"><br>6、退出 mysql，编辑 <code>/etc/my.cnf 文件</code>，删除 <code>skip-grant-tables=1</code> 的内容。<br><img src="https://img-blog.csdnimg.cn/20200922205921995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>6、重启 mysqld 服务<br><img src="https://img-blog.csdnimg.cn/20200922205942487.png#pic_center" alt="在这里插入图片描述"><br>7、再用新密码登录即可。<br><img src="https://img-blog.csdnimg.cn/20200922205959874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>注意：<code>skip-grant-tables</code>参数是会让mysql在登录的时候跳过验证表直接登录到数据库，没特殊情况建议不要将该参数留在数据库配置文件中</p>
+
             </div>
         
         <footer class="article-footer">
@@ -595,15 +613,11 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    正则表达式30分钟入门40分钟进阶
-                
-            </div>
-        </a>
     
+        <a href="/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Hello World</div>
+        </a>
     
 </nav>
 
