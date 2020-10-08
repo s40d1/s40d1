@@ -95,7 +95,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -114,10 +114,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'pos',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -150,7 +150,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
     </div>
 
                 </td>
@@ -167,7 +167,7 @@
         
     <div class="widget-wrap" id="categories">
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>kategori</span>
             &nbsp;
             <a id="allExpand" href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -287,7 +287,7 @@
                             &nbsp;
                             学习笔记
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/">第五节 一篇文章搞懂SQL注入</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E8%8A%82%20%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">第六节 一文搞懂XSS跨站脚本攻击</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/">第五节 一篇文章搞懂SQL注入</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E8%8A%82%20%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">第六节 一文搞懂XSS跨站脚本攻击</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/">XSS-labs通关记</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -381,9 +381,28 @@
     
         
     <div class="widget-wrap">
-        <h3 class="widget-title"><span>recent</span></h3>
+        <h3 class="widget-title"><span>terbaru</span></h3>
         <div class="widget">
             <ul id="recent-post" class>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a></p>
+                            <p class="item-title"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/" class="title">XSS-labs通关记</a></p>
+                            <p class="item-date"><time datetime="2020-10-08T09:01:23.498Z" itemprop="datePublished">2020-10-08</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -461,25 +480,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a></p>
-                            <p class="item-title"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/" class="title">第五节 一篇文章搞懂SQL注入</a></p>
-                            <p class="item-date"><time datetime="2020-07-24T03:35:37.000Z" itemprop="datePublished">2020-07-24</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -487,16 +487,16 @@
     
         
     <div class="widget-wrap">
-        <h3 class="widget-title"><span>archives</span></h3>
+        <h3 class="widget-title"><span>arsip</span></h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">13</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">13</span></li></ul>
         </div>
     </div>
 
     
         
     <div class="widget-wrap">
-        <h3 class="widget-title"><span>tags</span></h3>
+        <h3 class="widget-title"><span>tag</span></h3>
         <div class="widget">
             <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/" rel="tag">CSRF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/" rel="tag">XSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则 表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">渗透测试 HTTP协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">渗透测试;信息收集</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" rel="tag">风险评估 概念</a><span class="tag-list-count">1</span></li></ul>
         </div>
@@ -505,7 +505,7 @@
     
         
     <div class="widget-wrap">
-        <h3 class="widget-title"><span>tag cloud</span></h3>
+        <h3 class="widget-title"><span>awan tag</span></h3>
         <div class="widget tagcloud">
             <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则 表达式</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">渗透测试 HTTP协议</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">渗透测试;信息收集</a> <a href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">风险评估 概念</a>
         </div>
@@ -514,7 +514,7 @@
     
         
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title"><span>links</span></h3>
+        <h3 class="widget-title"><span>tautan</span></h3>
         <div class="widget">
             <ul>
                 
@@ -609,7 +609,7 @@
 <nav id="article-nav">
     
         <a href="/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
+            <strong class="article-nav-caption">Lebih baru</strong>
             <div class="article-nav-title">
                 
                     风险评估相关概念
@@ -619,7 +619,7 @@
     
     
         <a href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Older</strong>
+            <strong class="article-nav-caption">Lebih Tua</strong>
             <div class="article-nav-title">article title</div>
         </a>
     
