@@ -1,636 +1,649 @@
 <!DOCTYPE html>
-<html lang="zn">
+<html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>正则表达式30分钟入门40分钟进阶 | s40d1&#39;s Wiki</title>
-    
-    
-        <meta name="keywords" content="正则 表达式">
-    
+  <meta charset="utf-8">
+  <title>正则表达式30分钟入门40分钟进阶 | s40d1&#39;s Wiki</title>
+  <meta name="keywords" content=" 正则 表达式 ">
+  <meta name="description" content="正则表达式30分钟入门40分钟进阶 | s40d1&#39;s Wiki">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="正则练习网址： https:&#x2F;&#x2F;www.codejiaonang.com&#x2F;正则在线测试网站： https:&#x2F;&#x2F;regexr-cn.com&#x2F; 一、正则表达式入门1.1字符组正则表达式中字符组使用中括号（[]）包裹，作用是匹配中括号里面的元素任意一次。如下： 1.1.1字符组中横杠（-）表示区间字符组中可以使用横杠来表示区间，省去大量写操作。如图： 1.1.2特殊字符需转义如果需要再字符组内对横杠(包">
-<meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式30分钟入门40分钟进阶">
-<meta property="og:url" content="https://s40d1.github.io/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://s40d1.github.io/about/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
-<meta property="og:description" content="正则练习网址： https:&#x2F;&#x2F;www.codejiaonang.com&#x2F;正则在线测试网站： https:&#x2F;&#x2F;regexr-cn.com&#x2F; 一、正则表达式入门1.1字符组正则表达式中字符组使用中括号（[]）包裹，作用是匹配中括号里面的元素任意一次。如下： 1.1.1字符组中横杠（-）表示区间字符组中可以使用横杠来表示区间，省去大量写操作。如图： 1.1.2特殊字符需转义如果需要再字符组内对横杠(包">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530204023517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530210510308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530211810818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530213615150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531212055785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530214314100.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530214222825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530214905184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530220749877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530222045202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530222508679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530232733167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530233231912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530233845658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531212153297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530234211963.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530234713282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530235130746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531001759953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531002455616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531002513317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531003206362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531003100146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531213312111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531215009981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531220753686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531223308634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531224151999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531224558652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531230057949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200531231232813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2020-06-23T16:13:37.000Z">
-<meta property="article:modified_time" content="2020-06-27T07:09:40.901Z">
+<meta property="article:published_time" content="2020-06-25T16:59:45.456Z">
+<meta property="article:modified_time" content="2020-06-25T16:59:45.456Z">
 <meta property="article:author" content="s40d1">
-<meta property="article:tag" content="正则 表达式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200530204023517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70">
-    
-
-    
-        <link rel="alternate" href="/atom.xml" title="s40d1&#39;s Wiki" type="application/atom+xml">
-    
-
-    
-        <link rel="icon" href="/favicon.ico">
-    
-
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-
-    
-<link rel="stylesheet" href="/libs/open-sans/styles.css">
-
-    
-<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
 
-    
-<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/img/avatar.jpg">
 
-    
-<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
-    
-<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
 
-    
-    
-        
-<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
 
-    
-    
-        
-<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0"></script>
 
-    
-    
-    
-    
-
-
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-<meta name="generator" content="Hexo 4.2.1"></head>
-</html>
-<body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">s40d1&#39;s Wiki</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/">首页</a>
-                
-                    <a class="main-nav-link" href="/archives">归档</a>
-                
-                    <a class="main-nav-link" href="/categories">分类</a>
-                
-                    <a class="main-nav-link" href="/tags">标签</a>
-                
-                    <a class="main-nav-link" href="/about">关于</a>
-                
-            </nav>
-            
-            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'pos',
-            PAGES: 'Pages',
-            CATEGORIES: 'kategori',
-            TAGS: 'tag',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+    hljs.initHighlightingOnLoad();
 </script>
 
-<script src="/js/insight.js"></script>
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.1.0"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="s40d1's Wiki" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value>
+  <input class="theme_blog_path" value>
+  <input id="theme_shortcut" value="true">
+  <input id="theme_highlight_on" value="true">
+  <input id="theme_code_copy" value="true">
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg">
+</a>
+<div class="author">
+    <span>s40d1</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank" rel="external nofollow noopener noreferrer">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"/>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(23)</small></div></li>
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="CTF">CTF<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="代码审计">代码审计<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="安全开发"><i class="fold iconfont icon-right"></i>安全开发<small>(1)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="安全开发<--->正则表达式">正则表达式<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="安全服务"><i class="fold iconfont icon-right"></i>安全服务<small>(1)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="安全服务<--->风险评估">风险评估<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="应急响应">应急响应<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="攻防演练">攻防演练<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="渗透测试"><i class="fold iconfont icon-right"></i>渗透测试<small>(13)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="渗透测试<--->IOT渗透">IOT渗透<small>(6)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="渗透测试<--->Web渗透"><i class="fold iconfont icon-right"></i>Web渗透<small>(7)</small></div>
+                            
+                                <ul class="sub hide">
+                                    
+                                    <li><div data-rel="渗透测试<--->Web渗透学习笔记">学习笔记<small>(6)</small></div>
+                                    </li>
+                                    
+                                    <li><div data-rel="渗透测试<--->Web渗透漏洞复现">漏洞复现<small>(1)</small></div>
+                                    </li>
+                                    
+                                </ul>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="红蓝对抗">红蓝对抗<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="风险评估">风险评估<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="23">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/" rel="external nofollow noopener noreferrer">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input">
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search">
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CSRF</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQL注入</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>XSS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则 表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试 HTTP协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试;信息收集</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>风险评估 概念</a>
+            </li>
+        
+    </div>
 
 </div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/">首页</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">归档</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">分类</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">标签</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">关于</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cari">
-    </div>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
-
-        <div class="outer">
-            
-            
-                <aside id="sidebar">
-   
+    
+    <nav id="title-list-nav">
         
-    <div class="widget-wrap" id="categories">
-        <h3 class="widget-title">
-            <span>kategori</span>
-            &nbsp;
-            <a id="allExpand" href="#">
-                <i class="fa fa-angle-double-down fa-2x"></i>
-            </a>
-        </h3>
-        
-        
-        
-         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            CTF
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            代码审计
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory open">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder-open"></i>
-                            &nbsp;
-                            安全开发
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory open">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder-open"></i>
-                            &nbsp;
-                            正则表达式
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/">正则表达式30分钟入门40分钟进阶</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            安全服务
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            风险评估
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">风险评估相关概念</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            应急响应
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E8%AE%B0%E4%B8%80%E6%AC%A1Mac%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E5%A4%84%E7%BD%AE/">记一次Mac挖矿病毒的处置</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            攻防演练
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            数据库
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/">重置mysql密码的一种方法</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            渗透测试
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            IOT渗透
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/">Hello World</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/"></a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            Web渗透
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            学习笔记
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/">第一节 HTTP请求流程</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">第二节 信息收集</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/">第四节 跨站请求伪造（CSRF）漏洞</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/">第五节 一篇文章搞懂SQL注入</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E8%8A%82%20%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">第六节 一文搞懂XSS跨站脚本攻击</a></li>  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/">XSS-labs通关记</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            漏洞复现
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActiveMQ%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2015-5254%EF%BC%89%E5%A4%8D%E7%8E%B0/">ActiveMQ 反序列化漏洞（CVE-2015-5254）复现</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            红蓝对抗
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            风险评估
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">article title</a></li>  </ul> 
-                    </li> 
-                     <li class="file"><a href="/wiki/hello-world/">Hello World</a></li>  </ul> 
-    </div>
-    <script>
-        $(document).ready(function() {
-            var iconFolderOpenClass  = 'fa-folder-open';
-            var iconFolderCloseClass = 'fa-folder';
-            var iconAllExpandClass = 'fa-angle-double-down';
-            var iconAllPackClass = 'fa-angle-double-up';
-            // Handle directory-tree expansion:
-            // 左键单独展开目录
-            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
-                event.preventDefault();
-
-                var icon = $(this).children('.fa');
-                var expanded = icon.hasClass(iconFolderOpenClass);
-                var subtree = $(this).siblings('ul');
-                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
-                if (expanded) {
-                    if (typeof subtree != 'undefined') {
-                        subtree.slideUp({ duration: 100 });
-                    }
-                    icon.addClass(iconFolderCloseClass);
-                } else {
-                    if (typeof subtree != 'undefined') {
-                        subtree.slideDown({ duration: 100 });
-                    }
-                    icon.addClass(iconFolderOpenClass);
-                }
-            });
-            // 右键展开下属所有目录
-            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
-                event.preventDefault();
-                
-                var icon = $(this).children('.fa');
-                var expanded = icon.hasClass(iconFolderOpenClass);
-                var listNode = $(this).siblings('ul');
-                var subtrees = $.merge(listNode.find('li ul'), listNode);
-                var icons = $.merge(listNode.find('.fa'), icon);
-                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
-                if(expanded) {
-                    subtrees.slideUp({ duration: 100 });
-                    icons.addClass(iconFolderCloseClass);
-                } else {
-                    subtrees.slideDown({ duration: 100 });
-                    icons.addClass(iconFolderOpenClass);
-                }
-            })
-            // 展开关闭所有目录按钮
-            $(document).on('click', '#allExpand', function (event) {
-                event.preventDefault();
-                
-                var icon = $(this).children('.fa');
-                var expanded = icon.hasClass(iconAllExpandClass);
-                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
-                if(expanded) {
-                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
-                    $('#categories li ul').slideDown({ duration: 100 });
-                    icon.addClass(iconAllPackClass);
-                } else {
-                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
-                    $('#categories li ul').slideUp({ duration: 100 });
-                    icon.addClass(iconAllExpandClass);
-                }
-            });  
-        });
-    </script>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title"><span>terbaru</span></h3>
-        <div class="widget">
-            <ul id="recent-post" class>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActiveMQ%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2015-5254%EF%BC%89%E5%A4%8D%E7%8E%B0/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a></p>
-                            <p class="item-title"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActiveMQ%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2015-5254%EF%BC%89%E5%A4%8D%E7%8E%B0/" class="title">ActiveMQ 反序列化漏洞（CVE-2015-5254）复现</a></p>
-                            <p class="item-date"><time datetime="2020-10-16T15:15:51.131Z" itemprop="datePublished">2020-10-16</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/">Web渗透</a></p>
-                            <p class="item-title"><a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/" class="title">XSS-labs通关记</a></p>
-                            <p class="item-date"><time datetime="2020-10-08T09:01:23.498Z" itemprop="datePublished">2020-10-08</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></p>
-                            <p class="item-title"><a href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/" class="title">重置mysql密码的一种方法</a></p>
-                            <p class="item-date"><time datetime="2020-09-22T13:12:31.469Z" itemprop="datePublished">2020-09-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E8%AE%B0%E4%B8%80%E6%AC%A1Mac%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E5%A4%84%E7%BD%AE/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></p>
-                            <p class="item-title"><a href="/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E8%AE%B0%E4%B8%80%E6%AC%A1Mac%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E5%A4%84%E7%BD%AE/" class="title">记一次Mac挖矿病毒的处置</a></p>
-                            <p class="item-date"><time datetime="2020-09-16T05:52:48.905Z" itemprop="datePublished">2020-09-16</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/wiki/hello-world/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/wiki/hello-world/" class="title">Hello World</a></p>
-                            <p class="item-date"><time datetime="2020-09-11T23:56:29.986Z" itemprop="datePublished">2020-09-12</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title"><span>arsip</span></h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">13</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title"><span>tag</span></h3>
-        <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/" rel="tag">CSRF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/" rel="tag">XSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则 表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" rel="tag">渗透测试 HTTP协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">渗透测试;信息收集</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" rel="tag">风险评估 概念</a><span class="tag-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title"><span>awan tag</span></h3>
-        <div class="widget tagcloud">
-            <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则 表达式</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-HTTP%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">渗透测试 HTTP协议</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">渗透测试;信息收集</a> <a href="/tags/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0-%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">风险评估 概念</a>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title"><span>tautan</span></h3>
-        <div class="widget">
-            <ul>
-                
-            </ul>
-        </div>
-    </div>
-
-
-    
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
-            
-            <section id="main"><article id="post-安全开发/正则表达式/正则表达式30分钟入门40分钟进阶" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">安全开发</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/%E6%AD%A3%E5%88%99-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则 表达式</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/">
-            <time datetime="2020-06-23T16:13:37.000Z" itemprop="datePublished">2020-06-24</time>
+        <a class="All 渗透测试 Web渗透 漏洞复现 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActiveMQ%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2015-5254%EF%BC%89%E5%A4%8D%E7%8E%B0/" data-tag data-author>
+            <span class="post-title" title="ActiveMQ 反序列化漏洞（CVE-2015-5254）复现">ActiveMQ 反序列化漏洞（CVE-2015-5254）复现</span>
+            <span class="post-date" title="2020-10-16 23:15:51">2020/10/16</span>
         </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/xsslabs%E9%80%9A%E5%85%B3%E8%AE%B0/" data-tag data-author>
+            <span class="post-title" title="XSS-labs通关记">XSS-labs通关记</span>
+            <span class="post-date" title="2020-10-08 17:01:23">2020/10/08</span>
+        </a>
+        
+        <a class="All 数据库 " href="/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%87%8D%E7%BD%AEmysql%E5%AF%86%E7%A0%81%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95/" data-tag data-author>
+            <span class="post-title" title="重置mysql密码的一种方法">重置mysql密码的一种方法</span>
+            <span class="post-date" title="2020-09-22 21:12:31">2020/09/22</span>
+        </a>
+        
+        <a class="All 应急响应 " href="/wiki/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E8%AE%B0%E4%B8%80%E6%AC%A1Mac%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E5%A4%84%E7%BD%AE/" data-tag data-author>
+            <span class="post-title" title="记一次Mac挖矿病毒的处置">记一次Mac挖矿病毒的处置</span>
+            <span class="post-date" title="2020-09-16 13:52:48">2020/09/16</span>
+        </a>
+        
+        <a class="All " href="/wiki/hello-world/" data-tag data-author>
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-09-12 07:56:29">2020/09/12</span>
+        </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%85%AD%E8%8A%82%20%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/" data-tag="XSS" data-author>
+            <span class="post-title" title="第六节 一文搞懂XSS跨站脚本攻击">第六节 一文搞懂XSS跨站脚本攻击</span>
+            <span class="post-date" title="2020-07-24 17:35:37">2020/07/24</span>
+        </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%94%E8%8A%82%20%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82SQL%E6%B3%A8%E5%85%A5/" data-tag="SQL注入" data-author>
+            <span class="post-title" title="第五节 一篇文章搞懂SQL注入">第五节 一篇文章搞懂SQL注入</span>
+            <span class="post-date" title="2020-07-24 11:35:37">2020/07/24</span>
+        </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E5%9B%9B%E8%8A%82%20%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89%E6%BC%8F%E6%B4%9E/" data-tag="CSRF" data-author>
+            <span class="post-title" title="第四节 跨站请求伪造（CSRF）漏洞">第四节 跨站请求伪造（CSRF）漏洞</span>
+            <span class="post-date" title="2020-07-08 19:17:37">2020/07/08</span>
+        </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E8%8A%82%20%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-tag="渗透测试;信息收集" data-author>
+            <span class="post-title" title="第二节 信息收集">第二节 信息收集</span>
+            <span class="post-date" title="2020-07-07 22:10:37">2020/07/07</span>
+        </a>
+        
+        <a class="All 渗透测试 Web渗透 学习笔记 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/Web%E6%B8%97%E9%80%8F/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E8%8A%82%20HTTP%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B/" data-tag="渗透测试 HTTP协议" data-author>
+            <span class="post-title" title="第一节 HTTP请求流程">第一节 HTTP请求流程</span>
+            <span class="post-date" title="2020-07-07 19:17:37">2020/07/07</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%97%85%E6%AF%92%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" data-tag data-author>
+            <span class="post-title" title></span>
+            <span class="post-date" title="2020-06-26 01:35:03">2020/06/26</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8E%92%E6%9F%A5/" data-tag data-author>
+            <span class="post-title" title></span>
+            <span class="post-date" title="2020-06-26 01:35:03">2020/06/26</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/Windows%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7Sysmon/" data-tag data-author>
+            <span class="post-title" title></span>
+            <span class="post-date" title="2020-06-26 01:35:03">2020/06/26</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/web%E5%88%9D%E7%BA%A7%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" data-tag data-author>
+            <span class="post-title" title></span>
+            <span class="post-date" title="2020-06-26 01:35:03">2020/06/26</span>
+        </a>
+        
+        <a class="All 安全服务 风险评估 " href="/wiki/%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" data-tag="风险评估 概念" data-author>
+            <span class="post-title" title="风险评估相关概念">风险评估相关概念</span>
+            <span class="post-date" title="2020-06-26 00:13:37">2020/06/26</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/" data-tag data-author>
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-06-24 10:08:49">2020/06/24</span>
+        </a>
+        
+        <a class="All 风险评估 " href="/wiki/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All 红蓝对抗 " href="/wiki/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All 代码审计 " href="/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All CTF " href="/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All 攻防演练 " href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All 安全开发 正则表达式 " href="/wiki/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F30%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A840%E5%88%86%E9%92%9F%E8%BF%9B%E9%98%B6/" data-tag="正则 表达式" data-author>
+            <span class="post-title" title="正则表达式30分钟入门40分钟进阶">正则表达式30分钟入门40分钟进阶</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <a class="All 渗透测试 IOT渗透 " href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-tag data-author>
+            <span class="post-title" title="article title">article title</span>
+            <span class="post-date" title="2020-06-24 00:13:37">2020/06/24</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
     </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/安全开发/正则表达式/正则表达式30分钟入门40分钟进阶.md" target="_blank" rel="external nofollow noopener noreferrer"> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/安全开发/正则表达式/正则表达式30分钟入门40分钟进阶.md" target="_blank" rel="external nofollow noopener noreferrer"> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/安全开发/正则表达式/正则表达式30分钟入门40分钟进阶.md" target="_blank" rel="external nofollow noopener noreferrer"> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-安全开发/正则表达式/正则表达式30分钟入门40分钟进阶" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title" itemprop="name">
-            正则表达式30分钟入门40分钟进阶
-        </h1>
+        <h1 class="article-title">正则表达式30分钟入门40分钟进阶</h1>
     
-
-            </header>
+    <div class="article-meta">
         
         
-        <div class="article-entry" itemprop="articleBody">
         
-        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
             
+            
+            <a data-rel="安全开发">安全开发</a> > 
+            
+            <a data-rel="安全开发&lt;---&gt;正则表达式">正则表达式</a>
+            
+        </span>
         
         
-            <p>正则练习网址： <a href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0" target="_blank" rel="external nofollow noopener noreferrer">https://www.codejiaonang.com/</a><br>正则在线测试网站： <a href="https://regexr-cn.com/" target="_blank" rel="external nofollow noopener noreferrer">https://regexr-cn.com/</a></p>
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">正则 表达式</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title="Updated At: 2020-06-27 15:09:40">2020-06-24 00:13</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、正则表达式入门"><span class="toc-text">一、正则表达式入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1字符组"><span class="toc-text">1.1字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1字符组中横杠（-）表示区间"><span class="toc-text">1.1.1字符组中横杠（-）表示区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2特殊字符需转义"><span class="toc-text">1.1.2特殊字符需转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3取反"><span class="toc-text">1.1.3取反</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2快捷方式"><span class="toc-text">1.2快捷方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-d匹配数字-w匹配字符-特殊字符除外"><span class="toc-text">1.2.1 \d匹配数字 \w匹配字符(特殊字符除外)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-s匹配空格"><span class="toc-text">1.2.2 \s匹配空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3匹配单词边界"><span class="toc-text">1.2.3匹配单词边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4快捷方式取反"><span class="toc-text">1.2.4快捷方式取反</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4开始和结束"><span class="toc-text">1.2.4开始和结束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5任意字符"><span class="toc-text">1.2.5任意字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-可选字符"><span class="toc-text">1.2.6 可选字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3匹配多个数据"><span class="toc-text">1.3匹配多个数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-重复次数"><span class="toc-text">1.3.1 重复次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-重复区间"><span class="toc-text">1.3.2 重复区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-开闭区间"><span class="toc-text">1.3.3 开闭区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-匹配所有手机号码"><span class="toc-text">1.3.4 匹配所有手机号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-匹配所有网址"><span class="toc-text">1.3.4 匹配所有网址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、正则表达式进阶"><span class="toc-text">二、正则表达式进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1分组与溯回引用"><span class="toc-text">2.1分组与溯回引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1分组"><span class="toc-text">2.1.1分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-或者条件"><span class="toc-text">2.1.2 或者条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-非捕获分组"><span class="toc-text">2.1.3 非捕获分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-回溯引用"><span class="toc-text">2.1.4 回溯引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2先行断言"><span class="toc-text">2.2先行断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-正向先行断言"><span class="toc-text">2.2.1 正向先行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-反向先行断言"><span class="toc-text">2.2.1 反向先行断言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3后行断言"><span class="toc-text">2.3后行断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正向后行断言"><span class="toc-text">正向后行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向后行断言"><span class="toc-text">反向后行断言</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正则练习网址： <a href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0" target="_blank" rel="external nofollow noopener noreferrer">https://www.codejiaonang.com/</a><br>正则在线测试网站： <a href="https://regexr-cn.com/" target="_blank" rel="external nofollow noopener noreferrer">https://regexr-cn.com/</a></p>
 <h1 id="一、正则表达式入门"><a href="#一、正则表达式入门" class="headerlink" title="一、正则表达式入门"></a>一、正则表达式入门</h1><h2 id="1-1字符组"><a href="#1-1字符组" class="headerlink" title="1.1字符组"></a>1.1字符组</h2><p>正则表达式中字符组使用中括号（[]）包裹，作用是匹配中括号里面的元素任意一次。如下：<br><img src="https://img-blog.csdnimg.cn/20200530204023517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="1-1-1字符组中横杠（-）表示区间"><a href="#1-1-1字符组中横杠（-）表示区间" class="headerlink" title="1.1.1字符组中横杠（-）表示区间"></a>1.1.1字符组中横杠（-）表示区间</h3><p>字符组中可以使用横杠来表示区间，省去大量写操作。<br>如图：<br><img src="https://img-blog.csdnimg.cn/20200530210510308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="1-1-2特殊字符需转义"><a href="#1-1-2特殊字符需转义" class="headerlink" title="1.1.2特殊字符需转义"></a>1.1.2特殊字符需转义</h3><p>如果需要再字符组内对横杠(包括其他特殊字符)进行匹配，需要再“-”前面加上转义字符：<br><img src="https://img-blog.csdnimg.cn/20200530211810818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -658,131 +671,194 @@
 <h2 id="2-3后行断言"><a href="#2-3后行断言" class="headerlink" title="2.3后行断言"></a>2.3后行断言</h2><h3 id="正向后行断言"><a href="#正向后行断言" class="headerlink" title="正向后行断言"></a>正向后行断言</h3><p>正向后行断言：<code>(?&lt;=表达式)</code>，指在某个位置向左看，表示所在位置左侧必须能匹配表达式</p>
 <h3 id="反向后行断言"><a href="#反向后行断言" class="headerlink" title="反向后行断言"></a>反向后行断言</h3><p>反向后行断言：<code>(?&lt;!表达式)</code>，指在某个位置向左看，表示所在位置左侧不能匹配表达式</p>
 
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
 </article>
 
 
-    
-<nav id="article-nav">
-    
-        <a href="/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Lebih baru</strong>
-            <div class="article-nav-title">
-                
-                    article title
-                
-            </div>
-        </a>
-    
-    
-        <a href="/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/IOT%E6%B8%97%E9%80%8F/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Lebih Tua</strong>
-            <div class="article-nav-title">article title</div>
-        </a>
-    
-</nav>
+<p>
+    <a class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
 
 
 
 
 
     
-    
 
 
-
-
-<!-- baidu url auto push script -->
-<script type="text/javascript">
-    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
-</script>     
-</section>
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            s40d1 &copy; 2020 
-            <a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
-            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" target="_blank" rel="external nofollow noopener noreferrer">wikitten</a>
-            
-                <br>
-                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
-                &nbsp;|&nbsp;
-                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
-            
-        </div>
-    </div>
-</footer>
-
-        
-
-    
-        
-<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-share.min.js"></script>
-
-        
-<script src="/libs/lightgallery/js/lg-video.min.js"></script>
-
-    
-    
-        
-<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-
-    
-    
-        <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true,
-            TeX: {
-                equationNumbers: {
-                  autoNumber: 'AMS'
-                }
-            }
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-
-
-<!-- Custom Scripts -->
-
-<script src="/js/main.js"></script>
 
 
     </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="external nofollow noopener noreferrer">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class id="rocket"></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
 </body>
+<script src="/js/jquery.pjax.js?v=1.1.0"></script>
+
+<script src="/js/script.js?v=1.1.0"></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
