@@ -492,7 +492,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title="Updated At: 2020-10-13 14:21:15">2020-10-08 17:01</time>
+            Created At : <time class="date" title="Updated At: 2020-10-17 17:46:29">2020-10-08 17:01</time>
         
     </div>
     <div class="article-meta">
@@ -530,7 +530,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@<a href="目录">TOC</a></p>
+        <p><a href="目录">TOC</a></p>
 <h1 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h1><p><img src="https://img-blog.csdnimg.cn/20201005132803821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="level1"><br>当前页面输入点为url中name参数，页面中会将参数值的内容和字符长度暂时出来。接下来就先在name参数值上做动作：<br>源码内容如图，我们可以尝试在“欢迎用户test”处插入<code>&lt;script&gt;alert(1)&lt;/script&gt;</code>进行测试：<br><img src="https://img-blog.csdnimg.cn/20201005152337306.png#pic_center" alt="源码内容"><br>测试通过:<br><img src="https://img-blog.csdnimg.cn/20201005155246134.png#pic_center" alt="代码被完整植入"><br><img src="https://img-blog.csdnimg.cn/20201005153250950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h1 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h1><p><img src="https://img-blog.csdnimg.cn/20201005155811682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="level2"><br>level2中可尝试利用输入点为keyword参数，有两处输出显示位置：<br><img src="https://img-blog.csdnimg.cn/20201005160116840.png#pic_center" alt="在这里插入图片描述"><br>使用<code>&lt;script&gt;alert(1)&lt;/script&gt;</code>进行测试，发现<code>&lt;h2&gt;</code>标签内的<code>&lt;&gt;</code>被实体化编码了，但是<code>&lt;input&gt;</code>标签内的并没有被实体化编码：<br><img src="https://img-blog.csdnimg.cn/20201005161755134.png#pic_center" alt="在这里插入图片描述"><br>故接下来对<code>input</code>标签下手，构造闭合payload：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;script&gt;alert(1)&lt;&#x2F;script&gt;&lt;&quot;</span><br></pre></td></tr></table></figure>
