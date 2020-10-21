@@ -7,10 +7,10 @@
   <meta name="description" content="Apache SSI 远程命令执行漏洞复现 | s40d1&#39;s Wiki">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="https://s40d1.github.io/tags/index.html">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://s40d1.github.io/about/index.html">
 <meta property="og:site_name" content="s40d1&#39;s Wiki">
-<meta property="article:published_time" content="2020-09-12T00:36:55.895Z">
+<meta property="article:published_time" content="2020-09-12T00:36:55.891Z">
 <meta property="article:modified_time" content="2020-06-25T16:59:46.000Z">
 <meta property="article:author" content="s40d1">
 <meta name="twitter:card" content="summary">
@@ -512,7 +512,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title="最后更新: 2020-10-21 22:45:36">2020-10-21 22:48</time>
+            发布时间 : <time class="date" title="最后更新: 2020-10-21 23:06:48">2020-10-21 22:48</time>
         
     </div>
     <div class="article-meta">
@@ -559,7 +559,7 @@
 <p>环境启动后，访问<a href="http://your-ip:8080/upload.php，即可看到一个上传表单。" target="_blank" rel="external nofollow noopener noreferrer">http://your-ip:8080/upload.php，即可看到一个上传表单。</a><br><img src="https://note.youdao.com/yws/public/resource/17d72b1792e9bdb1f3322c23a233df37/2B3AEEC6F6574CA0BE0D7FDAB253683C?ynotemdtimestamp=1603291409020" alt="image"></p>
 <h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>正常上传PHP文件是不允许的，我们可以上传一个shell.shtml文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--#exec cmd&#x3D;&quot;ls -l&quot; --&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://note.youdao.com/yws/public/resource/17d72b1792e9bdb1f3322c23a233df37/CC4F7F44F3EB4100AAA1D30DC496FF54?ynotemdtimestamp=1603291409020" alt="image"><br>成功上传，然后访问shell.shtml，可见命令已成功执行：<br><img src="https://note.youdao.com/yws/public/resource/17d72b1792e9bdb1f3322c23a233df37/E320B87A13AD4BD38AF3C0CB0DE85BF0?ynotemdtimestamp=1603291409020" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/17d72b1792e9bdb1f3322c23a233df37/CC4F7F44F3EB4100AAA1D30DC496FF54?ynotemdtimestamp=1603292671984" alt="image"><br>成功上传，然后访问shell.shtml，可见命令已成功执行：<br><img src="https://note.youdao.com/yws/public/resource/17d72b1792e9bdb1f3322c23a233df37/E320B87A13AD4BD38AF3C0CB0DE85BF0?ynotemdtimestamp=1603292671984" alt="image"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
