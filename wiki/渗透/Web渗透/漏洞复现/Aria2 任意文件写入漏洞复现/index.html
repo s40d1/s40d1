@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>正则表达式30分钟入门40分钟进阶 | s40d1&#39;s Wiki</title>
-  <meta name="keywords" content=" 正则 表达式 ">
-  <meta name="description" content="正则表达式30分钟入门40分钟进阶 | s40d1&#39;s Wiki">
+  <title>s40d1&#39;s Wiki</title>
+  <meta name="keywords" content>
+  <meta name="description" content="s40d1&#39;s Wiki">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tags">
@@ -498,9 +498,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-安全开发/正则表达式/正则表达式30分钟入门40分钟进阶" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">正则表达式30分钟入门40分钟进阶</h1>
+        <article id="post-渗透/Web渗透/漏洞复现/Aria2 任意文件写入漏洞复现" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
@@ -510,24 +508,19 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a data-rel="安全开发">安全开发</a> > 
+            <a data-rel="渗透">渗透</a> > 
             
-            <a data-rel="安全开发&lt;---&gt;正则表达式">正则表达式</a>
+            <a data-rel="渗透&lt;---&gt;Web渗透">Web渗透</a> > 
+            
+            <a data-rel="渗透&lt;---&gt;Web渗透&lt;---&gt;漏洞复现">漏洞复现</a>
             
         </span>
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color2">正则 表达式</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title="Updated At: 2020-06-27 15:09:42">2020-06-24 00:13</time>
+            Created At : <time class="date" title="Updated At: 2020-10-26 16:59:28">2020-10-26 16:55</time>
         
     </div>
     <div class="article-meta">
@@ -549,7 +542,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、正则表达式入门"><span class="toc-text">一、正则表达式入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1字符组"><span class="toc-text">1.1字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1字符组中横杠（-）表示区间"><span class="toc-text">1.1.1字符组中横杠（-）表示区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2特殊字符需转义"><span class="toc-text">1.1.2特殊字符需转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3取反"><span class="toc-text">1.1.3取反</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2快捷方式"><span class="toc-text">1.2快捷方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-d匹配数字-w匹配字符-特殊字符除外"><span class="toc-text">1.2.1 \d匹配数字 \w匹配字符(特殊字符除外)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-s匹配空格"><span class="toc-text">1.2.2 \s匹配空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3匹配单词边界"><span class="toc-text">1.2.3匹配单词边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4快捷方式取反"><span class="toc-text">1.2.4快捷方式取反</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4开始和结束"><span class="toc-text">1.2.4开始和结束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5任意字符"><span class="toc-text">1.2.5任意字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-可选字符"><span class="toc-text">1.2.6 可选字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3匹配多个数据"><span class="toc-text">1.3匹配多个数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-重复次数"><span class="toc-text">1.3.1 重复次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-重复区间"><span class="toc-text">1.3.2 重复区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-开闭区间"><span class="toc-text">1.3.3 开闭区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-匹配所有手机号码"><span class="toc-text">1.3.4 匹配所有手机号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-匹配所有网址"><span class="toc-text">1.3.4 匹配所有网址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、正则表达式进阶"><span class="toc-text">二、正则表达式进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1分组与溯回引用"><span class="toc-text">2.1分组与溯回引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1分组"><span class="toc-text">2.1.1分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-或者条件"><span class="toc-text">2.1.2 或者条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-非捕获分组"><span class="toc-text">2.1.3 非捕获分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-回溯引用"><span class="toc-text">2.1.4 回溯引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2先行断言"><span class="toc-text">2.2先行断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-正向先行断言"><span class="toc-text">2.2.1 正向先行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-反向先行断言"><span class="toc-text">2.2.1 反向先行断言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3后行断言"><span class="toc-text">2.3后行断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正向后行断言"><span class="toc-text">正向后行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向后行断言"><span class="toc-text">反向后行断言</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Aria2-任意文件写入漏洞"><span class="toc-text">Aria2 任意文件写入漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞复现"><span class="toc-text">漏洞复现</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -565,33 +558,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>正则练习网址： <a href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0" target="_blank" rel="external nofollow noopener noreferrer">https://www.codejiaonang.com/</a><br>正则在线测试网站： <a href="https://regexr-cn.com/" target="_blank" rel="external nofollow noopener noreferrer">https://regexr-cn.com/</a></p>
-<h1 id="一、正则表达式入门"><a href="#一、正则表达式入门" class="headerlink" title="一、正则表达式入门"></a>一、正则表达式入门</h1><h2 id="1-1字符组"><a href="#1-1字符组" class="headerlink" title="1.1字符组"></a>1.1字符组</h2><p>正则表达式中字符组使用中括号（[]）包裹，作用是匹配中括号里面的元素任意一次。如下：<br><img src="https://img-blog.csdnimg.cn/20200530204023517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-1-1字符组中横杠（-）表示区间"><a href="#1-1-1字符组中横杠（-）表示区间" class="headerlink" title="1.1.1字符组中横杠（-）表示区间"></a>1.1.1字符组中横杠（-）表示区间</h3><p>字符组中可以使用横杠来表示区间，省去大量写操作。<br>如图：<br><img src="https://img-blog.csdnimg.cn/20200530210510308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-1-2特殊字符需转义"><a href="#1-1-2特殊字符需转义" class="headerlink" title="1.1.2特殊字符需转义"></a>1.1.2特殊字符需转义</h3><p>如果需要再字符组内对横杠(包括其他特殊字符)进行匹配，需要再“-”前面加上转义字符：<br><img src="https://img-blog.csdnimg.cn/20200530211810818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-1-3取反"><a href="#1-1-3取反" class="headerlink" title="1.1.3取反"></a>1.1.3取反</h3><p>如果不想取某一类字符可使用“^”对其取反，如下图：<br><img src="https://img-blog.csdnimg.cn/20200530213615150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://img-blog.csdnimg.cn/20200531212055785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="1-2快捷方式"><a href="#1-2快捷方式" class="headerlink" title="1.2快捷方式"></a>1.2快捷方式</h2><h3 id="1-2-1-d匹配数字-w匹配字符-特殊字符除外"><a href="#1-2-1-d匹配数字-w匹配字符-特殊字符除外" class="headerlink" title="1.2.1 \d匹配数字 \w匹配字符(特殊字符除外)"></a>1.2.1 \d匹配数字 \w匹配字符(特殊字符除外)</h3><p><code>\d</code>表示匹配所有数字，<code>\w</code>表示匹配所有字符，如下图：<br><img src="https://img-blog.csdnimg.cn/20200530214314100.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200530214222825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-2-s匹配空格"><a href="#1-2-2-s匹配空格" class="headerlink" title="1.2.2 \s匹配空格"></a>1.2.2 \s匹配空格</h3><p>可以使用\s来匹配空格和缩进：<br><img src="https://img-blog.csdnimg.cn/20200530214905184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-3匹配单词边界"><a href="#1-2-3匹配单词边界" class="headerlink" title="1.2.3匹配单词边界"></a>1.2.3匹配单词边界</h3><p>匹配内容中完整的单词：<br><img src="https://img-blog.csdnimg.cn/20200530220749877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-4快捷方式取反"><a href="#1-2-4快捷方式取反" class="headerlink" title="1.2.4快捷方式取反"></a>1.2.4快捷方式取反</h3><p>将<code>\W</code>为<code>\w</code>的取反，<code>\D</code>为<code>\d</code>的取反，<code>\S</code>为<code>\s</code>的取反。如：<br><img src="https://img-blog.csdnimg.cn/20200530222045202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-4开始和结束"><a href="#1-2-4开始和结束" class="headerlink" title="1.2.4开始和结束"></a>1.2.4开始和结束</h3><p>目标前使用<code>^</code>可以匹配开始位置字符，在目标后使用<code>$</code>可以匹配结束位置的字符：<br><img src="https://img-blog.csdnimg.cn/20200530222508679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-5任意字符"><a href="#1-2-5任意字符" class="headerlink" title="1.2.5任意字符"></a>1.2.5任意字符</h3><p>使用点（.）可以匹配任意字符（除换行符即<code>\n</code>）：<br><img src="https://img-blog.csdnimg.cn/20200530232733167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-2-6-可选字符"><a href="#1-2-6-可选字符" class="headerlink" title="1.2.6 可选字符"></a>1.2.6 可选字符</h3><p>匹配一个可以出现也可以不出现的字符：<br><img src="https://img-blog.csdnimg.cn/20200530233231912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200530233845658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p><img src="https://img-blog.csdnimg.cn/20200531212153297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="1-3匹配多个数据"><a href="#1-3匹配多个数据" class="headerlink" title="1.3匹配多个数据"></a>1.3匹配多个数据</h2><h3 id="1-3-1-重复次数"><a href="#1-3-1-重复次数" class="headerlink" title="1.3.1 重复次数"></a>1.3.1 重复次数</h3><p>在所需要匹配的字符后面加上大括号，里面填充数字，这个数字表示重复的次数：<br><img src="https://img-blog.csdnimg.cn/20200530234211963.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-3-2-重复区间"><a href="#1-3-2-重复区间" class="headerlink" title="1.3.2 重复区间"></a>1.3.2 重复区间</h3><p>使用大括号内的数字区间可匹配响应范围个数的字符：<br><img src="https://img-blog.csdnimg.cn/20200530234713282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果在后面加上了<code>?</code>，就会只匹配区间开始数量的字符，在这里<code>?</code>表示非贪婪模式：<br><img src="https://img-blog.csdnimg.cn/20200530235130746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果大括号使用前闭后开的形式，表示匹配第一元素开始以上的内容：<br><img src="https://img-blog.csdnimg.cn/20200531001759953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-3-3-开闭区间"><a href="#1-3-3-开闭区间" class="headerlink" title="1.3.3 开闭区间"></a>1.3.3 开闭区间</h3><p><code>+</code>相当于<code>{1，}</code>，<code>*</code>相当于<code>{0，}</code>：<br><img src="https://img-blog.csdnimg.cn/20200531002455616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200531002513317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-3-4-匹配所有手机号码"><a href="#1-3-4-匹配所有手机号码" class="headerlink" title="1.3.4 匹配所有手机号码"></a>1.3.4 匹配所有手机号码</h3><p><img src="https://img-blog.csdnimg.cn/20200531003206362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="1-3-4-匹配所有网址"><a href="#1-3-4-匹配所有网址" class="headerlink" title="1.3.4 匹配所有网址"></a>1.3.4 匹配所有网址</h3><p><img src="https://img-blog.csdnimg.cn/20200531003100146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="二、正则表达式进阶"><a href="#二、正则表达式进阶" class="headerlink" title="二、正则表达式进阶"></a>二、正则表达式进阶</h1><h2 id="2-1分组与溯回引用"><a href="#2-1分组与溯回引用" class="headerlink" title="2.1分组与溯回引用"></a>2.1分组与溯回引用</h2><h3 id="2-1-1分组"><a href="#2-1-1分组" class="headerlink" title="2.1.1分组"></a>2.1.1分组</h3><p>在正则表达式中还提供了一种将表达式分组的机制，当使用分组时，除了获得整个匹配。还能够在匹配中选择每一个分组。<br>要实现分组使用<code>()</code>即可。如下：<br><img src="https://img-blog.csdnimg.cn/20200531213312111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200531215009981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="2-1-2-或者条件"><a href="#2-1-2-或者条件" class="headerlink" title="2.1.2 或者条件"></a>2.1.2 或者条件</h3><p>使用分组的同时还可以使用 或者（or）条件：<br><img src="https://img-blog.csdnimg.cn/20200531220753686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="2-1-3-非捕获分组"><a href="#2-1-3-非捕获分组" class="headerlink" title="2.1.3 非捕获分组"></a>2.1.3 非捕获分组</h3><p>有时候，我们并不需要捕获某个分组的内容，但是又想使用分组的特性。<br>这个时候就可以使用非捕获组<code>(?:表达式)</code>，从而不捕获数据，还能使用分组的功能。<br><img src="https://img-blog.csdnimg.cn/20200531223308634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="2-1-4-回溯引用"><a href="#2-1-4-回溯引用" class="headerlink" title="2.1.4 回溯引用"></a>2.1.4 回溯引用</h3><p>那如果想让后面分组的正则和第一个分组的正则匹配同样的数据<br>可以使用分组的回溯引用，使用<code>\N</code>可以引用编号为<code>N</code>的分组，如下：<br><img src="https://img-blog.csdnimg.cn/20200531224151999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200531224558652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="2-2先行断言"><a href="#2-2先行断言" class="headerlink" title="2.2先行断言"></a>2.2先行断言</h2><h3 id="2-2-1-正向先行断言"><a href="#2-2-1-正向先行断言" class="headerlink" title="2.2.1 正向先行断言"></a>2.2.1 正向先行断言</h3><p>正向先行断言：<code>(?=表达式)</code>，指在某个位置向右看，表示所在位置右侧必须能匹配表达式，但只提取该位置的数据：<br><img src="https://img-blog.csdnimg.cn/20200531230057949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="2-2-1-反向先行断言"><a href="#2-2-1-反向先行断言" class="headerlink" title="2.2.1 反向先行断言"></a>2.2.1 反向先行断言</h3><p>反向先行断言(?!表达式)的作用是保证右边不能出现某字符<br><img src="https://img-blog.csdnimg.cn/20200531231232813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzUxNjY3NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="2-3后行断言"><a href="#2-3后行断言" class="headerlink" title="2.3后行断言"></a>2.3后行断言</h2><h3 id="正向后行断言"><a href="#正向后行断言" class="headerlink" title="正向后行断言"></a>正向后行断言</h3><p>正向后行断言：<code>(?&lt;=表达式)</code>，指在某个位置向左看，表示所在位置左侧必须能匹配表达式</p>
-<h3 id="反向后行断言"><a href="#反向后行断言" class="headerlink" title="反向后行断言"></a>反向后行断言</h3><p>反向后行断言：<code>(?&lt;!表达式)</code>，指在某个位置向左看，表示所在位置左侧不能匹配表达式</p>
+        <h1 id="Aria2-任意文件写入漏洞"><a href="#Aria2-任意文件写入漏洞" class="headerlink" title="Aria2 任意文件写入漏洞"></a>Aria2 任意文件写入漏洞</h1><p>Aria2是一个命令行下轻量级、多协议、多来源的下载工具（支持 HTTP/HTTPS、FTP、BitTorrent、Metalink），内建XML-RPC和JSON-RPC接口。在有权限的情况下，我们可以使用RPC接口来操作aria2来下载文件，将文件下载至任意目录，造成一个任意文件写入漏洞。</p>
+<p>参考文章：<a href="https://paper.seebug.org/120/" target="_blank" rel="external nofollow noopener noreferrer">https://paper.seebug.org/120/</a></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>启动漏洞环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>6800是aria2的rpc服务的默认端口，环境启动后，访问<code>http://your-ip:6800/</code>，发现服务已启动并且返回404页面。</p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>因为rpc通信需要使用json或者xml，不太方便，所以我们可以借助第三方UI来和目标通信，如 <a href="http://binux.github.io/yaaw/demo/" target="_blank" rel="external nofollow noopener noreferrer">http://binux.github.io/yaaw/demo/</a> 。</p>
+<p>打开yaaw，点击配置按钮，填入运行aria2的目标域名：<code>http://your-ip:6800/jsonrpc</code>:</p>
+<p><img src="1.png" alt></p>
+<p>然后点击Add，增加一个新的下载任务。在Dir的位置填写下载至的目录，File Name处填写文件名。比如，我们通过写入一个crond任务来反弹shell：</p>
+<p><img src="2.png" alt></p>
+<p>这时候，arai2会将恶意文件（我指定的URL）下载到/etc/cron.d/目录下，文件名为shell。而在debian中，/etc/cron.d目录下的所有文件将被作为计划任务配置文件（类似crontab）读取，等待一分钟不到即成功反弹shell：</p>
+<p><img src="3.png" alt></p>
+<blockquote>
+<p>如果反弹不成功，注意crontab文件的格式，以及换行符必须是<code>\n</code>，且文件结尾需要有一个换行符。</p>
+</blockquote>
+<p>当然，我们也可以尝试写入其他文件，更多利用方法可以参考<a href="https://paper.seebug.org/120/" target="_blank" rel="external nofollow noopener noreferrer">这篇文章</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
